@@ -3,85 +3,167 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WATAFITI</title>
+
+<title>WATAFITI - Huduma Zetu</title>
 
 <style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
 body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#f4f7f9;
-    color:#222;
+  font-family:Arial,sans-serif;
+  background:#f4f7f9;
+  color:#222;
+  line-height:1.6;
 }
+
 header{
-    background:#075e54;
-    color:white;
-    text-align:center;
-    padding:30px 15px;
+  background:#073b4c;
+  color:white;
+  padding:15px;
+  position:sticky;
+  top:0;
+  z-index:1000;
 }
-header h1{
-    margin:0;
-    font-size:38px;
+
+.nav{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
-header p{
-    margin:8px 0 0;
-    font-size:18px;
+
+.logo{
+  font-size:25px;
+  font-weight:bold;
 }
-nav{
-    background:#043f39;
-    text-align:center;
-    padding:12px;
-}
+
 nav a{
-    color:white;
-    text-decoration:none;
-    margin:0 10px;
-    font-weight:bold;
+  color:white;
+  text-decoration:none;
+  margin-left:10px;
+  padding:8px;
 }
-section{
-    padding:30px 18px;
-    max-width:1000px;
-    margin:auto;
-}
+
 .hero{
-    text-align:center;
-    background:white;
-    padding:35px 20px;
+  background:linear-gradient(135deg,#073b4c,#118ab2);
+  color:white;
+  text-align:center;
+  padding:70px 20px;
 }
-.hero h2{
-    color:#075e54;
+
+.hero h1{
+  font-size:44px;
+  margin-bottom:10px;
 }
+
+.hero p{
+  font-size:19px;
+  margin-bottom:25px;
+}
+
+.btn{
+  display:inline-block;
+  background:#ffd166;
+  color:#222;
+  text-decoration:none;
+  padding:12px 20px;
+  margin:5px;
+  border-radius:8px;
+  font-weight:bold;
+}
+
+.btn:hover{
+  opacity:.85;
+}
+
+section{
+  max-width:1100px;
+  margin:auto;
+  padding:50px 20px;
+}
+
+.title{
+  text-align:center;
+  color:#073b4c;
+  font-size:30px;
+  margin-bottom:30px;
+}
+
+.about{
+  background:white;
+  padding:30px;
+  border-radius:12px;
+  box-shadow:0 3px 12px rgba(0,0,0,.1);
+}
+
 .services{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:15px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
 }
+
 .card{
-    background:white;
-    padding:20px;
-    border-radius:10px;
-    box-shadow:0 2px 8px #ccc;
+  background:white;
+  padding:25px;
+  border-radius:12px;
+  box-shadow:0 3px 12px rgba(0,0,0,.1);
 }
+
 .card h3{
-    color:#075e54;
+  color:#073b4c;
+  margin-bottom:10px;
 }
+
 .contact{
-    background:#075e54;
-    color:white;
-    text-align:center;
+  max-width:none;
+  background:#073b4c;
+  color:white;
+  text-align:center;
 }
-button{
-    background:#25d366;
-    border:none;
-    padding:14px 25px;
-    border-radius:8px;
-    color:white;
-    font-size:17px;
+
+.contact .title{
+  color:white;
 }
+
+.contact p{
+  margin:8px;
+}
+
 footer{
-    background:#043f39;
-    color:white;
+  background:#052d3a;
+  color:white;
+  text-align:center;
+  padding:20px;
+}
+
+@media(max-width:700px){
+
+  .nav{
+    display:block;
     text-align:center;
-    padding:20px;
+  }
+
+  nav{
+    margin-top:10px;
+  }
+
+  nav a{
+    display:inline-block;
+    font-size:14px;
+  }
+
+  .hero h1{
+    font-size:34px;
+  }
 }
 </style>
 </head>
@@ -89,52 +171,208 @@ footer{
 <body>
 
 <header>
-    <h1>WATAFITI</h1>
-    <p>Maarifa • Utafiti • Huduma</p>
-</header>
+<div class="nav">
+
+<div class="logo">WATAFITI</div>
 
 <nav>
-    <a href="#home">Mwanzo</a>
-    <a href="#huduma">Huduma</a>
-    <a href="#kuhusu">Kuhusu Sisi</a>
-    <a href="#mawasiliano">Mawasiliano</a>
+<a href="#nyumbani">Nyumbani</a>
+<a href="#kuhusu">Kuhusu Sisi</a>
+<a href="#huduma">Huduma</a>
+<a href="#mawasiliano">Mawasiliano</a>
 </nav>
 
-<section id="home" class="hero">
-    <h2>Karibu WATAFITI</h2>
-    <p>
-        Tunatoa huduma mbalimbali za kitaalamu na kusaidia jamii
-        kupata suluhisho katika mahitaji mbalimbali.
-    </p>
+</div>
+</header>
+
+
+<!-- NYUMBANI -->
+
+<section class="hero" id="nyumbani">
+
+<h1>WATAFITI</h1>
+
+<p>
+Huduma mbalimbali kwa jamii, biashara na maendeleo.
+</p>
+
+<a class="btn" href="#huduma">ANGALIA HUDUMA</a>
+
+<a class="btn" href="#mawasiliano">WASILIANA NASI</a>
+
 </section>
 
+
+<!-- KUHUSU SISI -->
+
+<section id="kuhusu">
+
+<h2 class="title">Kuhusu Sisi</h2>
+
+<div class="about">
+
+<p>
+<strong>WATAFITI</strong> ni mtandao unaotoa huduma
+mbalimbali kwa jamii, biashara na watu binafsi.
+</p>
+
+<br>
+
+<p>
+Tunatoa huduma kwa uaminifu, uwazi na kuzingatia
+mahitaji ya mteja.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- HUDUMA -->
+
 <section id="huduma">
-    <h2>Huduma Zetu</h2>
 
-    <div class="services">
+<h2 class="title">Huduma Zetu</h2>
 
-        <div class="card">
-            <h3>Surveyor</h3>
-            <p>Land surveying, building survey, landscaping na setting out.</p>
-        </div>
+<div class="services">
 
-        <div class="card">
-            <h3>Building & Land</h3>
-            <p>Huduma zinazohusiana na ujenzi, vipimo na masuala ya ardhi.</p>
-        </div>
 
-        <div class="card">
-            <h3>Mikopo ya Dharura</h3>
-            <p>
-                Mikopo midogo ya dharura kwa mahitaji ya nyumbani,
-                hasa kwa wanafunzi wa chuo. Kiasi hadi TZS 150,000.
-            </p>
-        </div>
+<div class="card">
 
-        <div class="card">
-            <h3>Huduma za Kiroho</h3>
-            <p>Huduma na ushauri wa kiroho kwa jamii.</p>
-        </div>
+<h3>📐 Surveyor Services</h3>
 
-        <div class="card">
-            <h3>U
+<p>
+Land Surveying, Building Survey, Landscaping,
+Setting Out na huduma nyingine za upimaji.
+</p>
+
+<a class="btn" href="#mawasiliano">
+Pata Huduma
+</a>
+
+</div>
+
+
+<div class="card">
+
+<h3>🏗️ Building & Construction</h3>
+
+<p>
+Huduma zinazohusiana na ujenzi, vipimo,
+ushauri na kazi za site.
+</p>
+
+<a class="btn" href="#mawasiliano">
+Wasiliana
+</a>
+
+</div>
+
+
+<div class="card">
+
+<h3>🌍 Land Services</h3>
+
+<p>
+Huduma zinazohusiana na ardhi, upimaji wa
+maeneo na Building Survey.
+</p>
+
+<a class="btn" href="#mawasiliano">
+Uliza Huduma
+</a>
+
+</div>
+
+
+<div class="card">
+
+<h3>💰 Mikopo ya Emergency</h3>
+
+<p>
+Mikopo midogo kwa mahitaji ya dharura ya nyumbani,
+hasa kwa wanafunzi wa vyuo. Kiasi hadi TSh 150,000.
+</p>
+
+<a class="btn" href="#mawasiliano">
+Uliza Taarifa
+</a>
+
+</div>
+
+
+<div class="card">
+
+<h3>🙏 Huduma za Kiroho</h3>
+
+<p>
+Huduma na ushauri wa kiroho kwa watu wanaohitaji
+msaada na mwongozo.
+</p>
+
+<a class="btn" href="#mawasiliano">
+Wasiliana
+</a>
+
+</div>
+
+
+<div class="card">
+
+<h3>💻 Computer & Technology</h3>
+
+<p>
+Huduma zinazohusiana na computer, teknolojia,
+internet na mifumo ya kidigitali.
+</p>
+
+<a class="btn" href="#mawasiliano">
+Pata Huduma
+</a>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- MAWASILIANO -->
+
+<section class="contact" id="mawasiliano">
+
+<h2 class="title">Mawasiliano</h2>
+
+<p>Kwa huduma au maelezo zaidi, wasiliana nasi:</p>
+
+<br>
+
+<p>📱 <strong>0624528944</strong></p>
+
+<a class="btn" href="tel:+255624528944">
+📞 PIGA SIMU
+</a>
+
+<a class="btn"
+href="https://wa.me/255624528944?text=Habari%20WATAFITI%2C%20nahitaji%20kuuliza%20kuhusu%20huduma%20zenu.">
+💬 WHATSAPP
+</a>
+
+<br><br>
+
+<p>📍 Tanzania</p>
+
+</section>
+
+
+<footer>
+
+<p>
+© 2026 WATAFITI - Haki zote zimehifadhiwa.
+</p>
+
+</footer>
+
+</body>
+</html>
