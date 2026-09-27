@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://murundybaby-boop.github.io/Watafiti/sitemap.xml
