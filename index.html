@@ -1,223 +1,79 @@
 <!DOCTYPE html>
 <html lang="sw">
 <head>
-  <link rel="icon" type="image/jpeg" href="1789865720521.jpg">
-  <title>WATAFITI - Watafiti TV</title>
-<meta name="description" content="WATAFITI TV - Habari, taarifa, huduma na mawasiliano ya WATAFITI.">
-<meta name="keywords" content="WATAFITI, Watafiti TV, Tanzania, Watafiti">
-  <meta name="google-site-verification" content="Exp3YNNS2b-KR2EPSXjy0QuFi_b2iX31pWJLez3xv5o" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta property="og:title" content="WATAFITI - Watafiti TV">
-<meta property="og:description" content="WATAFITI TV - Habari, taarifa, huduma na mawasiliano ya WATAFITI.">
-<meta property="og:url" content="https://murundybaby-boop.github.io/Watafiti/">
-<meta property="og:type" content="website">
-<title>WATAFITI</title>
+
+<title>WATAFITI - Watafiti TV</title>
+<meta name="description" content="WATAFITI - Habari, elimu, mahojiano, survey, huduma za jamii, mafunzo ya Kichina na maendeleo.">
+<meta name="keywords" content="WATAFITI, Watafiti TV, Surveyor, Moshi, Tanzania, Mandarin Chinese, Education">
+<meta name="google-site-verification" content="Exp3YNNS2b-KR2EPSXjy0QuFi_b2iX31pWJLez3xv5o">
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  font-family:Arial,sans-serif;
-  background:#f4f7f9;
-  color:#222;
-  line-height:1.6;
-}
-
-header{
-  background:#073b4c;
-  color:white;
-  padding:12px;
-  position:sticky;
-  top:0;
-  z-index:1000;
-}
-
-.nav{
-  max-width:1150px;
-  margin:auto;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.logo{
-  font-size:26px;
-  font-weight:bold;
-  letter-spacing:1px;
-}
-
-nav a{
-  color:white;
-  text-decoration:none;
-  margin-left:8px;
-  padding:7px;
-  font-size:14px;
-}
-
-nav a:hover{
-  color:#ffd166;
-}
-
-.hero{
-  background:linear-gradient(135deg,#073b4c,#118ab2);
-  color:white;
-  text-align:center;
-  padding:75px 20px;
-}
-
-.hero h1{
-  font-size:48px;
-  margin-bottom:10px;
-}
-
-.hero p{
-  font-size:19px;
-  margin-bottom:25px;
-}
-
-.btn{
-  display:inline-block;
-  background:#ffd166;
-  color:#222;
-  text-decoration:none;
-  padding:11px 18px;
-  margin:5px;
-  border-radius:8px;
-  font-weight:bold;
-}
-
-.btn:hover{
-  opacity:.85;
-}
-
-section{
-  max-width:1150px;
-  margin:auto;
-  padding:55px 20px;
-}
-
-.title{
-  text-align:center;
-  color:#073b4c;
-  font-size:30px;
-  margin-bottom:30px;
-}
-
-.about{
-  background:white;
-  padding:30px;
-  border-radius:12px;
-  box-shadow:0 3px 12px rgba(0,0,0,.1);
-}
-
-.services,
-.news,
-.gallery{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:20px;
-}
-
-.card{
-  background:white;
-  padding:25px;
-  border-radius:12px;
-  box-shadow:0 3px 12px rgba(0,0,0,.1);
-}
-
-.card h3{
-  color:#073b4c;
-  margin-bottom:10px;
-}
-
-.card .btn{
-  margin-top:15px;
-}
-
-.profile{
-  background:white;
-  padding:30px;
-  border-radius:12px;
-  box-shadow:0 3px 12px rgba(0,0,0,.1);
-}
-
-.profile h3{
-  color:#073b4c;
-  font-size:26px;
-  margin-bottom:15px;
-}
-
-.profile ul{
-  padding-left:22px;
-}
-
-.social{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:10px;
-  margin-top:20px;
-}
-
-.social a{
-  background:#ffd166;
-  color:#222;
-  padding:10px 15px;
-  border-radius:8px;
-  text-decoration:none;
-  font-weight:bold;
-}
-
-.contact{
-  max-width:none;
-  background:#073b4c;
-  color:white;
-  text-align:center;
-}
-
-.contact .title{
-  color:white;
-}
-
-.contact p{
-  margin:8px;
-}
-
-footer{
-  background:#052d3a;
-  color:white;
-  text-align:center;
-  padding:20px;
-}
-
-@media(max-width:700px){
-
-  .nav{
-    display:block;
-    text-align:center;
-  }
-
-  nav{
-    margin-top:10px;
-  }
-
-  nav a{
-    display:inline-block;
-    font-size:13px;
-  }
-
-  .hero h1{
-    font-size:36px;
-  }
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;background:#f4f7f9;color:#222;line-height:1.6}
+header{background:#073b4c;color:#fff;position:sticky;top:0;z-index:1000;padding:9px 12px}
+.nav{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo-area{display:flex;align-items:center;gap:9px;min-width:170px}
+.logo-area img{width:58px;height:58px;object-fit:contain;border-radius:10px}
+.logo-text{font-size:24px;font-weight:bold;letter-spacing:1px}
+nav{display:flex;flex-wrap:wrap;justify-content:center;gap:2px}
+nav a{color:#fff;text-decoration:none;padding:7px 8px;font-size:14px;border-radius:6px}
+nav a:hover{background:#118ab2}
+.tools{max-width:1150px;margin:auto;padding:14px 18px 4px;display:flex;gap:9px;flex-wrap:wrap;justify-content:center}
+.tools input{flex:1;min-width:210px;max-width:650px;padding:12px;border:1px solid #c9c9c9;border-radius:9px;font-size:16px}
+.lang{padding:11px 14px;border:0;border-radius:8px;background:#073b4c;color:#fff;cursor:pointer}
+.lang:hover{background:#118ab2}
+.hero{background:linear-gradient(135deg,#073b4c,#118ab2);color:#fff;text-align:center;padding:70px 18px}
+.hero h1{font-size:48px;margin-bottom:8px}
+.hero p{font-size:19px;margin:6px auto;max-width:850px}
+.btn{display:inline-block;background:#ffd166;color:#222;border:0;padding:11px 18px;margin:6px 3px;border-radius:8px;font-weight:bold;text-decoration:none;cursor:pointer}
+.btn:hover{opacity:.86}
+section{max-width:1150px;margin:auto;padding:48px 18px}
+.title{text-align:center;color:#073b4c;font-size:30px;margin-bottom:25px}
+.card,.about,.profile,.review-box,.privacy-box,.map-card,.donation-box{background:#fff;padding:24px;border-radius:15px;box-shadow:0 3px 12px rgba(0,0,0,.09)}
+.news,.services,.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.card h3,.profile h3{color:#073b4c;margin-bottom:8px}
+.card p{margin-bottom:7px}
+.profile img{display:block;width:190px;height:190px;object-fit:cover;border-radius:50%;margin:14px auto}
+.profile ul{padding-left:22px}
+.social{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.social a{background:#ffd166;color:#222;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:bold}
+.contact{max-width:none;background:#073b4c;color:#fff;text-align:center}
+.contact .title{color:#fff}
+.contact p{margin:7px}
+.map-card iframe{width:100%;height:350px;border:0;border-radius:12px;margin-top:14px}
+.visitor{background:#073b4c;color:#fff;text-align:center;padding:15px;font-size:18px}
+.donation{background:#f4f8fb}
+.donation-banner{display:block;width:100%;max-width:1000px;margin:18px auto;border-radius:15px}
+.payment-grid{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;margin-top:20px}
+.payment{flex:1;min-width:255px;padding:20px;border-radius:15px;text-align:center;background:#fff}
+.voda{border:3px solid #e60012}.halo{border:3px solid #f5c400}
+.voda h2{color:#e60012}.halo h2{color:#c39b00}
+.payment h1{color:#073b4c;margin:8px 0}
+.review{background:#f5f9fc}
+.review-form{max-width:720px;margin:20px auto 0}
+.review-form input,.review-form textarea,.review-form select{width:100%;padding:12px;margin:7px 0;border:1px solid #ccc;border-radius:8px;font-size:16px}
+.review-form textarea{height:125px;resize:vertical}
+.review-stars{text-align:center;font-size:29px;color:#f5b400;letter-spacing:3px;margin:8px}
+.review-list{display:grid;gap:14px;margin-top:28px}
+.review-item{background:#fff;padding:18px;border-radius:12px;box-shadow:0 3px 10px rgba(0,0,0,.08)}
+.review-item h4{color:#073b4c}
+.review-item .stars{color:#f5b400;font-size:20px}
+.review-date{font-size:12px;color:#777;margin-top:5px}
+.empty{text-align:center;color:#777;padding:18px}
+.privacy-box h3{color:#073b4c;margin:17px 0 6px}
+.notice{background:#fff8df;border-left:5px solid #ffd166;padding:13px;border-radius:7px;margin-top:16px}
+footer{background:#052d3a;color:#fff;text-align:center;padding:22px}
+footer a{color:#ffd166;text-decoration:none}
+.hidden{display:none!important}
+@media(max-width:760px){
+.nav{display:block;text-align:center}
+.logo-area{justify-content:center;margin-bottom:7px}
+nav a{font-size:12px;padding:6px}
+.hero h1{font-size:38px}
+section{padding:40px 14px}
 }
 </style>
 </head>
@@ -226,324 +82,133 @@ footer{
 
 <header>
 <div class="nav">
-
-<div style="display:flex;align-items:center;gap:10px;">
-<img src="1789865720521.jpg" alt="WATAFITI TV"
-     onerror="this.style.display='none';this.nextElementSibling.style.display='inline';"
-     style="width:60px;height:60px;object-fit:contain;">
-<span style="display:none;font-size:26px;font-weight:bold;letter-spacing:1px;">WATAFITI</span>
+<div class="logo-area">
+<img src="1789865720521.jpg" alt="WATAFITI Logo" onerror="this.style.display='none'">
+<span class="logo-text">WATAFITI</span>
 </div>
-
 <nav>
 <a href="#nyumbani">Nyumbani</a>
 <a href="#taarifa">Taarifa</a>
 <a href="#video">Video</a>
 <a href="#mahojiano">Mahojiano</a>
+<a href="#picha">Picha</a>
+<a href="#kichina">Kichina</a>
 <a href="#huduma">Huduma</a>
 <a href="#kuhusu">Kuhusu</a>
 <a href="#mawasiliano">Mawasiliano</a>
+<a href="#donation">Donation</a>
+<a href="#maoni">Maoni</a>
 </nav>
-
 </div>
 </header>
 
-<!-- SEARCH + LANGUAGE -->
-<section id="tools" style="padding:15px 20px 5px;max-width:1150px;">
-  <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;align-items:center;">
-    <input id="watafitiSearch" type="search"
-      placeholder="🔎 Tafuta kwenye WATAFITI..."
-      aria-label="Tafuta kwenye WATAFITI"
-      style="flex:1;min-width:220px;max-width:650px;padding:12px 14px;border:1px solid #ccc;border-radius:10px;font-size:16px;">
-    <button type="button" onclick="setLanguage('sw')"
-      style="padding:11px 14px;border:0;border-radius:8px;cursor:pointer;">🇹🇿 Kiswahili</button>
-    <button type="button" onclick="setLanguage('en')"
-      style="padding:11px 14px;border:0;border-radius:8px;cursor:pointer;">🇬🇧 English</button>
-  </div>
-</section>
-
-
-
-<!-- NYUMBANI -->
+<div class="tools">
+<input id="searchInput" type="search" placeholder="🔎 Tafuta kwenye WATAFITI..." aria-label="Tafuta">
+<button class="lang" type="button" id="swButton">🇹🇿 Kiswahili</button>
+<button class="lang" type="button" id="enButton">🇬🇧 English</button>
+</div>
 
 <section class="hero" id="nyumbani">
-
 <h1>WATAFITI</h1>
-
-<p>
-Tuchunguze Ukweli wa Dunia Pamoja
-</p>
-
-<p>
-Habari, elimu, mahojiano, huduma na maendeleo kwa jamii.
-</p>
-
+<p data-sw="Tuchunguze Ukweli wa Dunia Pamoja" data-en="Let Us Explore the Truth of the World Together">Tuchunguze Ukweli wa Dunia Pamoja</p>
+<p data-sw="Habari, elimu, mahojiano, huduma na maendeleo kwa jamii." data-en="News, education, interviews, services and community development.">Habari, elimu, mahojiano, huduma na maendeleo kwa jamii.</p>
 <a class="btn" href="#taarifa">📰 TAARIFA MPYA</a>
-
 <a class="btn" href="#huduma">🛠️ HUDUMA ZETU</a>
-
 <a class="btn" href="#mawasiliano">📞 WASILIANA NASI</a>
-
 </section>
-
-
-<!-- KUHUSU -->
 
 <section id="kuhusu">
-
-<h2 class="title">Kuhusu WATAFITI</h2>
-
+<h2 class="title" data-sw="Kuhusu WATAFITI" data-en="About WATAFITI">Kuhusu WATAFITI</h2>
 <div class="about">
-
-<p>
-<strong>WATAFITI</strong> ni mtandao unaolenga kuleta
-taarifa, elimu, mahojiano, maarifa na huduma mbalimbali
-kwa jamii, biashara na watu binafsi.
-</p>
-
+<p data-sw="WATAFITI ni mtandao unaolenga kuleta taarifa, elimu, mahojiano, maarifa na huduma mbalimbali kwa jamii, biashara na watu binafsi." data-en="WATAFITI is a platform focused on information, education, interviews, knowledge and various services for the community, businesses and individuals.">WATAFITI ni mtandao unaolenga kuleta taarifa, elimu, mahojiano, maarifa na huduma mbalimbali kwa jamii, biashara na watu binafsi.</p>
 <br>
-
-<p>
-Tunazingatia uaminifu, uwazi, elimu na kutoa huduma
-zinazokidhi mahitaji ya jamii.
-</p>
-
+<p data-sw="Tunazingatia uaminifu, uwazi, elimu na kutoa huduma zinazokidhi mahitaji ya jamii." data-en="We focus on reliability, transparency, education and services that meet community needs.">Tunazingatia uaminifu, uwazi, elimu na kutoa huduma zinazokidhi mahitaji ya jamii.</p>
 </div>
-
 </section>
-
-
-<!-- TAARIFA -->
 
 <section id="taarifa">
-
-<h2 class="title">📰 Taarifa Mpya</h2>
-
+<h2 class="title" data-sw="📰 Taarifa Mpya" data-en="📰 Latest News">📰 Taarifa Mpya</h2>
 <div class="news">
-
-<div class="card">
-<h3>Taarifa na Habari</h3>
-<p>
-Sehemu hii itatumika kuweka taarifa mpya,
-habari na matukio mbalimbali.
-</p>
+<div class="card"><h3 data-sw="Taarifa na Habari" data-en="News and Information">Taarifa na Habari</h3><p data-sw="Sehemu hii ni kwa taarifa mpya, habari na matukio mbalimbali." data-en="This section is for new information, news and various events.">Sehemu hii ni kwa taarifa mpya, habari na matukio mbalimbali.</p></div>
+<div class="card"><h3 data-sw="Elimu na Maarifa" data-en="Education and Knowledge">Elimu na Maarifa</h3><p data-sw="Tutashirikisha elimu na maarifa mbalimbali yanayoweza kusaidia jamii." data-en="We will share educational materials and knowledge that can help the community.">Tutashirikisha elimu na maarifa mbalimbali yanayoweza kusaidia jamii.</p></div>
+<div class="card"><h3 data-sw="Historia, Dini na Maisha" data-en="History, Religion and Life">Historia, Dini na Maisha</h3><p data-sw="Maudhui kuhusu historia, dini, sayansi, geography na maisha ya kila siku." data-en="Content about history, religion, science, geography and everyday life.">Maudhui kuhusu historia, dini, sayansi, geography na maisha ya kila siku.</p></div>
 </div>
-
-<div class="card">
-<h3>Elimu na Maarifa</h3>
-<p>
-Tutashirikisha elimu na maarifa mbalimbali
-yanayoweza kusaidia jamii.
-</p>
-</div>
-
-<div class="card">
-<h3>Historia, Dini na Maisha</h3>
-<p>
-Maudhui mbalimbali kuhusu historia, dini,
-sayansi na maisha ya kila siku.
-</p>
-</div>
-
-</div>
-
 </section>
-
-
-<!-- VIDEO -->
 
 <section id="video">
-
-<h2 class="title">🎥 Video Zetu</h2>
-
+<h2 class="title" data-sw="🎥 Video Zetu" data-en="🎥 Our Videos">🎥 Video Zetu</h2>
 <div class="news">
-
-<div class="card">
-<h3>WATAFITI TV</h3>
-<p>
-Tazama video, vipindi na maudhui mbalimbali
-ya WATAFITI TV.
-</p>
-
-<a class="btn" href="#mawasiliano">
-Tazama / Uliza
-</a>
-
+<div class="card"><h3>WATAFITI TV</h3><p data-sw="Tazama video, vipindi na maudhui mbalimbali ya WATAFITI TV." data-en="Watch videos, programs and content from WATAFITI TV.">Tazama video, vipindi na maudhui mbalimbali ya WATAFITI TV.</p>
+<a class="btn" href="https://youtube.com/@watafiti" target="_blank" rel="noopener">▶️ YouTube</a>
+<a class="btn" href="https://vm.tiktok.com/ZS9AumT8yMRd5-7AMgZ/" target="_blank" rel="noopener">🎵 TikTok</a>
+<a class="btn" href="https://www.facebook.com/WATAFITITV" target="_blank" rel="noopener">📘 Facebook</a>
 </div>
-
-<div class="card">
-<h3>Video za Elimu</h3>
-<p>
-Video zinazolenga kuongeza maarifa na uelewa
-wa mambo mbalimbali.
-</p>
+<div class="card"><h3 data-sw="Video za Elimu" data-en="Educational Videos">Video za Elimu</h3><p data-sw="Video zinazolenga kuongeza maarifa na uelewa wa mambo mbalimbali." data-en="Videos designed to increase knowledge and understanding of different subjects.">Video zinazolenga kuongeza maarifa na uelewa wa mambo mbalimbali.</p></div>
 </div>
-
-</div>
-
 </section>
-
-
-<!-- MAHOJIANO -->
 
 <section id="mahojiano">
-
-<h2 class="title">🎤 Mahojiano</h2>
-
+<h2 class="title" data-sw="🎤 Mahojiano" data-en="🎤 Interviews">🎤 Mahojiano</h2>
 <div class="card">
-
-<h3>Mahojiano ya WATAFITI</h3>
-
-<p>
-Tunafanya mahojiano na watu mbalimbali kuhusu
-elimu, biashara, historia, dini, teknolojia,
-maisha na maendeleo.
-</p>
-
-<a class="btn" href="#mawasiliano">
-Omba Mahojiano
-</a>
-
+<h3 data-sw="Mahojiano ya WATAFITI" data-en="WATAFITI Interviews">Mahojiano ya WATAFITI</h3>
+<p data-sw="Tunafanya mahojiano na watu mbalimbali kuhusu elimu, biashara, historia, dini, teknolojia, maisha na maendeleo." data-en="We conduct interviews with different people about education, business, history, religion, technology, life and development.">Tunafanya mahojiano na watu mbalimbali kuhusu elimu, biashara, historia, dini, teknolojia, maisha na maendeleo.</p>
+<a class="btn" href="#mawasiliano">Omba Mahojiano</a>
 </div>
-
 </section>
-
-
-<!-- PICHA -->
 
 <section id="picha">
-
-<h2 class="title">📸 Picha</h2>
-
+<h2 class="title" data-sw="📸 Picha" data-en="📸 Photos">📸 Picha</h2>
+<div class="gallery">
 <div class="card">
-
-<h3>Gallery ya WATAFITI</h3>
-
-<p>
-Sehemu hii itatumika kuweka picha za shughuli,
-mahojiano, safari na matukio ya WATAFITI.
-</p>
-
+<h3 data-sw="Gallery ya WATAFITI" data-en="WATAFITI Gallery">Gallery ya WATAFITI</h3>
+<p data-sw="Sehemu hii itatumika kuweka picha za shughuli, mahojiano, safari na matukio ya WATAFITI." data-en="This section will display photos of WATAFITI activities, interviews, trips and events.">Sehemu hii itatumika kuweka picha za shughuli, mahojiano, safari na matukio ya WATAFITI.</p>
 </div>
-
+</div>
 </section>
-
-
-<!-- MAFUNZO YA KICHINA -->
 
 <section id="kichina">
-
-<h2 class="title">🇨🇳 Mafunzo ya Kichina</h2>
-
+<h2 class="title" data-sw="🇨🇳 Mafunzo ya Kichina" data-en="🇨🇳 Chinese Language Training">🇨🇳 Mafunzo ya Kichina</h2>
 <div class="card">
-
 <h3>Mandarin Chinese</h3>
-
-<p>
-Mafunzo ya lugha ya Kichina kwa wanafunzi,
-wafanyakazi, wafanyabiashara na watu wengine
-wanaotaka kujifunza Mandarin Chinese.
-</p>
-
-<a class="btn" href="#mawasiliano">
-Uliza Mafunzo
-</a>
-
+<p data-sw="Mafunzo ya lugha ya Kichina kwa wanafunzi, wafanyakazi, wafanyabiashara na watu wengine wanaotaka kujifunza Mandarin Chinese." data-en="Chinese language training for students, workers, business people and anyone interested in learning Mandarin Chinese.">Mafunzo ya lugha ya Kichina kwa wanafunzi, wafanyakazi, wafanyabiashara na watu wengine wanaotaka kujifunza Mandarin Chinese.</p>
+<a class="btn" href="#mawasiliano">Uliza Mafunzo</a>
 </div>
-
 </section>
-
-
-<!-- HUDUMA -->
 
 <section id="huduma">
-
-<h2 class="title">🛠️ Huduma Zetu</h2>
-
+<h2 class="title" data-sw="🛠️ Huduma Zetu" data-en="🛠️ Our Services">🛠️ Huduma Zetu</h2>
 <div class="services">
 
+<div class="card"><h3>📐 Surveyor Services</h3><p data-sw="Land Survey, Building Survey, Landscaping, Setting Out na huduma nyingine za upimaji." data-en="Land surveying, building surveying, landscaping, setting out and other surveying services.">Land Survey, Building Survey, Landscaping, Setting Out na huduma nyingine za upimaji.</p><a class="btn" href="#mawasiliano">Pata Huduma</a></div>
 
-<div class="card">
-<h3>📐 Surveyor</h3>
-<p>
-Land Survey, Building Survey, Landscaping,
-Setting Out na huduma nyingine za upimaji.
-</p>
-<a class="btn" href="#mawasiliano">Pata Huduma</a>
-</div>
+<div class="card"><h3>🏗️ Building & Construction</h3><p data-sw="Huduma zinazohusiana na ujenzi, vipimo, ushauri na kazi za site." data-en="Construction-related services, measurements, advice and site work.">Huduma zinazohusiana na ujenzi, vipimo, ushauri na kazi za site.</p><a class="btn" href="#mawasiliano">Wasiliana</a></div>
 
+<div class="card"><h3>🌍 Land & Building Survey</h3><p data-sw="Huduma za upimaji wa ardhi na majengo pamoja na ushauri unaohusiana na survey." data-en="Land and building surveying services and related surveying advice.">Huduma za upimaji wa ardhi na majengo pamoja na ushauri unaohusiana na survey.</p><a class="btn" href="#mawasiliano">Uliza Huduma</a></div>
 
-<div class="card">
-<h3>🏗️ Building & Construction</h3>
-<p>
-Huduma zinazohusiana na ujenzi, vipimo,
-ushauri na kazi za site.
-</p>
-<a class="btn" href="#mawasiliano">Wasiliana</a>
-</div>
+<div class="card"><h3>💰 Emergency Small Loans</h3><p data-sw="Mikopo midogo kwa mahitaji ya dharura ya nyumbani, hasa kwa wanafunzi wa vyuo. Kiasi hadi TSh 150,000." data-en="Small emergency loans for urgent household needs, especially for college students. Amount up to TSh 150,000.">Mikopo midogo kwa mahitaji ya dharura ya nyumbani, hasa kwa wanafunzi wa vyuo. Kiasi hadi TSh 150,000.</p><a class="btn" href="#mawasiliano">Uliza Taarifa</a></div>
 
+<div class="card"><h3>🙏 Huduma za Kiroho</h3><p data-sw="Huduma na ushauri wa kiroho pamoja na kusaidia kuelewa maandiko." data-en="Spiritual services, guidance and help with understanding scriptures.">Huduma na ushauri wa kiroho pamoja na kusaidia kuelewa maandiko.</p><a class="btn" href="#mawasiliano">Wasiliana</a></div>
 
-<div class="card">
-<h3>🌍 Building & Land Survey</h3>
-<p>
-Huduma za upimaji wa ardhi na majengo pamoja
-na ushauri unaohusiana na survey.
-</p>
-<a class="btn" href="#mawasiliano">Uliza Huduma</a>
-</div>
+<div class="card"><h3>🤝 Msaada kwa Wenye Mahitaji</h3><p data-sw="Kusaidia watu wenye mahitaji mbalimbali katika jamii kadri inavyowezekana." data-en="Supporting people with different needs in the community where possible.">Kusaidia watu wenye mahitaji mbalimbali katika jamii kadri inavyowezekana.</p><a class="btn" href="#mawasiliano">Wasiliana</a></div>
 
+<div class="card"><h3>🎓 Elimu na Mafunzo</h3><p data-sw="Mafunzo ya sayansi, historia, dini, geography na masomo mengine ya elimu." data-en="Lessons in science, history, religion, geography and other educational subjects.">Mafunzo ya sayansi, historia, dini, geography na masomo mengine ya elimu.</p><a class="btn" href="#mawasiliano">Uliza Mafunzo</a></div>
 
-<div class="card">
-<h3>💰 Mikopo ya Emergency</h3>
-<p>
-Mikopo midogo kwa mahitaji ya dharura ya
-nyumbani, hasa kwa wanafunzi wa vyuo.
-Kiasi hadi TSh 150,000.
-</p>
-<a class="btn" href="#mawasiliano">Uliza Taarifa</a>
-</div>
+<div class="card"><h3>💻 Computer & Technology</h3><p data-sw="Huduma zinazohusiana na computer, teknolojia, internet na mifumo ya kidigitali." data-en="Computer, technology, internet and digital system services.">Huduma zinazohusiana na computer, teknolojia, internet na mifumo ya kidigitali.</p><a class="btn" href="#mawasiliano">Pata Huduma</a></div>
 
+<div class="card"><h3>🌐 Website Development</h3><p data-sw="Kutengeneza, kuboresha na kusimamia website na huduma za kidigitali." data-en="Website development, improvement and management of digital services.">Kutengeneza, kuboresha na kusimamia website na huduma za kidigitali.</p><a class="btn" href="#mawasiliano">Pata Huduma</a></div>
 
-<div class="card">
-<h3>🙏 Huduma za Kiroho</h3>
-<p>
-Huduma na ushauri wa kiroho kwa watu
-wanaohitaji msaada na mwongozo.
-</p>
-<a class="btn" href="#mawasiliano">Wasiliana</a>
-</div>
-
-
-<div class="card">
-<h3>💻 Computer & Technology</h3>
-<p>
-Huduma zinazohusiana na computer, teknolojia,
-internet na mifumo ya kidigitali.
-</p>
-<a class="btn" href="#mawasiliano">Pata Huduma</a>
-</div>
-
+<div class="card"><h3>🧭 Ushauri</h3><p data-sw="Ushauri mbalimbali kwa watu wanaohitaji mwongozo kuhusu masomo, kazi, maisha na huduma." data-en="Various guidance and advice for people seeking help with studies, work, life and services.">Ushauri mbalimbali kwa watu wanaohitaji mwongozo kuhusu masomo, kazi, maisha na huduma.</p><a class="btn" href="#mawasiliano">Wasiliana</a></div>
 
 </div>
-
 </section>
 
-
-<!-- MMILIKI -->
-
 <section id="mmiliki">
-
-<h2 class="title">👤 Mmiliki wa WATAFITI</h2>
-
+<h2 class="title" data-sw="👤 Mmiliki wa WATAFITI" data-en="👤 WATAFITI Owner">👤 Mmiliki wa WATAFITI</h2>
 <div class="profile">
-
 <h3>Pro Murundy</h3>
-<img src="1790088089145.jpg" alt="Pro Murundy" style="width:180px;height:180px;object-fit:cover;border-radius:50%;">
-<p>
-Mmiliki na mwanzilishi wa WATAFITI.
-</p>
-
+<img src="1790088089145.jpg" alt="Pro Murundy" onerror="this.style.display='none'">
+<p data-sw="Mmiliki na mwanzilishi wa WATAFITI." data-en="Owner and founder of WATAFITI.">Mmiliki na mwanzilishi wa WATAFITI.</p>
 <br>
-
 <ul>
 <li>Msomi wa elimu ya juu</li>
 <li>Degree ya Ualimu</li>
@@ -553,155 +218,255 @@ Mmiliki na mwanzilishi wa WATAFITI.
 <li>Mmiliki wa Watafiti Church Mosh</li>
 <li>Mtaalamu wa Psychology</li>
 <li>Mtoa ushauri na saa</li>
-<li>Mhitimu wa Carate Combat</li>
-<li>Taikondo Blackbelt</li>
+<li>Mhitimu wa Karate Combat</li>
+<li>Taekwondo Black Belt</li>
 <li>Chief Surveyor wa Lijun Development Company Ltd</li>
 </ul>
-
 </div>
-
 </section>
 
-<div class="visitor-counter">
-  👥 Visitors: <span id="visitorCount">0</span>
-</div>
-
-<script>
-  let visitors = localStorage.getItem("watafitiVisitors");
-
-  if (!visitors) {
-    visitors = 1;
-  } else {
-    visitors = Number(visitors) + 1;
-  }
-
-  localStorage.setItem("watafitiVisitors", visitors);
-  document.getElementById("visitorCount").textContent = visitors;
-</script>
-<!-- MITANDAO -->
+<div class="visitor">👥 Visitors: <span id="visitorCount">0</span></div>
 
 <section id="mitandao">
-
-<h2 class="title">🌐 Mitandao ya Kijamii</h2>
-
+<h2 class="title" data-sw="🌐 Mitandao ya Kijamii" data-en="🌐 Social Media">🌐 Mitandao ya Kijamii</h2>
 <div class="social">
-
-<a href="https://www.facebook.com/WATAFITITV" target="_blank">Facebook: WATAFITI TV</a>
-
-<a href="#mawasiliano">Instagram: WATAFITI205</a>
-
-<a href="#mawasiliano">YouTube: WATAFITI TV</a>
-
-<a href="#mawasiliano">TikTok: WATAFITI TV</a>
-
+<a href="https://www.facebook.com/WATAFITITV" target="_blank" rel="noopener">Facebook: WATAFITI TV</a>
+<a href="https://www.instagram.com/WATAFITI205/" target="_blank" rel="noopener">Instagram: WATAFITI205</a>
+<a href="https://youtube.com/@watafiti" target="_blank" rel="noopener">YouTube: WATAFITI TV</a>
+<a href="https://vm.tiktok.com/ZS9AumT8yMRd5-7AMgZ/" target="_blank" rel="noopener">TikTok: WATAFITI TV</a>
 <a href="#mawasiliano">WeChat: YUEHAN</a>
-
-</div><a href="https://www.facebook.com/WATAFITITV" target="_blank">
-Facebook: WATAFITI TV
-</a>
-
-<a href="https://youtube.com/@watafiti" target="_blank">
-YouTube: WATAFITI TV
-</a>
-
-<a href="https://vm.tiktok.com/ZS9AumT8yMRd5-7AMgZ/" target="_blank">
-TikTok: WATAFITI TV
-</a>
-
-<a href="#mawasiliano">
-Instagram: WATAFITI205
-</a>
-
-<a href="#mawasiliano">
-WeChat: YUEHAN
-</a>
-<a href="https://www.facebook.com/WATAFITITV" target="_blank">
-Facebook: WATAFITI TV
-</a>
-
-<a href="https://youtube.com/@watafiti" target="_blank">
-YouTube: WATAFITI TV
-</a>
-
-<a href="https://vm.tiktok.com/ZS9AumT8yMRd5-7AMgZ/" target="_blank">
-TikTok: WATAFITI TV
-</a>
-
-<a href="#mawasiliano">
-Instagram: WATAFITI205
-</a>
-
-<a href="#mawasiliano">
-WeChat: YUEHAN
-</a>
+</div>
 </section>
-
-
-<!-- MAWASILIANO -->
 
 <section class="contact" id="mawasiliano">
-
-<h2 class="title">Mawasiliano</h2>
-
-<p>
-Kwa huduma, mahojiano, matangazo au maelezo zaidi,
-wasiliana nasi.
-</p>
-
-<br>
-
+<h2 class="title" data-sw="Mawasiliano" data-en="Contact Us">Mawasiliano</h2>
+<p data-sw="Kwa huduma, mahojiano, matangazo au maelezo zaidi, wasiliana nasi." data-en="For services, interviews, advertising or more information, contact us.">Kwa huduma, mahojiano, matangazo au maelezo zaidi, wasiliana nasi.</p>
 <p>📱 <strong>0624528944</strong></p>
-
 <p>📧 <strong>Murundybaby@gmail.com</strong></p>
-
-<p>📍 Tanzania</p>
-
-<a class="btn" href="tel:+255624528944">
-📞 PIGA SIMU
-</a>
-
-<a class="btn"
-href="https://wa.me/255624528944?text=Habari%20WATAFITI%2C%20nahitaji%20kuuliza%20kuhusu%20huduma%20zenu.">
-💬 WHATSAPP
-</a>
-
+<p>📧 <strong>Yuehanbaby@gmail.com</strong></p>
+<p>📧 <strong>Johnmarwa8114@gmail.com</strong></p>
+<p>📍 Moshi, Kilimanjaro, Tanzania</p>
+<a class="btn" href="tel:+255624528944">📞 PIGA SIMU</a>
+<a class="btn" href="https://wa.me/255624528944?text=Habari%20WATAFITI%2C%20nahitaji%20huduma." target="_blank" rel="noopener">💬 WHATSAPP</a>
 </section>
 
-
-
-<!-- GOOGLE MAP - WATAFITI -->
 <section id="location">
-  <h2 class="title">📍 WATAFITI Location</h2>
-  <div class="card" style="padding:15px;">
-    <p style="text-align:center;margin-bottom:15px;">Longuo, Moshi – karibu na Mwenge University</p>
-    <iframe
-      src="https://www.google.com/maps?q=Longuo%2C%20Moshi%2C%20Tanzania&output=embed"
-      width="100%"
-      height="350"
-      style="border:0;border-radius:15px;"
-      allowfullscreen=""
-      loading="lazy">
-    </iframe>
-    <div style="text-align:center;margin-top:15px;">
-      <a class="btn"
-        href="https://www.google.com/maps/search/?api=1&query=Longuo%2C%20Moshi%2C%20Tanzania"
-        target="_blank" rel="noopener">
-        📍 Get Directions
-      </a>
-    </div>
-  </div>
+<h2 class="title" data-sw="📍 Mahali Tulipo" data-en="📍 Our Location">📍 Mahali Tulipo</h2>
+<div class="map-card">
+<p style="text-align:center" data-sw="Longuo, Moshi – karibu na Mwenge University" data-en="Longuo, Moshi – near Mwenge University">Longuo, Moshi – karibu na Mwenge University</p>
+<iframe src="https://www.google.com/maps?q=Longuo%2C%20Moshi%2C%20Tanzania&output=embed" loading="lazy" allowfullscreen></iframe>
+<div style="text-align:center">
+<a class="btn" href="https://www.google.com/maps/search/?api=1&query=Longuo%2C%20Moshi%2C%20Tanzania" target="_blank" rel="noopener">📍 Get Directions</a>
+</div>
+</div>
+</section>
+
+<section id="donation" class="donation">
+<h2 class="title" data-sw="❤️ Donation" data-en="❤️ Donation">❤️ Donation</h2>
+<div class="donation-box">
+<p data-sw="Jiunge nasi kusaidia maendeleo ya elimu, utafiti, mafunzo na huduma kwa jamii." data-en="Join us in supporting education, research, training and community services.">Jiunge nasi kusaidia maendeleo ya elimu, utafiti, mafunzo na huduma kwa jamii.</p>
+<img class="donation-banner" src="donation.jpg" alt="WATAFITI Donation - Pro Murundy" onerror="this.style.display='none'">
+<h2 style="text-align:center;color:#073b4c;margin:12px 0">Tuma mchango wako / Send your donation</h2>
+<div class="payment-grid">
+<div class="payment voda"><h2>🔴 Voda Lipa</h2><h1>54087511</h1><p>Jina la Mpokeaji / Recipient</p><h3>John Murundi</h3></div>
+<div class="payment halo"><h2>🟡 HaloPesa</h2><h1>0624528944</h1><p>Jina la Mpokeaji / Recipient</p><h3>John Murundi</h3></div>
+</div>
+<h3 style="text-align:center;color:#073b4c;margin-top:22px">🙏 Asante kwa kila mchango / Thank you for every contribution</h3>
+<p style="text-align:center"><b>Elimu • Utafiti • Maendeleo</b></p>
+</div>
+</section>
+
+<section id="maoni" class="review">
+<h2 class="title" data-sw="⭐ Maoni ya Wateja" data-en="⭐ Customer Reviews">⭐ Maoni ya Wateja</h2>
+<div class="review-box">
+<p style="text-align:center" data-sw="Toa maoni yako kuhusu huduma za WATAFITI. Maoni yako yataonekana kwenye kifaa hiki baada ya kutumwa." data-en="Share your opinion about WATAFITI services. Your review will appear on this device after submission.">Toa maoni yako kuhusu huduma za WATAFITI. Maoni yako yataonekana kwenye kifaa hiki baada ya kutumwa.</p>
+<div class="review-stars">★★★★★</div>
+
+<form id="reviewForm" class="review-form">
+<input id="reviewName" type="text" placeholder="Jina lako / Your name" required>
+<select id="reviewRating" required>
+<option value="">Chagua nyota / Choose rating</option>
+<option value="5">★★★★★ 5</option>
+<option value="4">★★★★☆ 4</option>
+<option value="3">★★★☆☆ 3</option>
+<option value="2">★★☆☆☆ 2</option>
+<option value="1">★☆☆☆☆ 1</option>
+</select>
+<textarea id="reviewText" placeholder="Andika maoni yako / Write your review..." required></textarea>
+<button class="btn" type="submit">⭐ Tuma Maoni / Submit Review</button>
+</form>
+
+<div id="reviewList" class="review-list">
+<div id="emptyReview" class="empty">Bado hakuna maoni yaliyowekwa / No reviews yet.</div>
+</div>
+
+<div style="text-align:center;margin-top:18px">
+<a class="btn" href="https://wa.me/255624528944?text=Habari%20WATAFITI%2C%20haya%20ndiyo%20maoni%20yangu%3A" target="_blank" rel="noopener">💬 Tuma Maoni kupitia WhatsApp</a>
+</div>
+
+<div class="notice">
+<strong>Maelezo:</strong> Fomu ya maoni iko ndani ya website; haitaki WhatsApp ili kufunguka. WhatsApp ni chaguo la ziada tu.
+</div>
+</div>
+</section>
+
+<section id="privacy">
+<h2 class="title" data-sw="🔐 Privacy Policy & Terms" data-en="🔐 Privacy Policy & Terms">🔐 Privacy Policy & Terms</h2>
+<div class="privacy-box">
+<h3>🔐 Privacy Policy</h3>
+<p data-sw="WATAFITI inaheshimu faragha ya wageni wa website hii. Taarifa utakazotoa kupitia mawasiliano, maoni au huduma zitatumika kwa madhumuni ya kukuhudumia na kuwasiliana nawe." data-en="WATAFITI respects the privacy of visitors to this website. Information you provide through contact, reviews or services will be used to serve you and communicate with you.">WATAFITI inaheshimu faragha ya wageni wa website hii. Taarifa utakazotoa kupitia mawasiliano, maoni au huduma zitatumika kwa madhumuni ya kukuhudumia na kuwasiliana nawe.</p>
+
+<h3>📋 Terms & Conditions</h3>
+<p data-sw="Kwa kutumia website ya WATAFITI, unakubali kutumia huduma na taarifa zilizopo kwa njia halali na yenye heshima." data-en="By using the WATAFITI website, you agree to use the available services and information lawfully and respectfully.">Kwa kutumia website ya WATAFITI, unakubali kutumia huduma na taarifa zilizopo kwa njia halali na yenye heshima.</p>
+
+<h3>📞 Mawasiliano / Contact</h3>
+<p>0624528944 • Murundybaby@gmail.com</p>
+</div>
 </section>
 
 <footer>
-
-<p>
-© 2026 WATAFITI — Haki zote zimehifadhiwa.
-</p>
-
-<p>
-Tuchunguze Ukweli wa Dunia Pamoja
-</p>
-
+<p>© 2026 WATAFITI — Haki zote zimehifadhiwa.</p>
+<p>Tuchunguze Ukweli wa Dunia Pamoja</p>
+<p><a href="#privacy">Privacy Policy & Terms</a></p>
 </footer>
+
+<script>
+// @ts-nocheck
+
+function setSwahili(){
+var items=document.querySelectorAll("[data-sw]");
+var i=0;
+for(i=0;i<items.length;i=i+1){
+items[i].textContent=items[i].getAttribute("data-sw");
+}
+document.documentElement.lang="sw";
+document.getElementById("searchInput").placeholder="🔎 Tafuta kwenye WATAFITI...";
+localStorage.setItem("watafitiLanguage","sw");
+}
+
+function setEnglish(){
+var items=document.querySelectorAll("[data-en]");
+var i=0;
+for(i=0;i<items.length;i=i+1){
+items[i].textContent=items[i].getAttribute("data-en");
+}
+document.documentElement.lang="en";
+document.getElementById("searchInput").placeholder="🔎 Search WATAFITI...";
+localStorage.setItem("watafitiLanguage","en");
+}
+
+document.getElementById("swButton").addEventListener("click",function(){
+setSwahili();
+});
+
+document.getElementById("enButton").addEventListener("click",function(){
+setEnglish();
+});
+
+document.getElementById("searchInput").addEventListener("input",function(){
+var word=document.getElementById("searchInput").value.toLowerCase().trim();
+var sections=document.querySelectorAll("body > section");
+var i=0;
+for(i=0;i<sections.length;i=i+1){
+if(word===""){
+sections[i].style.display="";
+}else{
+var text=sections[i].innerText.toLowerCase();
+sections[i].style.display=text.indexOf(word)>=0 ? "" : "none";
+}
+}
+});
+
+var visitorNumber=localStorage.getItem("watafitiVisitors");
+if(!visitorNumber){
+visitorNumber="1";
+}else{
+visitorNumber=String(Number(visitorNumber)+1);
+}
+localStorage.setItem("watafitiVisitors",visitorNumber);
+document.getElementById("visitorCount").textContent=visitorNumber;
+
+function safeText(){
+var value=arguments[0];
+var div=document.createElement("div");
+div.textContent=value;
+return div.innerHTML;
+}
+
+function showReviews(){
+var list=document.getElementById("reviewList");
+var empty=document.getElementById("emptyReview");
+var reviews=JSON.parse(localStorage.getItem("watafitiReviews") || "[]");
+var oldItems=list.querySelectorAll(".review-item");
+var i=0;
+for(i=0;i<oldItems.length;i=i+1){
+oldItems[i].remove();
+}
+
+if(reviews.length===0){
+empty.style.display="block";
+return;
+}
+
+empty.style.display="none";
+
+for(i=0;i<reviews.length;i=i+1){
+var review=reviews[i];
+var item=document.createElement("div");
+var stars="";
+var k=0;
+
+for(k=0;k<5;k=k+1){
+if(k<Number(review.rating)){
+stars=stars+"★";
+}else{
+stars=stars+"☆";
+}
+}
+
+item.className="review-item";
+item.innerHTML="<h4>"+safeText(review.name)+"</h4>"+
+"<div class='stars'>"+stars+"</div>"+
+"<p>"+safeText(review.text)+"</p>"+
+"<div class='review-date'>"+safeText(review.date)+"</div>";
+
+list.appendChild(item);
+}
+}
+
+document.getElementById("reviewForm").addEventListener("submit",function(){
+var name=document.getElementById("reviewName").value.trim();
+var rating=document.getElementById("reviewRating").value;
+var text=document.getElementById("reviewText").value.trim();
+
+if(!name || !rating || !text){
+alert("Tafadhali jaza taarifa zote / Please complete all fields.");
+return;
+}
+
+var reviews=JSON.parse(localStorage.getItem("watafitiReviews") || "[]");
+
+reviews.unshift({
+name:name,
+rating:rating,
+text:text,
+date:new Date().toLocaleDateString()
+});
+
+localStorage.setItem("watafitiReviews",JSON.stringify(reviews));
+document.getElementById("reviewForm").reset();
+showReviews();
+alert("Asante! Maoni yako yamehifadhiwa / Thank you! Your review has been saved.");
+});
+
+showReviews();
+
+if(localStorage.getItem("watafitiLanguage")==="en"){
+setEnglish();
+}else{
+setSwahili();
+}
+</script>
+
 </body>
 </html>
