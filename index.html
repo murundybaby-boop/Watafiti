@@ -29,8 +29,8 @@
 <meta name="google-site-verification" content="Exp3YNNS2b-KR2EPSXjy0QuFi_b2iX31pWJLez3xv5o">
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+*{box-sizing:border-box;margin:0;padding:0}.skip-link{position:absolute;left:12px;top:-100px;z-index:2000;background:#ffd166;color:#172b32;padding:12px 16px;border-radius:8px;font-weight:bold}.skip-link:focus{top:12px}
+html{scroll-behavior:smooth}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #f4a261;outline-offset:3px}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 body{font-family:Arial,Helvetica,sans-serif;background:#f4f7f9;color:#222;line-height:1.6}
 header{background:#073b4c;color:#fff;position:sticky;top:0;z-index:1000;padding:9px 12px}
 .nav{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
@@ -106,14 +106,14 @@ header{padding:8px 10px}.nav{display:block;text-align:center}.logo-area{justify-
 </head>
 
 <body>
-
+<a class="skip-link" href="#nyumbani">Ruka menyu na uende kwenye maudhui / Skip to content</a>
 <header>
 <div class="nav">
 <div class="logo-area">
 <img src="1789865720521.jpg" alt="WATAFITI Logo" onerror="this.style.display='none'">
 <span class="logo-text">WATAFITI</span>
 </div>
-<nav>
+<nav aria-label="Menyu kuu / Main navigation">
 <a href="#nyumbani">Nyumbani</a>
 <a href="#taarifa">Taarifa</a>
 <a href="#video">Video</a>
