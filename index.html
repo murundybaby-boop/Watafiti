@@ -56,8 +56,18 @@ section{max-width:1150px;margin:auto;padding:48px 18px}
 .news,.services,.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
 .card h3,.profile h3{color:#073b4c;margin-bottom:8px}
 .card p{margin-bottom:7px}
-.profile img{display:block;width:190px;height:190px;object-fit:cover;border-radius:50%;margin:14px auto}
-.profile ul{padding-left:22px}
+.profile{position:relative;overflow:hidden;max-width:900px;margin:0 auto;padding:clamp(22px,4vw,38px);border:1px solid rgba(17,138,178,.2);box-shadow:0 14px 36px rgba(7,59,76,.12);background:linear-gradient(180deg,#fff 0%,#f8fcfd 100%)}
+.profile:before{content:"";position:absolute;top:0;left:0;right:0;height:8px;background:linear-gradient(90deg,#073b4c,#118ab2,#ffd166)}
+.profile-intro{text-align:center;padding:8px 8px 20px;border-bottom:1px solid #e5eef1}
+.profile img{display:block;width:clamp(145px,22vw,205px);height:clamp(145px,22vw,205px);object-fit:cover;border-radius:50%;margin:14px auto 18px;border:6px solid #fff;outline:3px solid #118ab2;box-shadow:0 8px 24px rgba(7,59,76,.2);background:#eaf3f6}
+.profile h3{font-size:clamp(25px,4vw,34px);margin:0;color:#073b4c;letter-spacing:.3px}
+.profile-role{display:inline-block;margin:10px 0 12px;padding:6px 13px;border-radius:999px;background:#e7f5f8;color:#07566a;font-weight:700;font-size:13px;letter-spacing:.3px}
+.profile-intro p{max-width:620px;margin:0 auto;color:#50636b;font-size:16px}
+.profile-credentials-title{text-align:center;color:#073b4c;margin:22px 0 14px;font-size:18px}
+.profile ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,245px),1fr));gap:10px}
+.profile li{position:relative;display:flex;align-items:flex-start;gap:9px;padding:12px 13px;border:1px solid #e2edf0;border-radius:10px;background:#fff;color:#30454d;line-height:1.45;box-shadow:0 2px 7px rgba(7,59,76,.035)}
+.profile li:before{content:"✓";display:inline-flex;align-items:center;justify-content:center;flex:0 0 22px;width:22px;height:22px;border-radius:50%;background:#e7f5f8;color:#08718a;font-weight:800;font-size:13px;margin-top:1px}
+@media(max-width:520px){.profile{padding:22px 15px}.profile ul{grid-template-columns:1fr}.profile li{padding:11px}}
 .social{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
 .social a{background:#ffd166;color:#222;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:bold;transition:transform .18s,opacity .18s}.social a:hover{transform:translateY(-2px);opacity:.9}
 .contact{max-width:none;background:#073b4c;color:#fff;text-align:center}
@@ -284,10 +294,13 @@ header{padding:8px 10px}.nav{display:block;text-align:center}.logo-area{justify-
 <section id="mmiliki">
 <h2 class="title" data-sw="👤 Mmiliki wa WATAFITI" data-en="👤 WATAFITI Owner">👤 Mmiliki wa WATAFITI</h2>
 <div class="profile">
+<div class="profile-intro">
+<img src="1790088089145.jpg" alt="Picha ya Pro Murundy" loading="lazy" onerror="this.style.display='none'">
 <h3>Pro Murundy</h3>
-<img src="1790088089145.jpg" alt="Pro Murundy" onerror="this.style.display='none'">
+<span class="profile-role">MWANZILISHI NA MMILIKI WA WATAFITI</span>
 <p data-sw="Mmiliki na mwanzilishi wa WATAFITI." data-en="Owner and founder of WATAFITI.">Mmiliki na mwanzilishi wa WATAFITI.</p>
-<br>
+</div>
+<h4 class="profile-credentials-title">⭐ Wasifu, elimu na ujuzi</h4>
 <ul>
 <li>Msomi wa elimu ya juu</li>
 <li>Degree ya Ualimu</li>
