@@ -501,7 +501,7 @@ setSwahili();
       });
     }).catch(()=>{articleHost.innerHTML="";});
   /* Cloud visitor count is optional until the visitor_events table and RLS are configured. */
-  fetch(SUPABASE_URL+"/rest/v1/visitor_events", {method:"POST",headers:{...headers,"Content-Type":"application/json","Prefer":"return=minimal"},body:JSON.stringify({page:location.pathname})}).catch(()=>{});
+  fetch(SUPABASE_URL+"/rest/v1/visitor_events", {method:"POST",headers:{...headers,"Content-Type":"application/json","Prefer":"return=minimal"},body:JSON.stringify({page:location.pathname})}).then(()=>fetch(SUPABASE_URL+"/rest/v1/rpc/get_visitor_count",{method:"POST",headers:{...headers,"Content-Type":"application/json"},body:"{}"})).then(r=>r.ok?r.json():null).then(n=>{if(n!==null)document.getElementById("visitorCount").textContent=String(n);}).catch(()=>{});
 })();
 </script>
 
