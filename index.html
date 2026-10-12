@@ -76,11 +76,19 @@ section{max-width:1150px;margin:auto;padding:48px 18px}
 .visitor{background:linear-gradient(100deg,#052d3a,#073b4c,#118ab2);color:#fff;text-align:center;padding:17px 12px;font-size:18px;letter-spacing:.2px}.visitor span{display:inline-block;min-width:28px;font-weight:bold;color:#ffd166}
 .donation{background:#f4f8fb}
 .donation-banner{display:block;width:100%;max-width:1000px;margin:18px auto;border-radius:15px}
-.payment-grid{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;margin-top:20px}
-.payment{flex:1;min-width:255px;padding:20px;border-radius:15px;text-align:center;background:#fff}
-.voda{border:3px solid #e60012}.halo{border:3px solid #f5c400}
-.voda h2{color:#e60012}.halo h2{color:#c39b00}
-.payment h1{color:#073b4c;margin:8px 0}
+.payment-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;max-width:850px;margin:26px auto 0}
+.payment{position:relative;overflow:hidden;min-width:0;padding:28px 22px 24px;border-radius:20px;text-align:center;background:linear-gradient(160deg,#fff 0%,#f8fbfd 100%);box-shadow:0 12px 28px rgba(7,59,76,.10);transition:transform .2s,box-shadow .2s}
+.payment:hover{transform:translateY(-4px);box-shadow:0 17px 34px rgba(7,59,76,.16)}
+.payment:before{content:"";position:absolute;inset:0 0 auto;height:7px;background:currentColor}
+.voda{color:#e60012;border:1px solid #f5c9ce}.halo{color:#bb9200;border:1px solid #f1e0a0}
+.voda h2{color:#d90b1b}.halo h2{color:#9c7800}
+.payment h2{font-size:23px;margin:6px 0 18px}
+.payment h1{display:block;color:#073b4c;background:#eef5f7;border:1px dashed #c7dbe1;border-radius:13px;padding:16px 10px;margin:12px 0;font-size:clamp(25px,4vw,34px);letter-spacing:1.5px;overflow-wrap:anywhere}
+.payment p{font-size:13px;color:#617782;margin:16px 0 4px;text-transform:uppercase;letter-spacing:.6px}
+.payment h3{color:#18313a;margin:5px 0 16px;font-size:19px}
+.copy-payment{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#073b4c;color:#fff;padding:10px 18px;border-radius:999px;box-shadow:none;font-size:14px}
+.copy-payment:hover{background:#0b6372;box-shadow:0 5px 12px #073b4c22}
+@media(max-width:620px){.payment-grid{grid-template-columns:1fr;gap:16px;margin-top:18px}.payment{padding:24px 18px}.payment h1{font-size:29px;letter-spacing:1px}}
 .review{background:#f5f9fc}
 .review-form{max-width:720px;margin:20px auto 0}
 .review-form input,.review-form textarea,.review-form select{width:100%;padding:12px;margin:7px 0;border:1px solid #ccc;border-radius:8px;font-size:16px}
@@ -313,6 +321,19 @@ header{padding:8px 10px}.nav{display:block;text-align:center}.logo-area{justify-
 
 
 
+<script>
+function copyPaymentNumber(number,button){
+  const original=button.textContent;
+  const done=()=>{button.textContent="✓ Namba imenakiliwa";setTimeout(()=>button.textContent=original,1800);};
+  if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(number).then(done).catch(()=>fallbackCopy(number,done));}
+  else fallbackCopy(number,done);
+}
+function fallbackCopy(number,done){
+  const field=document.createElement("textarea");field.value=number;field.setAttribute("readonly","");field.style.position="fixed";field.style.opacity="0";document.body.appendChild(field);field.select();
+  try{if(document.execCommand("copy"))done();else window.prompt("Nakili namba hii:",number);}catch(_){window.prompt("Nakili namba hii:",number);}
+  field.remove();
+}
+</script>
 <section id="donation" class="donation">
 <h2 class="title" data-sw="❤️ Donation" data-en="❤️ Donation">❤️ Donation</h2>
 <div class="donation-box">
@@ -320,8 +341,8 @@ header{padding:8px 10px}.nav{display:block;text-align:center}.logo-area{justify-
 <img class="donation-banner" src="donation.jpg" alt="WATAFITI Donation - Pro Murundy" onerror="this.style.display='none'">
 <h2 style="text-align:center;color:#073b4c;margin:12px 0">Tuma mchango wako / Send your donation</h2>
 <div class="payment-grid">
-<div class="payment voda"><h2>🔴 Voda Lipa</h2><h1>54087511</h1><p>Jina la Mpokeaji / Recipient</p><h3>John Murundi</h3></div>
-<div class="payment halo"><h2>🟡 HaloPesa</h2><h1>0624528944</h1><p>Jina la Mpokeaji / Recipient</p><h3>John Murundi</h3></div>
+<div class="payment voda"><h2>🔴 Voda Lipa</h2><h1>54087511</h1><p>Jina la Mpokeaji / Recipient</p><h3>John Murundi</h3><button class="copy-payment" type="button" onclick="copyPaymentNumber('54087511',this)">▣ Nakili namba</button></div>
+<div class="payment halo"><h2>🟡 HaloPesa</h2><h1>0624528944</h1><p>Jina la Mpokeaji / Recipient</p><h3>John Murundi</h3><button class="copy-payment" type="button" onclick="copyPaymentNumber('0624528944',this)">▣ Nakili namba</button></div>
 </div>
 <h3 style="text-align:center;color:#073b4c;margin-top:22px">🙏 Asante kwa kila mchango / Thank you for every contribution</h3>
 <p style="text-align:center"><b>Elimu • Utafiti • Maendeleo</b></p>
