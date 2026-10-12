@@ -96,6 +96,8 @@ section{max-width:1150px;margin:auto;padding:48px 18px}
 .privacy-box h3{color:#073b4c;margin:17px 0 6px}
 .notice{background:#fff8df;border-left:5px solid #ffd166;padding:13px;border-radius:7px;margin-top:16px}
 footer{background:#052d3a;color:#fff;text-align:center;padding:22px}
+.back-to-top{position:fixed;right:16px;bottom:16px;z-index:1200;width:48px;height:48px;border:0;border-radius:50%;background:#ffd166;color:#172b32;font-size:23px;font-weight:bold;box-shadow:0 3px 12px rgba(0,0,0,.25);cursor:pointer}
+.back-to-top[hidden]{display:none}
 footer a{color:#ffd166;text-decoration:none}
 .hidden{display:none!important}
 @media(max-width:760px){
@@ -384,6 +386,7 @@ header{padding:8px 10px}.nav{display:block;text-align:center}.logo-area{justify-
 <p>Tuchunguze Ukweli wa Dunia Pamoja</p>
 <p><a href="#privacy">Privacy Policy & Terms</a></p>
 </footer>
+<button class="back-to-top" id="backToTop" type="button" aria-label="Rudi juu ya ukurasa / Back to top" title="Rudi juu / Back to top" hidden>↑</button>
 
 <script>
 // @ts-nocheck
@@ -661,5 +664,17 @@ setSwahili();
 })();
 </script>
 
+<script>
+(function(){
+  var button=document.getElementById("backToTop");
+  if(!button)return;
+  function updateButton(){button.hidden=window.scrollY<450;}
+  window.addEventListener("scroll",updateButton,{passive:true});
+  updateButton();
+  button.addEventListener("click",function(){
+    window.scrollTo({top:0,behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});
+  });
+})();
+</script>
 </body>
 </html>
