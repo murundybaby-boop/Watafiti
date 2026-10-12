@@ -464,6 +464,13 @@ showReviews();
 });
 
 showReviews();
+fetch("https://zleflmeepyearrocaheg.supabase.co/rest/v1/reviews?select=name,rating,content,created_at&order=created_at.desc",{
+headers:{"apikey":"sb_publishable_0SA-j8i6kAJT69XO0T-gpA_WHWMaEcF","Authorization":"Bearer sb_publishable_0SA-j8i6kAJT69XO0T-gpA_WHWMaEcF"}
+}).then(function(r){if(!r.ok) throw new Error("reviews unavailable");return r.json();}).then(function(rows){
+if(!rows.length)return;
+localStorage.setItem("watafitiReviews",JSON.stringify(rows.map(function(r){return {name:r.name,rating:r.rating,text:r.content,date:r.created_at?new Date(r.created_at).toLocaleDateString():"";}})));
+showReviews();
+}).catch(function(){});
 
 if(localStorage.getItem("watafitiLanguage")==="en"){
 setEnglish();
@@ -480,7 +487,7 @@ setSwahili();
   const SUPABASE_KEY = "sb_publishable_0SA-j8i6kAJT69XO0T-gpA_WHWMaEcF";
   const headers = {"apikey":SUPABASE_KEY,"Authorization":"Bearer "+SUPABASE_KEY};
   const articleHost = document.getElementById("supabaseArticles");
-  fetch(SUPABASE_URL+"/rest/v1/articles?select=title,content,image_url,category&published=eq.true&order=created_at.desc", {headers})
+  fetch(SUPABASE_URL+"/rest/v1/articles?select=title,content,image_url,category&published=eq.true", {headers})
     .then(r=>{if(!r.ok) throw new Error("Articles unavailable"); return r.json();})
     .then(rows=>{
       if(!rows.length){articleHost.innerHTML="";return;}
