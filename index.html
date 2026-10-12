@@ -68,8 +68,17 @@ section{max-width:1150px;margin:auto;padding:48px 18px}
 .profile li{position:relative;display:flex;align-items:flex-start;gap:9px;padding:12px 13px;border:1px solid #e2edf0;border-radius:10px;background:#fff;color:#30454d;line-height:1.45;box-shadow:0 2px 7px rgba(7,59,76,.035)}
 .profile li:before{content:"✓";display:inline-flex;align-items:center;justify-content:center;flex:0 0 22px;width:22px;height:22px;border-radius:50%;background:#e7f5f8;color:#08718a;font-weight:800;font-size:13px;margin-top:1px}
 @media(max-width:520px){.profile{padding:22px 15px}.profile ul{grid-template-columns:1fr}.profile li{padding:11px}}
-.social{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
-.social a{background:#ffd166;color:#222;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:bold;transition:transform .18s,opacity .18s}.social a:hover{transform:translateY(-2px);opacity:.9}
+.social{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:14px;max-width:1000px;margin:0 auto}
+.social a{position:relative;display:flex;align-items:center;gap:12px;min-height:72px;padding:14px 16px;border:1px solid #e0eaf0;border-radius:14px;background:linear-gradient(135deg,#fff,#f6fafc);color:#173c49;text-decoration:none;font-weight:700;box-shadow:0 4px 13px rgba(7,59,76,.06);transition:transform .2s,box-shadow .2s,border-color .2s;overflow:hidden}
+.social a:before{content:"";display:inline-flex;align-items:center;justify-content:center;flex:0 0 42px;width:42px;height:42px;border-radius:12px;background:#e8f3f6;color:#073b4c;font-size:18px;font-weight:800}
+.social a:hover{transform:translateY(-3px);border-color:#118ab2;box-shadow:0 10px 22px rgba(7,59,76,.12)}
+.social a:nth-child(1):before{content:"f";font-family:Arial,sans-serif;font-size:27px;background:#e7efff;color:#1877f2}
+.social a:nth-child(2):before{content:"◎";font-size:28px;background:#fce8f2;color:#c13584}
+.social a:nth-child(3):before{content:"▶";font-size:18px;background:#ffe9e8;color:#e62117}
+.social a:nth-child(4):before{content:"♪";font-size:25px;background:#e9e9ef;color:#111}
+.social a:nth-child(5):before{content:"@" ;font-size:23px;background:#ececf0;color:#111}
+.social a:nth-child(6):before{content:"W";font-size:19px;background:#e2f6e9;color:#16834a}
+@media(max-width:520px){.social{grid-template-columns:1fr;gap:10px}.social a{min-height:66px;padding:12px 14px}}
 .contact{max-width:none;background:#073b4c;color:#fff;text-align:center}
 .contact .title{color:#fff}
 .contact-form-wrap{max-width:650px;margin:24px auto 16px;padding:22px;background:#fff;color:#172b32;border-radius:14px;text-align:left;box-shadow:0 4px 16px rgba(0,0,0,.15)}
@@ -322,10 +331,11 @@ header{padding:8px 10px}.nav{display:block;text-align:center}.logo-area{justify-
 <section id="mitandao">
 <h2 class="title" data-sw="🌐 Mitandao ya Kijamii" data-en="🌐 Social Media">🌐 Mitandao ya Kijamii</h2>
 <div class="social">
-<a href="https://www.facebook.com/WATAFITITV" target="_blank" rel="noopener">Facebook: WATAFITI TV</a>
-<a href="https://www.instagram.com/WATAFITI205/" target="_blank" rel="noopener">Instagram: WATAFITI205</a>
-<a href="https://youtube.com/@watafiti" target="_blank" rel="noopener">YouTube: WATAFITI TV</a>
-<a href="https://vm.tiktok.com/ZS9AumT8yMRd5-7AMgZ/" target="_blank" rel="noopener">TikTok: WATAFITI TV</a>
+<a href="https://www.facebook.com/WATAFITITV" target="_blank" rel="noopener noreferrer">Facebook: WATAFITI TV</a>
+<a href="https://www.instagram.com/WATAFITI205/" target="_blank" rel="noopener noreferrer">Instagram: WATAFITI205</a>
+<a href="https://youtube.com/@watafiti" target="_blank" rel="noopener noreferrer">YouTube: WATAFITI TV</a>
+<a href="https://vm.tiktok.com/ZS9AumT8yMRd5-7AMgZ/" target="_blank" rel="noopener noreferrer">TikTok: WATAFITI TV</a>
+<a href="https://www.threads.net/@watafiti2025" target="_blank" rel="noopener noreferrer">Threads: watafiti2025</a>
 <a href="#mawasiliano">WeChat: YUEHAN</a>
 </div>
 </section>
