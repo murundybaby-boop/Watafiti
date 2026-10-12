@@ -63,6 +63,42 @@ function renderArticles(){const host=el("articleList");const word=(el("articleSe
 async function loadReviews(){const host=el("reviewAdminList");if(!host)return;host.innerHTML='<p class="empty">Inapakia maoni...</p>';try{const rows=await api("/rest/v1/reviews?select=id,name,rating,content,created_at,approved&order=created_at.desc",{headers:headers()});host.textContent="";if(!rows.length){host.innerHTML='<p class="empty">Bado hakuna maoni.</p>';return;}rows.forEach(r=>{const item=document.createElement("article");item.className="article-item";const body=document.createElement("div");body.style.gridColumn="1 / -1";const h=document.createElement("h3");h.textContent=(r.name||"Msomaji")+" · "+("★".repeat(Number(r.rating)||0));const state=document.createElement("p");state.className="hint";state.textContent=r.approved?"Imeidhinishwa":"Inasubiri idhini";const content=document.createElement("p");content.textContent=r.content||"";const actions=document.createElement("div");actions.className="btn-row";const toggle=document.createElement("button");toggle.type="button";toggle.textContent=r.approved?"Ondoa uchapishaji":"Idhinisha na onyesha";toggle.className=r.approved?"secondary":"gold";toggle.addEventListener("click",async()=>{toggle.disabled=true;try{await api("/rest/v1/reviews?id=eq."+encodeURIComponent(r.id),{method:"PATCH",headers:headers({"Content-Type":"application/json","Prefer":"return=minimal"}),body:JSON.stringify({approved:!r.approved})});await loadReviews();}catch(e){alert("Imeshindikana: "+e.message);toggle.disabled=false;}});const del=document.createElement("button");del.type="button";del.className="danger";del.textContent="Futa";del.addEventListener("click",async()=>{if(!confirm("Ufute maoni haya?"))return;try{await api("/rest/v1/reviews?id=eq."+encodeURIComponent(r.id),{method:"DELETE",headers:headers({"Prefer":"return=minimal"})});await loadReviews();}catch(e){alert("Imeshindikana: "+e.message);}});actions.append(toggle,del);body.append(h,state,content,actions);item.appendChild(body);host.appendChild(item);});}catch(e){host.innerHTML="";const p=document.createElement("p");p.className="empty";p.textContent="Maoni hayajapatikana. Hakikisha umeendesha upgrade-watafiti-v2.sql. "+e.message;host.appendChild(p);}}
 async function loadAnalytics(){try{const count=await api("/rest/v1/rpc/get_visitor_count",{method:"POST",headers:headers({"Content-Type":"application/json"}),body:"{}"});el("analyticsTotal").textContent="Jumla ya ziara zilizorekodiwa: "+count;const rows=await api("/rest/v1/rpc/get_top_pages",{method:"POST",headers:headers({"Content-Type":"application/json"}),body:"{}"});const host=el("topPages");host.textContent="";if(!rows.length){host.innerHTML='<p class="empty">Bado hakuna takwimu za kutosha.</p>';return;}rows.forEach(r=>{const p=document.createElement("p");p.className="empty";p.textContent=(r.page||"/")+" — "+r.visits+" ziara";host.appendChild(p);});}catch(e){el("analyticsTotal").textContent="Takwimu zitapatikana baada ya kuendesha upgrade-watafiti-v2.sql. "+e.message;}}
 el("refreshReviewsBtn").addEventListener("click",loadReviews);el("refreshAnalyticsBtn").addEventListener("click",loadAnalytics);
+
+function editArticle(article){
+el("articleId").value=article.id;
+el("articleTitle").value=article.title||"";
+el("articleCategory").value=article.category||"";
+el("articleImage").value=article.image_url||"";
+el("articleImageFile").value="";
+el("articleContent").value=article.content||"";
+el("contentCount").textContent=el("articleContent").value.length+" / 20,000 herufi";
+el("articlePublished").checked=!!article.published;
+el("formHeading").textContent="Hariri makala";
+el("saveBtn").textContent="Hifadhi mabadiliko";
+el("cancelEditBtn").classList.remove("hidden");
+previewImage();
+window.scrollTo({top:0,behavior:"smooth"});
+}
+el("cancelEditBtn").addEventListener("click",()=>{resetForm();message("Uhariri umeghairiwa.",false);});
+el("refreshBtn").addEventListener("click",loadArticles);
+el("articleForm").addEventListener("submit",async event=>{
+event.preventDefault();
+const btn=el("saveBtn");
+btn.disabled=true;
+message("Inahifadhi makala...",false);
+try{
+const imageUrl=await uploadSelectedImage();
+const payload={title:el("articleTitle").value.trim(),category:el("articleCategory").value.trim()||null,image_url:imageUrl,content:el("articleContent").value.trim(),published:el("articlePublished").checked};
+if(!payload.title||!payload.content)throw new Error("Jaza kichwa na maudhui ya makala.");
+const id=el("articleId").value;
+const path=id?"/rest/v1/articles?id=eq."+encodeURIComponent(id):"/rest/v1/articles";
+await api(path,{method:id?"PATCH":"POST",headers:headers({"Content-Type":"application/json","Prefer":"return=minimal"}),body:JSON.stringify(payload)});
+message(id?"Mabadiliko yamehifadhiwa.":"Makala imehifadhiwa.",false);
+resetForm();
+await loadArticles();
+}catch(error){message("Imeshindikana kuhifadhi: "+error.message,true);}
+finally{btn.disabled=false;}
+});
 async function deleteArticle(article){if(!window.confirm('Una uhakika unataka kufuta makala "'+(article.title||"Bila kichwa")+'"? Kitendo hiki hakiwezi kurudishwa.'))return;try{await api("/rest/v1/articles?id=eq."+encodeURIComponent(article.id),{method:"DELETE",headers:headers({"Prefer":"return=minimal"})});message("Makala imefutwa.",false);await loadArticles();}catch(error){message("Imeshindikana kufuta: "+error.message,true);}}
 })();
 </script>
