@@ -18,6 +18,61 @@ label{display:block;margin:8px 0 14px}button{border:0;background:linear-gradient
 .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.hidden{display:none!important}
 #status,#loginMessage{padding:10px 0;font-weight:bold;overflow-wrap:anywhere}.article-list{display:grid;gap:12px}.article-item{border:1px solid var(--line);border-radius:12px;padding:14px;display:grid;grid-template-columns:100px 1fr;gap:14px;align-items:start}.article-item img{width:100px;height:90px;object-fit:cover;border-radius:8px;background:#eef2f4}.article-item h3{margin:0 0 6px}.article-item p{margin:4px 0;overflow-wrap:anywhere}.pill{display:inline-block;background:var(--mint);color:#17685d;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:bold;border:1px solid #c9e9df}.preview{display:block;max-width:220px;max-height:150px;object-fit:cover;border-radius:10px;margin:0 0 12px}.topline{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.empty{color:var(--muted);padding:18px;text-align:center;background:#f7fafb;border-radius:10px}
 @media(max-width:650px){.row{grid-template-columns:1fr}.panel{padding:15px}.article-item{grid-template-columns:1fr}.article-item img{width:100%;height:160px}.article-item .btn-row button{flex:1 1 40%}}
+
+/* WATAFITI dashboard visual refresh */
+:root{--navy:#10243e;--blue:#2563eb;--gold:#f6bd4b;--ink:#17263c;--muted:#65758b;--bg:#f3f6fc;--line:#e0e7f1;--danger:#c43b4d;--mint:#e0f8ee}
+body{background:radial-gradient(ellipse at 8% 0%,#e1efff 0,transparent 34%),radial-gradient(ellipse at 95% 20%,#e2fbf3 0,transparent 30%),#f4f7fc;color:var(--ink)}
+header{position:relative;overflow:hidden;background:linear-gradient(118deg,#101c3a 0%,#174a78 48%,#087f8c 100%);padding:27px 18px 30px;border-bottom:5px solid var(--gold);box-shadow:0 12px 34px #10243e25}
+header:before,header:after{content:"";position:absolute;border:1px solid #ffffff18;border-radius:50%;pointer-events:none}
+header:before{width:250px;height:250px;right:-45px;top:-145px}
+header:after{width:170px;height:170px;right:100px;top:-110px}
+.head{position:relative;z-index:1;max-width:1160px}
+header strong{display:inline-flex;align-items:center;gap:9px;font-size:25px;letter-spacing:2px}
+header strong:before{content:"W";display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#f8ce72,#f5a623);color:#17334c;font-size:22px;letter-spacing:0;box-shadow:0 5px 15px #0002}
+header .hint{font-size:13px;letter-spacing:.3px;margin-top:5px}
+header a{background:#ffffff12;border:1px solid #ffffff55;border-radius:12px;padding:10px 14px;transition:background .2s,transform .2s}
+header a:hover{background:#ffffff25;transform:translateY(-1px)}
+main{max-width:1160px;margin:30px auto;padding:0 18px 52px}
+.panel{position:relative;background:#ffffffed;border:1px solid #e1e8f2;border-radius:20px;padding:25px;margin:20px 0;box-shadow:0 9px 30px #172e4b0a;backdrop-filter:blur(8px)}
+.panel:before{content:"";position:absolute;left:0;top:20px;bottom:20px;width:4px;border-radius:0 6px 6px 0;background:linear-gradient(180deg,#3978ee,#15a6a0);opacity:.85}
+.panel:hover{border-color:#cbd9eb;box-shadow:0 15px 38px #172e4b12;transform:translateY(-1px)}
+#loginPanel{max-width:640px;margin:42px auto;padding:30px}
+#loginPanel:before{background:linear-gradient(180deg,#f6bd4b,#3978ee)}
+h1,h2,h3{letter-spacing:-.25px}
+h2{font-size:clamp(20px,2.4vw,25px);color:#142b48;margin-bottom:8px}
+h3{color:#203d5c}
+.hint{color:#718096}
+input,textarea,select{border:1px solid #d4deeb;background:#f8faff;border-radius:11px;padding:13px 14px}
+input:hover,textarea:hover,select:hover{border-color:#aebfda}
+input:focus,textarea:focus,select:focus{border-color:#3978ee;box-shadow:0 0 0 4px #3978ee18}
+button{border-radius:11px;background:linear-gradient(135deg,#1b3761,#2868a5);padding:12px 17px;box-shadow:0 5px 13px #173b651c}
+button:hover{box-shadow:0 8px 18px #173b6528}
+.secondary{background:linear-gradient(135deg,#e8eef7,#dbe5f2);color:#29435f;border:1px solid #d3deed;box-shadow:none}
+.secondary:hover{box-shadow:0 5px 12px #183a5b12}
+.danger{background:linear-gradient(135deg,#d94c5c,#b62941)}
+.gold{background:linear-gradient(135deg,#ffdc8a,#f4b942);color:#25354b}
+.btn-row{gap:9px}
+.btn-row button{min-height:43px}
+#status,#loginMessage{border-radius:11px}
+#adminPanel .topline{padding:5px 0 15px;border-bottom:1px solid #e9eef6;margin-bottom:20px}
+#adminPanel .topline h2{margin-bottom:5px}
+#adminPanel .topline .hint{margin-top:0}
+#listPanel .topline,#contactPanel .topline,#reviewPanel .topline{padding-bottom:15px;border-bottom:1px solid #e9eef6;margin-bottom:16px}
+.article-item{border:1px solid #e0e8f2;border-radius:15px;padding:16px;background:linear-gradient(135deg,#fff,#fbfcff);box-shadow:0 4px 13px #233f6008;transition:border-color .18s,box-shadow .18s,transform .18s}
+.article-item:hover{border-color:#b8ccec;box-shadow:0 8px 22px #233f6010;transform:translateY(-1px)}
+.article-item img{border-radius:11px;background:#edf2fa}
+.article-item h3{font-size:17px}
+.pill{background:#e2f8ef;color:#087653;border:1px solid #bcebd8;padding:5px 10px}
+.empty{border:1px dashed #d4dfed;background:#f8faff;color:#687b92;border-radius:13px;padding:20px}
+.preview{border:3px solid white;box-shadow:0 5px 20px #142b4820}
+#analyticsTotal{padding:16px 18px;background:linear-gradient(120deg,#eaf2ff,#e5faf4);border:1px solid #d6e8f4;border-radius:14px;color:#174b6a;font-weight:700;font-size:16px}
+#topPages .empty{border-style:solid;border-color:#e1eaf5;text-align:left;font-weight:600}
+#articlePublished{accent-color:#16866c}
+#articleSearch,#articleStatusFilter{margin-bottom:8px}
+main>.hint{background:#e9eff8;border:1px solid #dbe5f2;border-radius:12px;padding:13px 15px}
+@media(max-width:650px){header{padding:22px 14px 25px}.head{align-items:flex-start}header strong{font-size:22px}header a{font-size:13px}main{padding:0 11px 34px;margin-top:18px}.panel{padding:19px 15px;margin:15px 0;border-radius:16px}.panel:before{top:16px;bottom:16px;width:3px}#loginPanel{padding:22px 17px;margin-top:24px}.btn-row button{flex:1 1 42%}.article-item{padding:13px}.article-item img{height:190px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+
 </style>
 </head>
 <body>
