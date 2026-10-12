@@ -28,7 +28,7 @@ Deno.serve(async (req) => {
     }
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
-    const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+    const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || Deno.env.get("CONTACT_DB_SECRET_KEY");
     const resendKey = Deno.env.get("RESEND_API_KEY");
     const recipient = Deno.env.get("CONTACT_EMAIL") || "Murundybaby@gmail.com";
     if (!supabaseUrl || !serviceKey) throw new Error("Supabase function secrets are not configured.");
