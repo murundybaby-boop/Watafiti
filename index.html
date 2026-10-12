@@ -435,29 +435,32 @@ list.appendChild(item);
 }
 }
 
-document.getElementById("reviewForm").addEventListener("submit",function(){
+document.getElementById("reviewForm").addEventListener("submit",async function(event){
+event.preventDefault();
 var name=document.getElementById("reviewName").value.trim();
 var rating=document.getElementById("reviewRating").value;
 var text=document.getElementById("reviewText").value.trim();
-
 if(!name || !rating || !text){
 alert("Tafadhali jaza taarifa zote / Please complete all fields.");
 return;
 }
-
-var reviews=JSON.parse(localStorage.getItem("watafitiReviews") || "[]");
-
-reviews.unshift({
-name:name,
-rating:rating,
-text:text,
-date:new Date().toLocaleDateString()
+var review={name:name,rating:rating,text:text,date:new Date().toLocaleDateString()};
+try{
+var response=await fetch("https://zleflmeepyearrocaheg.supabase.co/rest/v1/reviews",{
+method:"POST",
+headers:{"apikey":"sb_publishable_0SA-j8i6kAJT69XO0T-gpA_WHWMaEcF","Authorization":"Bearer sb_publishable_0SA-j8i6kAJT69XO0T-gpA_WHWMaEcF","Content-Type":"application/json","Prefer":"return=minimal"},
+body:JSON.stringify({name:name,rating:Number(rating),content:text})
 });
-
+if(!response.ok) throw new Error("Cloud review save unavailable");
+alert("Asante! Maoni yako yametumwa / Thank you! Your review was submitted.");
+}catch(error){
+var reviews=JSON.parse(localStorage.getItem("watafitiReviews") || "[]");
+reviews.unshift(review);
 localStorage.setItem("watafitiReviews",JSON.stringify(reviews));
+alert("Maoni yamehifadhiwa kwenye kifaa hiki. Hifadhi ya pamoja itafanya kazi baada ya kuweka jedwali la reviews kwenye Supabase.");
+}
 document.getElementById("reviewForm").reset();
 showReviews();
-alert("Asante! Maoni yako yamehifadhiwa / Thank you! Your review has been saved.");
 });
 
 showReviews();
