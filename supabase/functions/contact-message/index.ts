@@ -41,21 +41,25 @@ Deno.serve(async (req) => {
 
     let emailSent = false;
     if (resendKey) {
-      const emailResponse = await fetch("https://api.resend.com/emails", {
-        method: "POST",
-        headers: { "Authorization": "Bearer " + resendKey, "Content-Type": "application/json" },
-        body: JSON.stringify({
-          from: "WATAFITI Website <onboarding@resend.dev>",
-          to: [recipient],
-          reply_to: email,
-          subject: "[WATAFITI] " + subject,
-          text: "Ujumbe mpya kutoka kwenye tovuti ya WATAFITI\n\nJina: " + name +
-            "\nBarua pepe: " + email + "\nSimu: " + (phone || "Haijawekwa") +
-            "\n\nMada: " + subject + "\n\nUjumbe:\n" + message,
-        }),
-      });
-      emailSent = emailResponse.ok;
-      if (!emailSent) console.error("Resend email failed:", await emailResponse.text());
+      try {
+        const emailResponse = await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: { "Authorization": "Bearer " + resendKey, "Content-Type": "application/json" },
+          body: JSON.stringify({
+            from: "WATAFITI Website <onboarding@resend.dev>",
+            to: [recipient],
+            reply_to: email,
+            subject: "[WATAFITI] " + subject,
+            text: "Ujumbe mpya kutoka kwenye tovuti ya WATAFITI\n\nJina: " + name +
+              "\nBarua pepe: " + email + "\nSimu: " + (phone || "Haijawekwa") +
+              "\n\nMada: " + subject + "\n\nUjumbe:\n" + message,
+          }),
+        });
+        emailSent = emailResponse.ok;
+        if (!emailSent) console.error("Resend email failed:", await emailResponse.text());
+      } catch (emailError) {
+        console.error("Resend email request failed:", emailError);
+      }
     }
     return Response.json({ ok: true, saved: true, email_sent: emailSent }, { headers: corsHeaders });
   } catch (error) {
