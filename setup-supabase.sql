@@ -62,3 +62,15 @@ for update to authenticated using (
 -- After creating the admin account in Authentication, run this separately
 -- with the real UUID from Authentication > Users:
 -- insert into public.admin_users (user_id) values ('PASTE-ADMIN-USER-UUID-HERE');
+
+-- Public aggregate only: expose the total, not individual visitor records.
+create or replace function public.get_visitor_count()
+returns bigint
+language sql
+security definer
+set search_path = ''
+as $$
+  select count(*) from public.visitor_events;
+$$;
+revoke all on function public.get_visitor_count() from public;
+grant execute on function public.get_visitor_count() to anon, authenticated;
