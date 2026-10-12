@@ -61,7 +61,7 @@ drop policy if exists "Admins can see their own admin record" on public.admin_us
 create policy "Admins can see their own admin record" on public.admin_users
 for select to authenticated using (user_id = auth.uid());
 
-grant select, insert, update on public.articles to authenticated;
+grant select, insert, update, delete on public.articles to authenticated;
 drop policy if exists "Admins can read all articles" on public.articles;
 create policy "Admins can read all articles" on public.articles
 for select to authenticated using (
@@ -77,6 +77,12 @@ create policy "Admins can edit articles" on public.articles
 for update to authenticated using (
   exists (select 1 from public.admin_users where user_id = auth.uid())
 ) with check (
+  exists (select 1 from public.admin_users where user_id = auth.uid())
+);
+
+drop policy if exists "Admins can delete articles" on public.articles;
+create policy "Admins can delete articles" on public.articles
+for delete to authenticated using (
   exists (select 1 from public.admin_users where user_id = auth.uid())
 );
 
