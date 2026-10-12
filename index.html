@@ -62,6 +62,15 @@ section{max-width:1150px;margin:auto;padding:48px 18px}
 .social a{background:#ffd166;color:#222;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:bold}
 .contact{max-width:none;background:#073b4c;color:#fff;text-align:center}
 .contact .title{color:#fff}
+.contact-form-wrap{max-width:650px;margin:24px auto 16px;padding:22px;background:#fff;color:#172b32;border-radius:14px;text-align:left;box-shadow:0 4px 16px rgba(0,0,0,.15)}
+.contact-form{display:grid;gap:8px}
+.contact-form label{font-weight:700;margin-top:7px}
+.contact-form input,.contact-form textarea{width:100%;padding:12px;border:1px solid #cbd5db;border-radius:8px;font:inherit;color:#172b32;background:#fff}
+.contact-form textarea{resize:vertical}
+.contact-form button{justify-self:start;margin-top:12px}
+#contactFormStatus{min-height:1.4em;margin:4px 0;color:#073b4c;font-weight:700}
+.contact-honey{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+
 .contact p{margin:7px}
 .map-card iframe{width:100%;height:350px;border:0;border-radius:12px;margin-top:14px}
 .visitor{background:#073b4c;color:#fff;text-align:center;padding:15px;font-size:18px}
@@ -272,6 +281,25 @@ header{padding:8px 10px}.nav{display:block;text-align:center}.logo-area{justify-
 <p>📧 <strong>Yuehanbaby@gmail.com</strong></p>
 <p>📧 <strong>Johnmarwa8114@gmail.com</strong></p>
 <p>📍 Moshi, Kilimanjaro, Tanzania</p>
+<div class="contact-form-wrap">
+<h3 style="margin:22px 0 8px">✉️ Tuma Ujumbe / Send a Message</h3>
+<p style="font-size:14px">Jaza fomu hapa chini. Ujumbe utahifadhiwa na tutapokea taarifa kwa barua pepe.</p>
+<form id="contactMessageForm" class="contact-form">
+<label for="contactName">Jina lako / Your name</label>
+<input id="contactName" name="name" type="text" minlength="2" maxlength="100" autocomplete="name" required>
+<label for="contactEmail">Barua pepe / Email</label>
+<input id="contactEmail" name="email" type="email" maxlength="254" autocomplete="email" required>
+<label for="contactPhone">Namba ya simu (hiari) / Phone (optional)</label>
+<input id="contactPhone" name="phone" type="tel" maxlength="40" autocomplete="tel">
+<label for="contactSubject">Mada ya ujumbe / Subject</label>
+<input id="contactSubject" name="subject" type="text" minlength="2" maxlength="160" required>
+<label for="contactMessage">Ujumbe wako / Your message</label>
+<textarea id="contactMessage" name="message" minlength="5" maxlength="5000" rows="5" required></textarea>
+<div class="contact-honey" aria-hidden="true"><label for="contactWebsite">Usijaze sehemu hii</label><input id="contactWebsite" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+<button class="btn" id="contactSubmit" type="submit">Tuma Ujumbe / Send Message</button>
+<p id="contactFormStatus" role="status" aria-live="polite"></p>
+</form>
+</div>
 <a class="btn" href="tel:+255624528944">📞 PIGA SIMU</a>
 <a class="btn" href="https://wa.me/255624528944?text=Habari%20WATAFITI%2C%20nahitaji%20huduma." target="_blank" rel="noopener">💬 WHATSAPP</a>
 </section>
@@ -568,6 +596,49 @@ setSwahili();
     .then(r=>r.ok?r.json():null)
     .then(n=>{if(n!==null){const count=document.getElementById("visitorCount");if(count)count.textContent=String(n);}})
     .catch(()=>{});
+})();
+</script>
+
+
+<script>
+(function(){
+  const form=document.getElementById("contactMessageForm");
+  if(!form)return;
+  const button=document.getElementById("contactSubmit");
+  const status=document.getElementById("contactFormStatus");
+  form.addEventListener("submit",async function(event){
+    event.preventDefault();
+    if(!form.reportValidity())return;
+    button.disabled=true;
+    button.textContent="Inatuma... / Sending...";
+    status.textContent="";
+    const payload={
+      name:document.getElementById("contactName").value.trim(),
+      email:document.getElementById("contactEmail").value.trim(),
+      phone:document.getElementById("contactPhone").value.trim(),
+      subject:document.getElementById("contactSubject").value.trim(),
+      message:document.getElementById("contactMessage").value.trim(),
+      website:document.getElementById("contactWebsite").value
+    };
+    try{
+      const response=await fetch("https://zleflmeepyearrocaheg.supabase.co/functions/v1/contact-message",{
+        method:"POST",
+        headers:{"Content-Type":"application/json","apikey":"sb_publishable_0SA-j8i6kAJT69XO0T-gpA_WHWMaEcF","Authorization":"Bearer sb_publishable_0SA-j8i6kAJT69XO0T-gpA_WHWMaEcF"},
+        body:JSON.stringify(payload)
+      });
+      const result=await response.json().catch(()=>({}));
+      if(!response.ok||!result.ok)throw new Error(result.error||"Imeshindikana kutuma ujumbe.");
+      form.reset();
+      status.textContent=result.email_sent
+        ?"Asante! Ujumbe umehifadhiwa na taarifa imetumwa kwa barua pepe."
+        :"Ujumbe umehifadhiwa. Arifa ya Gmail bado haijasanidiwa; tafadhali wasiliana nasi kwa WhatsApp kwa dharura.";
+    }catch(error){
+      status.textContent="Samahani, ujumbe haukutumwa. Jaribu tena au tumia WhatsApp.";
+    }finally{
+      button.disabled=false;
+      button.textContent="Tuma Ujumbe / Send Message";
+    }
+  });
 })();
 </script>
 
