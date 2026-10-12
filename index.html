@@ -500,17 +500,14 @@ setSwahili();
         const p=document.createElement("p");p.className="article-content collapsed";p.textContent=a.content||"";p.style="white-space:pre-wrap;overflow-wrap:anywhere";card.appendChild(p);
         const actions=document.createElement("div");actions.style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px";
         const read=document.createElement("button");read.type="button";read.className="btn";read.style="margin-left:0";
-        read.textContent="Soma zaidi";
+        read.textContent="Soma makala yote";
         read.addEventListener("click",()=>{
-          const expanded=p.classList.toggle("expanded");
-          p.classList.toggle("collapsed",!expanded);
-          read.textContent=expanded?"Fupisha":"Soma zaidi";
-          if(expanded) history.replaceState(null,"","#"+card.id);
+          location.href="./article.html?id="+encodeURIComponent(a.id);
         });
         const share=document.createElement("button");share.type="button";share.className="btn";share.style="background:#073b4c;color:#fff";
         share.textContent="Shiriki makala";
         share.addEventListener("click",async()=>{
-          const url=location.origin+location.pathname+"#"+card.id;
+          const url=location.origin+location.pathname.replace(/[^/]*$/,"article.html")+"?id="+encodeURIComponent(a.id);
           try{
             if(navigator.share){await navigator.share({title:a.title||"WATAFITI",text:(a.content||"").slice(0,180),url});}
             else if(navigator.clipboard&&navigator.clipboard.writeText){await navigator.clipboard.writeText(url);alert("Kiungo cha makala kimenakiliwa. Unaweza kukishiriki.");}
