@@ -30,7 +30,7 @@ label{display:block;margin:8px 0 14px}button{border:0;background:var(--navy);col
 <form id="articleForm">
 <input id="articleId" type="hidden">
 <label>Kichwa cha makala<input id="articleTitle" maxlength="300" placeholder="Andika kichwa cha habari" required></label>
-<div class="row"><label>Aina / Category<input id="articleCategory" maxlength="100" placeholder="Mfano: Elimu, Habari, Utafiti"></label><label>URL ya picha (hiari)<input id="articleImage" type="url" placeholder="https://..."></label></div><label>Pakia picha kutoka kwenye simu au kompyuta<input id="articleImageFile" type="file" accept="image/jpeg,image/png,image/webp,image/gif"><span class="hint">JPG, PNG, WEBP au GIF; hadi MB 5. Picha itahifadhiwa kwenye Supabase Storage.</span></label>
+<div class="row"><label>Aina / Category<input id="articleCategory" list="categoryOptions" maxlength="100" placeholder="Mfano: Elimu, Habari, Utafiti"><datalist id="categoryOptions"></datalist></label><label>URL ya picha (hiari)<input id="articleImage" type="url" placeholder="https://..."></label></div><label>Pakia picha kutoka kwenye simu au kompyuta<input id="articleImageFile" type="file" accept="image/jpeg,image/png,image/webp,image/gif"><span class="hint">JPG, PNG, WEBP au GIF; hadi MB 5. Picha itahifadhiwa kwenye Supabase Storage.</span></label>
 <img id="imagePreview" class="preview hidden" alt="Hakiki picha ya makala">
 <label>Maudhui<textarea id="articleContent" maxlength="20000" placeholder="Andika makala hapa..." required></textarea><span id="contentCount" class="hint">0 / 20,000 herufi</span></label>
 <label><input id="articlePublished" type="checkbox" style="width:auto;margin-right:8px"> Chapisha kwa umma (acha bila tiki ili kuhifadhi rasimu)</label>
