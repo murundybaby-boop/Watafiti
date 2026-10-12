@@ -152,8 +152,8 @@ header{padding:8px 10px}.nav{display:block;text-align:center}.logo-area{justify-
 </section>
 
 <section id="taarifa">
-<div id="supabaseArticles" class="news" aria-live="polite"><p class="notice">Habari mpya zitapakiwa hapa.</p></div>
 <h2 class="title" data-sw="📰 Taarifa Mpya" data-en="📰 Latest News">📰 Taarifa Mpya</h2>
+<div id="supabaseArticles" class="news" aria-live="polite" aria-busy="true"><p class="notice">Habari mpya zitapakiwa hapa.</p></div>
 <div class="news">
 <div class="card"><h3 data-sw="Taarifa na Habari" data-en="News and Information">Taarifa na Habari</h3><p data-sw="Sehemu hii ni kwa taarifa mpya, habari na matukio mbalimbali." data-en="This section is for new information, news and various events.">Sehemu hii ni kwa taarifa mpya, habari na matukio mbalimbali.</p></div>
 <div class="card"><h3 data-sw="Elimu na Maarifa" data-en="Education and Knowledge">Elimu na Maarifa</h3><p data-sw="Tutashirikisha elimu na maarifa mbalimbali yanayoweza kusaidia jamii." data-en="We will share educational materials and knowledge that can help the community.">Tutashirikisha elimu na maarifa mbalimbali yanayoweza kusaidia jamii.</p></div>
@@ -511,6 +511,7 @@ setSwahili();
     .then(r=>{if(!r.ok) throw new Error("Articles unavailable"); return r.json();})
     .then(rows=>{
       articleHost.innerHTML="";
+      articleHost.setAttribute("aria-busy","false");
       if(!rows.length){
         const empty=document.createElement("p"); empty.className="empty"; empty.textContent="Hakuna makala zilizochapishwa kwa sasa."; articleHost.appendChild(empty); return;
       }
@@ -557,6 +558,7 @@ setSwahili();
         if(target){const content=target.querySelector(".article-content");const button=target.querySelector("button");if(content){content.classList.remove("collapsed");content.classList.add("expanded");}if(button)button.textContent="Fupisha";setTimeout(()=>target.scrollIntoView({behavior:"smooth",block:"start"}),150);}
       }
     }).catch(()=>{
+      articleHost.setAttribute("aria-busy","false");
       articleHost.innerHTML="";
       const message=document.createElement("p");message.className="empty";message.textContent="Makala hayajapakiwa kwa sasa. Tafadhali jaribu tena baada ya muda.";articleHost.appendChild(message);
     });
