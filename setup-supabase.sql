@@ -45,7 +45,12 @@ drop policy if exists "Admins can see their own admin record" on public.admin_us
 create policy "Admins can see their own admin record" on public.admin_users
 for select to authenticated using (user_id = auth.uid());
 
-grant insert, update on public.articles to authenticated;
+grant select, insert, update on public.articles to authenticated;
+drop policy if exists "Admins can read all articles" on public.articles;
+create policy "Admins can read all articles" on public.articles
+for select to authenticated using (
+  exists (select 1 from public.admin_users where user_id = auth.uid())
+);
 drop policy if exists "Admins can publish articles" on public.articles;
 create policy "Admins can publish articles" on public.articles
 for insert to authenticated with check (
