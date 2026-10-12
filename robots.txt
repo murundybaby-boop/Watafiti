@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /admin.html
 
 Sitemap: https://murundybaby-boop.github.io/Watafiti/sitemap.xml
