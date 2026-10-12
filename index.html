@@ -468,7 +468,7 @@ fetch("https://zleflmeepyearrocaheg.supabase.co/rest/v1/reviews?select=name,rati
 headers:{"apikey":"sb_publishable_0SA-j8i6kAJT69XO0T-gpA_WHWMaEcF","Authorization":"Bearer sb_publishable_0SA-j8i6kAJT69XO0T-gpA_WHWMaEcF"}
 }).then(function(r){if(!r.ok) throw new Error("reviews unavailable");return r.json();}).then(function(rows){
 if(!rows.length)return;
-localStorage.setItem("watafitiReviews",JSON.stringify(rows.map(function(r){return {name:r.name,rating:r.rating,text:r.content,date:r.created_at?new Date(r.created_at).toLocaleDateString():"";}})));
+localStorage.setItem("watafitiReviews",JSON.stringify(rows.map(function(r){return {name:r.name,rating:r.rating,text:r.content,date:r.created_at?new Date(r.created_at).toLocaleDateString():""};})));
 showReviews();
 }).catch(function(){});
 
