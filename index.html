@@ -6,6 +6,16 @@
 
 <title>WATAFITI - Watafiti TV</title>
 <meta name="description" content="WATAFITI - Habari, elimu, mahojiano, survey, huduma za jamii, mafunzo ya Kichina na maendeleo.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#073b4c">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="WATAFITI">
+<meta property="og:title" content="WATAFITI - Watafiti TV">
+<meta property="og:description" content="Habari, elimu, mahojiano, utafiti, huduma za jamii na maendeleo.">
+<meta property="og:url" content="https://murundybaby-boop.github.io/Watafiti/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WATAFITI - Watafiti TV">
+<meta name="twitter:description" content="Habari, elimu, mahojiano, utafiti, huduma za jamii na maendeleo.">
 <meta name="keywords" content="WATAFITI, Watafiti TV, Surveyor, Moshi, Tanzania, Mandarin Chinese, Education">
 <meta name="google-site-verification" content="Exp3YNNS2b-KR2EPSXjy0QuFi_b2iX31pWJLez3xv5o">
 
@@ -552,6 +562,9 @@ setSwahili();
         });
         actions.appendChild(read);actions.appendChild(share);card.appendChild(actions);articleHost.appendChild(card);
       });
+      /* Reapply any active search to articles loaded asynchronously from the cloud. */
+      const searchInput=document.getElementById("searchInput");
+      if(searchInput && searchInput.value.trim()) searchInput.dispatchEvent(new Event("input"));
       if(location.hash.startsWith("#watafiti-article-")){
         const target=document.getElementById(decodeURIComponent(location.hash.slice(1)));
         if(target){const content=target.querySelector(".article-content");const button=target.querySelector("button");if(content){content.classList.remove("collapsed");content.classList.add("expanded");}if(button)button.textContent="Fupisha";setTimeout(()=>target.scrollIntoView({behavior:"smooth",block:"start"}),150);}
