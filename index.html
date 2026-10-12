@@ -44,7 +44,7 @@ nav a:hover{background:#118ab2}
 .tools input{flex:1;min-width:210px;max-width:650px;padding:12px;border:1px solid #c9c9c9;border-radius:9px;font-size:16px}
 .category-tools{max-width:1150px;margin:8px auto 0;padding:0 18px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}.category-tools label{font-weight:bold;color:#073b4c}.category-tools select{flex:1;min-width:210px;max-width:420px;padding:12px;border:1px solid #c9c9c9;border-radius:9px;background:#fff;font-size:16px}.category-tools .hint{color:#68777d;font-size:13px}
 .lang{padding:11px 14px;border:0;border-radius:8px;background:#073b4c;color:#fff;cursor:pointer}
-.lang:hover{background:#118ab2}
+.lang:hover{background:#118ab2}.reset-search{background:#53616a}.reset-search[hidden]{display:none}
 .hero{background:linear-gradient(135deg,#073b4c,#118ab2);color:#fff;text-align:center;padding:70px 18px}
 .hero h1{font-size:48px;margin-bottom:8px}
 .hero p{font-size:19px;margin:6px auto;max-width:850px}
@@ -136,6 +136,7 @@ header{padding:8px 10px}.nav{display:block;text-align:center}.logo-area{justify-
 <input id="searchInput" type="search" placeholder="🔎 Tafuta kwenye WATAFITI..." aria-label="Tafuta">
 <button class="lang" type="button" id="swButton">🇹🇿 Kiswahili</button>
 <button class="lang" type="button" id="enButton">🇬🇧 English</button>
+<button class="lang reset-search" type="button" id="resetSearchButton" hidden>↺ Futa vichujio / Reset filters</button>
 </div>
 <div class="category-tools">
 <label for="categoryFilter">📚 Kategoria za makala:</label>
@@ -197,6 +198,7 @@ header{padding:8px 10px}.nav{display:block;text-align:center}.logo-area{justify-
 <section id="taarifa">
 <h2 class="title" data-sw="📰 Taarifa Mpya" data-en="📰 Latest News">📰 Taarifa Mpya</h2>
 <div id="supabaseArticles" class="news" aria-live="polite" aria-busy="true"><p class="notice">Habari mpya zitapakiwa hapa.</p></div>
+<p id="articleNoResults" class="empty" hidden>Hakuna makala zinazolingana na utafutaji au kategoria uliyochagua. Badili maneno au futa vichujio.</p>
 <div class="news">
 <div class="card"><h3 data-sw="Taarifa na Habari" data-en="News and Information">Taarifa na Habari</h3><p data-sw="Sehemu hii ni kwa taarifa mpya, habari na matukio mbalimbali." data-en="This section is for new information, news and various events.">Sehemu hii ni kwa taarifa mpya, habari na matukio mbalimbali.</p></div>
 <div class="card"><h3 data-sw="Elimu na Maarifa" data-en="Education and Knowledge">Elimu na Maarifa</h3><p data-sw="Tutashirikisha elimu na maarifa mbalimbali yanayoweza kusaidia jamii." data-en="We will share educational materials and knowledge that can help the community.">Tutashirikisha elimu na maarifa mbalimbali yanayoweza kusaidia jamii.</p></div>
@@ -521,6 +523,8 @@ setSwahili();
   const articleHost = document.getElementById("supabaseArticles");
   const categoryFilter = document.getElementById("categoryFilter");
   const articleResultCount = document.getElementById("articleResultCount");
+  const resetSearchButton = document.getElementById("resetSearchButton");
+  const articleNoResults = document.getElementById("articleNoResults");
   function filterCloudArticles(){
     const term=(document.getElementById("searchInput").value||"").trim().toLocaleLowerCase();
     const selected=categoryFilter.value;
@@ -535,9 +539,17 @@ setSwahili();
       if(visible)shown++;
     });
     if(articleResultCount) articleResultCount.textContent=cards.length?(shown+" / "+cards.length+" makala"):"Hakuna makala";
+    if(articleNoResults) articleNoResults.hidden=cards.length===0||shown>0;
+    if(resetSearchButton) resetSearchButton.hidden=!(document.getElementById("searchInput").value.trim()||categoryFilter.value);
   }
   document.getElementById("searchInput").addEventListener("input",filterCloudArticles);
   categoryFilter.addEventListener("change",filterCloudArticles);
+  resetSearchButton.addEventListener("click",()=>{
+    document.getElementById("searchInput").value="";
+    categoryFilter.value="";
+    document.getElementById("searchInput").dispatchEvent(new Event("input"));
+    filterCloudArticles();
+  });
   const formatDate = value => {
     if(!value) return "";
     const date = new Date(value);
