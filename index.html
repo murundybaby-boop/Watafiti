@@ -250,7 +250,34 @@ header{padding:8px 10px}.nav{display:block;text-align:center}.logo-area{justify-
 <div class="card">
 <h3 data-sw="Mahojiano ya WATAFITI" data-en="WATAFITI Interviews">Mahojiano ya WATAFITI</h3>
 <p data-sw="Tunafanya mahojiano na watu mbalimbali kuhusu elimu, biashara, historia, dini, teknolojia, maisha na maendeleo." data-en="We conduct interviews with different people about education, business, history, religion, technology, life and development.">Tunafanya mahojiano na watu mbalimbali kuhusu elimu, biashara, historia, dini, teknolojia, maisha na maendeleo.</p>
-<a class="btn" href="#mawasiliano">Omba Mahojiano</a>
+<a class="btn" href="#ombaMahojiano">🎤 Omba Mahojiano Sasa</a>
+</div>
+<div class="contact-form-wrap" id="ombaMahojiano">
+<h3 data-sw="📩 Fomu ya Kuomba Mahojiano" data-en="📩 Interview Request Form">📩 Fomu ya Kuomba Mahojiano</h3>
+<p data-sw="Jaza fomu hii na ombi lako litatumwa kwa msimamizi wa WATAFITI. Tutawasiliana nawe kuthibitisha tarehe na utaratibu." data-en="Complete this form and your request will be sent to the WATAFITI administrator. We will contact you to confirm the date and arrangements.">Jaza fomu hii na ombi lako litatumwa kwa msimamizi wa WATAFITI. Tutawasiliana nawe kuthibitisha tarehe na utaratibu.</p>
+<form id="interviewRequestForm" class="contact-form">
+<label for="interviewName">Jina lako kamili *</label>
+<input id="interviewName" name="name" type="text" minlength="2" maxlength="100" autocomplete="name" required>
+<label for="interviewEmail">Barua pepe *</label>
+<input id="interviewEmail" name="email" type="email" maxlength="254" autocomplete="email" required>
+<label for="interviewPhone">Namba ya simu / WhatsApp *</label>
+<input id="interviewPhone" name="phone" type="tel" maxlength="40" autocomplete="tel" required>
+<label for="interviewTopic">Mada au sababu ya mahojiano *</label>
+<input id="interviewTopic" name="topic" type="text" minlength="3" maxlength="160" placeholder="Mfano: biashara, elimu, historia..." required>
+<label for="interviewFormat">Aina ya mahojiano *</label>
+<select id="interviewFormat" name="format" required>
+<option value="">Chagua aina ya mahojiano</option>
+<option value="Ana kwa ana">Ana kwa ana</option>
+<option value="Kwa simu">Kwa simu</option>
+<option value="Mtandaoni (video)">Mtandaoni (video)</option>
+</select>
+<label for="interviewDate">Tarehe unayopendelea (hiari)</label>
+<input id="interviewDate" name="date" type="date">
+<label for="interviewDetails">Eleza kwa ufupi unachotaka kuzungumzia *</label>
+<textarea id="interviewDetails" name="details" minlength="10" maxlength="3000" rows="4" required></textarea>
+<button class="btn" id="interviewSubmit" type="submit">Tuma Ombi la Mahojiano</button>
+<p id="interviewRequestStatus" role="status" aria-live="polite"></p>
+</form>
 </div>
 </section>
 
@@ -732,6 +759,65 @@ setSwahili();
   updateButton();
   button.addEventListener("click",function(){
     window.scrollTo({top:0,behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});
+  });
+})();
+</script>
+
+<script>
+(function(){
+  const form=document.getElementById("interviewRequestForm");
+  if(!form)return;
+  const button=document.getElementById("interviewSubmit");
+  const status=document.getElementById("interviewRequestStatus");
+  form.addEventListener("submit",async function(event){
+    event.preventDefault();
+    if(!form.reportValidity())return;
+    button.disabled=true;
+    button.textContent="Inatuma ombi...";
+    status.textContent="";
+    const payload={
+      name:document.getElementById("interviewName").value.trim(),
+      email:document.getElementById("interviewEmail").value.trim(),
+      phone:document.getElementById("interviewPhone").value.trim(),
+      subject:"OMBI LA MAHOJIANO: "+document.getElementById("interviewTopic").value.trim(),
+      message:"OMBI JIPYA LA MAHOJIANO YA WATAFITI\n"+
+        "Aina ya mahojiano: "+document.getElementById("interviewFormat").value+"\n"+
+        "Tarehe inayopendelewa: "+(document.getElementById("interviewDate").value||"Haijabainishwa")+"\n"+
+        "Maelezo: "+document.getElementById("interviewDetails").value.trim(),
+      website:""
+    };
+    try{
+      const response=await fetch("https://zleflmeepyearrocaheg.supabase.co/functions/v1/contact-message",{
+        method:"POST",
+        headers:{"Content-Type":"application/json","apikey":"sb_publishable_0SA-j8i6kAJT69XO0T-gpA_WHWMaEcF","Authorization":"Bearer sb_publishable_0SA-j8i6kAJT69XO0T-gpA_WHWMaEcF"},
+        body:JSON.stringify(payload)
+      });
+      const result=await response.json().catch(()=>({}));
+      if(!response.ok||!result.ok)throw new Error(result.error||"Imeshindikana kutuma ombi.");
+      form.reset();
+      status.textContent=result.email_sent
+        ?"Asante! Ombi lako limepokelewa na kutumwa kwa msimamizi wa WATAFITI. Tutawasiliana nawe."
+        :"Asante! Ombi limehifadhiwa kwa msimamizi wa WATAFITI. Arifa ya barua pepe haijathibitishwa; ikiwa ni dharura, wasiliana nasi kupitia WhatsApp.";
+    }catch(error){
+      status.textContent="Ombi halikutumwa. Unaweza kulituma moja kwa moja kupitia WhatsApp:";
+      const fallback=document.createElement("a");
+      fallback.className="btn";
+      fallback.href="https://wa.me/255624528944?text="+encodeURIComponent(
+        "OMBI LA MAHOJIANO YA WATAFITI\nJina: "+payload.name+
+        "\nBarua pepe: "+payload.email+"\nSimu: "+payload.phone+
+        "\nMada: "+payload.subject+"\n"+payload.message
+      );
+      fallback.target="_blank";
+      fallback.rel="noopener noreferrer";
+      fallback.textContent="💬 Tuma ombi kupitia WhatsApp";
+      fallback.style.background="#128c7e";
+      fallback.style.color="#fff";
+      status.appendChild(document.createElement("br"));
+      status.appendChild(fallback);
+    }finally{
+      button.disabled=false;
+      button.textContent="Tuma Ombi la Mahojiano";
+    }
   });
 })();
 </script>
