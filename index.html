@@ -612,6 +612,7 @@ setSwahili();
     button.disabled=true;
     button.textContent="Inatuma... / Sending...";
     status.textContent="";
+    status.replaceChildren();
     const payload={
       name:document.getElementById("contactName").value.trim(),
       email:document.getElementById("contactEmail").value.trim(),
@@ -633,7 +634,24 @@ setSwahili();
         ?"Asante! Ujumbe umehifadhiwa na taarifa imetumwa kwa barua pepe."
         :"Ujumbe umehifadhiwa. Arifa ya Gmail bado haijasanidiwa; tafadhali wasiliana nasi kwa WhatsApp kwa dharura.";
     }catch(error){
-      status.textContent="Samahani, ujumbe haukutumwa. Jaribu tena au tumia WhatsApp.";
+      status.textContent="Samahani, fomu haijaweza kutuma ujumbe kwa sasa. Unaweza kuutuma kupitia WhatsApp:";
+      const fallback=document.createElement("a");
+      fallback.className="btn";
+      fallback.href="https://wa.me/255624528944?text="+encodeURIComponent(
+        "Ujumbe kutoka tovuti ya WATAFITI\n"+
+        "Jina: "+payload.name+"\n"+
+        "Barua pepe: "+payload.email+"\n"+
+        "Simu: "+(payload.phone||"Haijawekwa")+"\n"+
+        "Mada: "+payload.subject+"\n"+
+        "Ujumbe: "+payload.message
+      );
+      fallback.target="_blank";
+      fallback.rel="noopener noreferrer";
+      fallback.textContent="💬 Tuma ujumbe huu kupitia WhatsApp";
+      fallback.style.background="#128c7e";
+      fallback.style.color="#fff";
+      status.appendChild(document.createElement("br"));
+      status.appendChild(fallback);
     }finally{
       button.disabled=false;
       button.textContent="Tuma Ujumbe / Send Message";
