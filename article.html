@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#073b4c">
+<title>Makala | WATAFITI</title>
+<meta name="description" content="Soma makala na taarifa kutoka WATAFITI.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="icon" type="image/svg+xml" href="./favicon.svg">
+<link rel="canonical" href="https://murundybaby-boop.github.io/Watafiti/article.html">
+<meta property="og:site_name" content="WATAFITI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Makala | WATAFITI">
+<meta property="og:description" content="Soma makala na taarifa kutoka WATAFITI.">
+<meta property="og:url" content="https://murundybaby-boop.github.io/Watafiti/article.html">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f4f7f9;color:#222;font-family:Arial,Helvetica,sans-serif;line-height:1.75}header{background:#073b4c;color:white;padding:14px 18px}header a{color:white;text-decoration:none;font-weight:bold}.wrap{max-width:850px;margin:30px auto;padding:0 16px}.article{background:white;border-radius:15px;padding:clamp(18px,4vw,36px);box-shadow:0 3px 14px #00000012}.category{color:#118ab2;font-weight:bold}.date{color:#68777d;font-size:14px}h1{line-height:1.25;color:#073b4c;font-size:clamp(28px,5vw,42px)}.cover{display:block;width:100%;max-height:480px;object-fit:cover;border-radius:10px;margin:18px 0}.content{white-space:pre-wrap;overflow-wrap:anywhere;font-size:18px}.btn{display:inline-block;border:0;border-radius:8px;padding:11px 16px;margin:8px 8px 0 0;background:#ffd166;color:#222;font-weight:bold;text-decoration:none;cursor:pointer;font-size:15px}.dark{background:#073b4c;color:white}.status{padding:22px;text-align:center;color:#555}.error{color:#9b1c1c}footer{text-align:center;color:#53616a;padding:25px;font-size:14px}@media(max-width:600px){.wrap{margin:16px auto}.content{font-size:16px}}
+</style>
+</head>
+<body>
+<header><a href="./">← WATAFITI | Rudi mwanzo</a></header>
+<main class="wrap">
+<article class="article" id="article"><p class="status" id="status">Inapakia makala...</p></article>
+<div id="actions" hidden>
+<button class="btn" id="share">🔗 Shiriki makala</button>
+<button class="btn dark" id="copy">Nakili kiungo</button>
+</div>
+</main>
+<footer>© 2026 WATAFITI — Tuchunguze Ukweli wa Dunia Pamoja</footer>
+<script>
+(function(){
+ const SUPABASE_URL="https://zleflmeepyearrocaheg.supabase.co";
+ const SUPABASE_KEY="sb_publishable_0SA-j8i6kAJT69XO0T-gpA_WHWMaEcF";
+ const params=new URLSearchParams(location.search);
+ const id=params.get("id");
+ const host=document.getElementById("article");
+ const status=document.getElementById("status");
+ const actions=document.getElementById("actions");
+ const shareUrl=location.href;
+ function meta(name,content,property){
+   let el=document.querySelector(property?'meta[property="'+name+'"]':'meta[name="'+name+'"]');
+   if(!el){el=document.createElement("meta");if(property)el.setAttribute("property",name);else el.setAttribute("name",name);document.head.appendChild(el);}
+   el.setAttribute("content",content);
+ }
+ function showError(message){status.className="status error";status.textContent=message;}
+ if(!id){showError("Kiungo hiki hakina namba ya makala. Rudi mwanzo na uchague makala.");return;}
+ fetch(SUPABASE_URL+"/rest/v1/articles?select=id,title,content,image_url,category,created_at&published=eq.true&id=eq."+encodeURIComponent(id)+"&limit=1",{
+   headers:{"apikey":SUPABASE_KEY,"Authorization":"Bearer "+SUPABASE_KEY}
+ }).then(function(r){if(!r.ok)throw new Error("load");return r.json();}).then(function(rows){
+   if(!rows.length){showError("Makala haijapatikana au haijachapishwa. Tafadhali rudi mwanzo.");return;}
+   const a=rows[0], title=a.title||"Makala ya WATAFITI", description=(a.content||"Soma makala kutoka WATAFITI.").replace(/\s+/g," ").slice(0,180);
+   document.title=title+" | WATAFITI";
+   meta("description",description,false);
+   meta("og:title",title,true);meta("og:description",description,true);meta("og:url",shareUrl,true);
+   meta("twitter:title",title,false);meta("twitter:description",description,false);
+   let canonical=document.querySelector('link[rel="canonical"]');if(canonical)canonical.href=shareUrl;
+   host.innerHTML="";
+   if(a.category){const category=document.createElement("div");category.className="category";category.textContent=a.category;host.appendChild(category);}
+   const h=document.createElement("h1");h.textContent=title;host.appendChild(h);
+   const date=document.createElement("p");date.className="date";date.textContent=a.created_at?new Date(a.created_at).toLocaleDateString("sw-TZ",{day:"numeric",month:"long",year:"numeric"}):"";host.appendChild(date);
+   if(a.image_url){const img=document.createElement("img");img.className="cover";img.src=a.image_url;img.alt=title;img.onerror=function(){this.remove();};host.appendChild(img);meta("og:image",a.image_url,true);}
+   const content=document.createElement("div");content.className="content";content.textContent=a.content||"";host.appendChild(content);
+   actions.hidden=false;
+   document.getElementById("share").addEventListener("click",async function(){
+     try{if(navigator.share){await navigator.share({title:title,text:description,url:shareUrl});}else{await navigator.clipboard.writeText(shareUrl);alert("Kiungo kimenakiliwa.");}}
+     catch(e){if(e&&e.name!=="AbortError"){prompt("Nakili kiungo hiki:",shareUrl);}}
+   });
+   document.getElementById("copy").addEventListener("click",async function(){
+     try{await navigator.clipboard.writeText(shareUrl);alert("Kiungo kimenakiliwa. Shiriki kwa marafiki.");}
+     catch(e){prompt("Nakili kiungo hiki:",shareUrl);}
+   });
+ }).catch(function(){showError("Imeshindikana kupakia makala. Angalia intaneti kisha ujaribu tena.");});
+})();
+</script>
+</body>
+</html>
