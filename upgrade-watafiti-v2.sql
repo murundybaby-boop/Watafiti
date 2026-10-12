@@ -1,0 +1,50 @@
+-- WATAFITI v2 upgrade: image storage, moderated reviews and aggregated analytics.
+-- Run in Supabase Dashboard > SQL Editor. Safe to run more than once.
+-- Existing articles are not changed or deleted.
+
+-- Reviews are held for admin approval. Existing reviews stay visible.
+alter table public.reviews add column if not exists approved boolean not null default false;
+update public.reviews set approved = true where approved = false and created_at < now();
+grant select, insert, update, delete on public.reviews to authenticated;
+drop policy if exists "Public can read reviews" on public.reviews;
+create policy "Public can read reviews" on public.reviews for select to anon, authenticated using (approved = true);
+drop policy if exists "Visitors can submit reviews" on public.reviews;
+create policy "Visitors can submit reviews" on public.reviews for insert to anon, authenticated
+with check (char_length(name) between 1 and 100 and rating between 1 and 5 and char_length(content) between 1 and 2000 and approved = false);
+drop policy if exists "Admins can manage reviews" on public.reviews;
+create policy "Admins can manage reviews" on public.reviews for all to authenticated
+using (exists (select 1 from public.admin_users where user_id = auth.uid()))
+with check (exists (select 1 from public.admin_users where user_id = auth.uid()));
+
+-- Public image reads; only authenticated admins can upload, replace or delete files.
+insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+values ('watafiti-images', 'watafiti-images', true, 5242880, array['image/jpeg','image/png','image/webp','image/gif'])
+on conflict (id) do update set public = true, file_size_limit = 5242880, allowed_mime_types = array['image/jpeg','image/png','image/webp','image/gif'];
+drop policy if exists "WATAFITI public images readable" on storage.objects;
+create policy "WATAFITI public images readable" on storage.objects for select to anon, authenticated using (bucket_id = 'watafiti-images');
+drop policy if exists "WATAFITI admins upload images" on storage.objects;
+create policy "WATAFITI admins upload images" on storage.objects for insert to authenticated
+with check (bucket_id = 'watafiti-images' and exists (select 1 from public.admin_users where user_id = auth.uid()));
+drop policy if exists "WATAFITI admins update images" on storage.objects;
+create policy "WATAFITI admins update images" on storage.objects for update to authenticated
+using (bucket_id = 'watafiti-images' and exists (select 1 from public.admin_users where user_id = auth.uid()))
+with check (bucket_id = 'watafiti-images' and exists (select 1 from public.admin_users where user_id = auth.uid()));
+drop policy if exists "WATAFITI admins delete images" on storage.objects;
+create policy "WATAFITI admins delete images" on storage.objects for delete to authenticated
+using (bucket_id = 'watafiti-images' and exists (select 1 from public.admin_users where user_id = auth.uid()));
+
+-- Aggregated page analytics only; individual visit records are not exposed.
+create or replace function public.get_top_pages()
+returns table(page text, visits bigint)
+language sql
+security definer
+set search_path = ''
+as $$
+  select ve.page, count(*)::bigint as visits
+  from public.visitor_events ve
+  group by ve.page
+  order by count(*) desc
+  limit 10;
+$$;
+revoke all on function public.get_top_pages() from public;
+grant execute on function public.get_top_pages() to authenticated;
