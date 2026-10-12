@@ -127,6 +127,7 @@ section{padding:40px 14px}
 </section>
 
 <section id="taarifa">
+<div id="supabaseArticles" class="news" aria-live="polite"><p class="notice">Habari mpya zitapakiwa hapa.</p></div>
 <h2 class="title" data-sw="📰 Taarifa Mpya" data-en="📰 Latest News">📰 Taarifa Mpya</h2>
 <div class="news">
 <div class="card"><h3 data-sw="Taarifa na Habari" data-en="News and Information">Taarifa na Habari</h3><p data-sw="Sehemu hii ni kwa taarifa mpya, habari na matukio mbalimbali." data-en="This section is for new information, news and various events.">Sehemu hii ni kwa taarifa mpya, habari na matukio mbalimbali.</p></div>
@@ -466,6 +467,32 @@ setEnglish();
 }else{
 setSwahili();
 }
+</script>
+
+
+<script>
+/* WATAFITI cloud features: public publishable key only; database access is controlled by Supabase RLS. */
+(function(){
+  const SUPABASE_URL = "https://zleflmeepyearrocaheg.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_0SA-j8i6kAJT69XO0T-gpA_WHWMaEcF";
+  const headers = {"apikey":SUPABASE_KEY,"Authorization":"Bearer "+SUPABASE_KEY};
+  const articleHost = document.getElementById("supabaseArticles");
+  fetch(SUPABASE_URL+"/rest/v1/articles?select=title,content,image_url,category&published=eq.true&order=created_at.desc", {headers})
+    .then(r=>{if(!r.ok) throw new Error("Articles unavailable"); return r.json();})
+    .then(rows=>{
+      if(!rows.length){articleHost.innerHTML="";return;}
+      articleHost.innerHTML="";
+      rows.forEach(a=>{
+        const card=document.createElement("article"); card.className="card";
+        if(a.image_url){const img=document.createElement("img");img.src=a.image_url;img.alt=a.title||"WATAFITI";img.loading="lazy";img.style="width:100%;max-height:240px;object-fit:cover;border-radius:8px";card.appendChild(img);}
+        if(a.category){const cat=document.createElement("small");cat.textContent=a.category;card.appendChild(cat);}
+        const h=document.createElement("h3");h.textContent=a.title||"Habari";card.appendChild(h);
+        const p=document.createElement("p");p.textContent=a.content||"";card.appendChild(p);articleHost.appendChild(card);
+      });
+    }).catch(()=>{articleHost.innerHTML="";});
+  /* Cloud visitor count is optional until the visitor_events table and RLS are configured. */
+  fetch(SUPABASE_URL+"/rest/v1/visitor_events", {method:"POST",headers:{...headers,"Content-Type":"application/json","Prefer":"return=minimal"},body:JSON.stringify({page:location.pathname})}).catch(()=>{});
+})();
 </script>
 
 </body>
