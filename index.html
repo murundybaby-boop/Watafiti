@@ -40,6 +40,16 @@ header{background:#073b4c;color:#fff;position:sticky;top:0;z-index:1000;padding:
 nav{display:flex;flex-wrap:wrap;justify-content:center;gap:2px}
 nav a{color:#fff;text-decoration:none;padding:7px 8px;font-size:14px;border-radius:6px}
 nav a:hover{background:#118ab2}
+.menu-toggle{display:none;border:1px solid #ffffff50;background:#ffffff12;color:#fff;border-radius:9px;padding:10px 15px;font:inherit;font-weight:700;cursor:pointer;min-height:44px}
+@media(max-width:760px){
+  .menu-toggle{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin:4px auto 2px;min-width:150px}
+  header .nav{display:flex;flex-direction:column;align-items:stretch}
+  header .logo-area{justify-content:center;margin-bottom:4px}
+  header nav{display:none;width:100%;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:8px}
+  header nav.open{display:grid}
+  header nav a{font-size:14px;min-height:44px;padding:10px 6px}
+}
+@media(max-width:360px){header nav.open{grid-template-columns:1fr}.menu-toggle{width:100%}}
 .tools{max-width:1150px;margin:auto;padding:14px 18px 4px;display:flex;gap:9px;flex-wrap:wrap;justify-content:center}
 .tools input{flex:1;min-width:210px;max-width:650px;padding:12px;border:1px solid #c9c9c9;border-radius:9px;font-size:16px}
 .category-tools{max-width:1150px;margin:8px auto 0;padding:0 18px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}.category-tools label{font-weight:bold;color:#073b4c}.category-tools select{flex:1;min-width:210px;max-width:420px;padding:12px;border:1px solid #c9c9c9;border-radius:9px;background:#fff;font-size:16px}.category-tools .hint{color:#68777d;font-size:13px}
@@ -168,7 +178,8 @@ header{padding:8px 10px}.nav{display:block;text-align:center}.logo-area{justify-
 <img src="1789865720521.jpg" alt="WATAFITI Logo" onerror="this.style.display='none'">
 <span class="logo-text">WATAFITI</span>
 </div>
-<nav aria-label="Menyu kuu / Main navigation">
+<button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mainNavigation">☰ Menyu</button>
+<nav id="mainNavigation" aria-label="Menyu kuu / Main navigation">
 <a href="#nyumbani">Nyumbani</a>
 <a href="#taarifa">Taarifa</a>
 <a href="#video">Video</a>
@@ -996,6 +1007,27 @@ setSwahili();
       const note = form.querySelector(".survey-request-note");
       if (note) note.textContent = "WhatsApp itafunguka ili utume ombi. Hifadhi ya tovuti haikuthibitishwa; hakikisha SQL ya survey-requests imeendeshwa Supabase.";
     });
+  });
+})();
+</script>
+<script>
+(function(){
+  const toggle=document.getElementById("menuToggle");
+  const nav=document.getElementById("mainNavigation");
+  if(!toggle||!nav)return;
+  function setOpen(open){
+    nav.classList.toggle("open",open);
+    toggle.setAttribute("aria-expanded",String(open));
+    toggle.textContent=open?"✕ Funga menyu":"☰ Menyu";
+  }
+  toggle.addEventListener("click",function(){
+    setOpen(toggle.getAttribute("aria-expanded")!=="true");
+  });
+  nav.addEventListener("click",function(event){
+    if(event.target.closest("a")&&window.matchMedia("(max-width: 760px)").matches)setOpen(false);
+  });
+  window.addEventListener("resize",function(){
+    if(!window.matchMedia("(max-width: 760px)").matches)setOpen(false);
   });
 })();
 </script>
