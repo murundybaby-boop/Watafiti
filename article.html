@@ -122,6 +122,11 @@
    meta("og:title",title,true);meta("og:description",description,true);meta("og:url",shareUrl,true);
    meta("twitter:title",title,false);meta("twitter:description",description,false);
    let canonical=document.querySelector('link[rel="canonical"]');if(canonical)canonical.href=shareUrl;
+   const articleSchema={"@context":"https://schema.org","@type":"Article","headline":title,"description":description,"url":shareUrl,"mainEntityOfPage":{"@type":"WebPage","@id":shareUrl},"inLanguage":"sw-TZ","publisher":{"@type":"Organization","name":"WATAFITI","url":"https://murundybaby-boop.github.io/Watafiti/"}};
+   if(a.created_at)articleSchema.datePublished=a.created_at;
+   if(a.category)articleSchema.articleSection=a.category;
+   if(a.image_url)articleSchema.image=[a.image_url];
+   const schemaScript=document.createElement("script");schemaScript.type="application/ld+json";schemaScript.id="articleStructuredData";schemaScript.textContent=JSON.stringify(articleSchema);document.head.appendChild(schemaScript);
    host.innerHTML="";
    if(a.category){const category=document.createElement("div");category.className="category";category.textContent=a.category;host.appendChild(category);}
    const h=document.createElement("h1");h.textContent=title;host.appendChild(h);
