@@ -141,6 +141,22 @@ footer a{color:#ffd166;text-decoration:none}
 header{padding:8px 10px}.nav{display:block;text-align:center}.logo-area{justify-content:center;margin-bottom:7px}.logo-area img{width:46px;height:46px}.logo-text{font-size:22px}nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;margin-top:8px}nav a{font-size:13px;padding:9px 4px;background:#ffffff12;min-height:40px;display:flex;align-items:center;justify-content:center}.tools{padding:10px 12px 2px}.tools input{min-width:100%;max-width:none}.category-tools{padding:0 12px}.category-tools select{min-width:100%;max-width:none}.lang{flex:1;min-height:44px}.hero{padding:46px 16px}.hero h1{font-size:clamp(32px,9vw,40px)}.hero p{font-size:17px}section{padding:34px 13px}.title{font-size:clamp(23px,6vw,29px);margin-bottom:18px}.card,.about,.profile,.review-box,.privacy-box,.map-card,.donation-box{padding:17px;border-radius:12px}.news,.services,.gallery{grid-template-columns:1fr;gap:14px}#supabaseArticles .article-card-image{aspect-ratio:16/9;max-height:220px;border-radius:8px;margin-bottom:10px}#supabaseArticles .article-card-title{font-size:20px}#supabaseArticles .article-card-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}#supabaseArticles .article-card-actions .btn{width:100%;min-height:44px;padding:10px 8px;font-size:14px;white-space:normal}.btn{min-height:44px;padding:11px 14px}.map-card iframe{height:260px}.review-form input,.review-form textarea,.review-form select{font-size:16px}
 }
 @media(min-width:761px) and (max-width:1050px){.nav{flex-wrap:wrap;justify-content:center}.logo-area{margin-right:auto}nav{max-width:100%}}
+/* Survey job request form */
+.survey-request{margin:28px 0 8px;padding:clamp(20px,4vw,34px);border:1px solid #d9e8ec;border-radius:22px;background:linear-gradient(180deg,#f7fbfc,#fff);box-shadow:0 12px 32px rgba(16,55,68,.07)}
+.survey-request-head{max-width:760px;margin:0 auto 22px;text-align:center}
+.survey-request-head h3{margin:0 0 9px;color:#123744;font-size:clamp(23px,3vw,30px)}
+.survey-request-head p{margin:0;color:#5c7078;line-height:1.65}
+.survey-request-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.survey-field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.survey-field.full{grid-column:1/-1}
+.survey-field label{font-weight:750;font-size:14px;color:#23434d}
+.survey-field input,.survey-field select,.survey-field textarea{width:100%;box-sizing:border-box;border:1px solid #cbdde2;border-radius:11px;background:#fff;padding:13px 14px;color:#193942;font:inherit;outline:none}
+.survey-field input:focus,.survey-field select:focus,.survey-field textarea:focus{border-color:#16839a;box-shadow:0 0 0 3px rgba(22,131,154,.12)}
+.survey-field textarea{min-height:112px;resize:vertical}
+.survey-request-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:19px}
+.survey-request-actions .btn{border:0;cursor:pointer}
+.survey-request-note{font-size:12px;color:#60757c;line-height:1.5}
+@media(max-width:640px){.survey-request-grid{grid-template-columns:1fr}.survey-field.full{grid-column:auto}.survey-request{padding:18px}}
 </style>
 </head>
 
@@ -392,6 +408,24 @@ header{padding:8px 10px}.nav{display:block;text-align:center}.logo-area{justify-
 <div><strong>1</strong><h4>Eleza kazi yako</h4><p>Tuma eneo, aina ya mradi na huduma unayohitaji.</p></div>
 <div><strong>2</strong><h4>Pata mazungumzo ya awali</h4><p>Tutajadili mahitaji, muda, vifaa na makubaliano.</p></div>
 <div><strong>3</strong><h4>Anza kwa makubaliano</h4><p>Mpango wa kazi na gharama vitakubaliwa kabla ya kuanza.</p></div>
+</div>
+<div class="survey-request" id="survey-request">
+  <div class="survey-request-head">
+    <h3>📝 Omba Huduma za Survey</h3>
+    <p>Jaza taarifa za awali kuhusu kazi yako. Ukibonyeza kitufe, WhatsApp itafunguka ikiwa na ujumbe ulioandaliwa ili uutume kwa Pro Murundy.</p>
+  </div>
+  <form id="surveyRequestForm">
+    <div class="survey-request-grid">
+      <div class="survey-field"><label for="surveyClientName">Jina lako *</label><input id="surveyClientName" name="name" autocomplete="name" required placeholder="Andika jina lako"></div>
+      <div class="survey-field"><label for="surveyClientPhone">Namba ya simu *</label><input id="surveyClientPhone" name="phone" type="tel" autocomplete="tel" required placeholder="Mf. 07XX XXX XXX"></div>
+      <div class="survey-field"><label for="surveyJobType">Huduma unayohitaji *</label><select id="surveyJobType" name="jobType" required><option value="">Chagua huduma</option><option>Upimaji wa ardhi / kiwanja</option><option>Upimaji wa jengo</option><option>Setting out ya ujenzi</option><option>Kukodisha surveyor kwa mradi</option><option>Mafunzo ya vifaa vya survey</option><option>Nyingine</option></select></div>
+      <div class="survey-field"><label for="surveyProjectLocation">Eneo la mradi *</label><input id="surveyProjectLocation" name="location" required placeholder="Mkoa, wilaya au eneo"></div>
+      <div class="survey-field"><label for="surveyProjectSize">Ukubwa wa kiwanja/jengo (ikiwa unajua)</label><input id="surveyProjectSize" name="size" placeholder="Mf. 20m × 30m au eka 1"></div>
+      <div class="survey-field"><label for="surveyProjectDate">Unahitaji huduma lini?</label><input id="surveyProjectDate" name="date" type="date"></div>
+      <div class="survey-field full"><label for="surveyProjectDetails">Maelezo ya kazi</label><textarea id="surveyProjectDetails" name="details" placeholder="Eleza mahitaji yako, vifaa au mafunzo unayotaka, na taarifa nyingine muhimu."></textarea></div>
+    </div>
+    <div class="survey-request-actions"><button class="btn surveyor-cta" type="submit">💬 Endelea kupitia WhatsApp</button><span class="survey-request-note">Fomu hii haijahifadhi taarifa kwenye tovuti; utahitaji kutuma ujumbe ndani ya WhatsApp.</span></div>
+  </form>
 </div>
 <div class="surveyor-final-cta"><h3>Unahitaji Surveyor au mafunzo ya vifaa?</h3><p>Wasiliana na Pro Murundy kwa maelezo ya mradi wako au kujadili mafunzo.</p><a class="btn surveyor-cta" href="https://wa.me/255624528944?text=Habari%20Pro%20Murundy%2C%20nahitaji%20taarifa%20za%20huduma%20za%20survey%20au%20mafunzo%20ya%20vifaa." target="_blank" rel="noopener noreferrer">Wasiliana WhatsApp</a></div>
 </section>
@@ -914,6 +948,26 @@ setSwahili();
       button.disabled=false;
       button.textContent="Tuma Ombi la Mahojiano";
     }
+  });
+})();
+</script>
+<script>
+(function(){
+  const form = document.getElementById("surveyRequestForm");
+  if (!form) return;
+  form.addEventListener("submit", function(event){
+    event.preventDefault();
+    if (!form.reportValidity()) return;
+    const val = id => (document.getElementById(id).value || "").trim();
+    const message = ["OMBI LA HUDUMA ZA SURVEY — WATAFITI",
+      "Jina: " + val("surveyClientName"),
+      "Simu: " + val("surveyClientPhone"),
+      "Huduma: " + val("surveyJobType"),
+      "Eneo la mradi: " + val("surveyProjectLocation"),
+      "Ukubwa wa eneo/jengo: " + (val("surveyProjectSize") || "Haijabainishwa"),
+      "Tarehe inayohitajika: " + (val("surveyProjectDate") || "Haijabainishwa"),
+      "Maelezo: " + (val("surveyProjectDetails") || "Hakuna maelezo ya ziada")].join("\n");
+    window.open("https://wa.me/255624528944?text=" + encodeURIComponent(message), "_blank", "noopener,noreferrer");
   });
 })();
 </script>
