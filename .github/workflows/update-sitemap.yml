@@ -1,0 +1,101 @@
+name: Update sitemap with published articles
+
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sitemap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Generate sitemap from published articles
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+
+          async function main() {
+            const base = 'https://murundybaby-boop.github.io/Watafiti/';
+            const html = fs.readFileSync('index.html', 'utf8');
+            const keyMatch = html.match(/sb_publishable_[A-Za-z0-9_-]+/);
+            if (!keyMatch) throw new Error('Could not find the public Supabase key in index.html');
+
+            const endpoint = new URL('/rest/v1/articles', 'https://zleflmeepyearrocaheg.supabase.co');
+            endpoint.searchParams.set('select', 'id,created_at');
+            endpoint.searchParams.set('published', 'eq.true');
+            endpoint.searchParams.set('order', 'created_at.desc');
+            endpoint.searchParams.set('limit', '5000');
+
+            const response = await fetch(endpoint, {
+              headers: {
+                apikey: keyMatch[0],
+                Authorization: 'Bearer ' + keyMatch[0]
+              }
+            });
+            if (!response.ok) {
+              throw new Error('Supabase returned HTTP ' + response.status + ': ' + (await response.text()));
+            }
+
+            const articles = await response.json();
+            if (!Array.isArray(articles)) throw new Error('Unexpected articles response');
+
+            const urls = [{
+              loc: base,
+              lastmod: new Date().toISOString().slice(0, 10),
+              changefreq: 'daily',
+              priority: '1.0'
+            }];
+
+            for (const article of articles) {
+              if (article.id == null) continue;
+              urls.push({
+                loc: base + 'article.html?id=' + encodeURIComponent(String(article.id)),
+                lastmod: article.created_at ? new Date(article.created_at).toISOString().slice(0, 10) : null,
+                changefreq: 'monthly',
+                priority: '0.7'
+              });
+            }
+
+            const escapeXml = value => String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
+            const xml = [
+              '<?xml version="1.0" encoding="UTF-8"?>',
+              '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+              ...urls.map(item => [
+                '  <url>',
+                '    <loc>' + escapeXml(item.loc) + '</loc>',
+                item.lastmod ? '    <lastmod>' + escapeXml(item.lastmod) + '</lastmod>' : null,
+                item.changefreq ? '    <changefreq>' + item.changefreq + '</changefreq>' : null,
+                item.priority ? '    <priority>' + item.priority + '</priority>' : null,
+                '  </url>'
+              ].filter(Boolean).join('\n')),
+              '</urlset>',
+              ''
+            ].join('\n');
+
+            fs.writeFileSync('sitemap.xml', xml, 'utf8');
+            console.log('Generated sitemap with ' + urls.length + ' URLs.');
+          }
+
+          main().catch(error => {
+            console.error(error);
+            process.exit(1);
+          });
+          NODE
+
+      - name: Commit sitemap if changed
+        run: |
+          if git diff --quiet -- sitemap.xml; then
+            echo "Sitemap is already up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sitemap.xml
+          git commit -m "chore: refresh sitemap for published articles"
+          git push
