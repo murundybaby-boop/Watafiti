@@ -52,6 +52,14 @@
    el.setAttribute("content",content);
  }
  function showError(message){status.className="status error";status.textContent=message;}
+ function showRetryError(message){
+   showError(message);
+   const retry=document.createElement("button");
+   retry.type="button";retry.className="btn";retry.textContent="↻ Jaribu tena";
+   retry.addEventListener("click",function(){location.reload();});
+   status.appendChild(document.createElement("br"));
+   status.appendChild(retry);
+ }
  if(!id){showError("Kiungo hiki hakina namba ya makala. Rudi mwanzo na uchague makala.");return;}
  fetch(SUPABASE_URL+"/rest/v1/articles?select=id,title,content,image_url,category,created_at&published=eq.true&id=eq."+encodeURIComponent(id)+"&limit=1",{
    headers:{"apikey":SUPABASE_KEY,"Authorization":"Bearer "+SUPABASE_KEY}
@@ -100,7 +108,7 @@
      try{await navigator.clipboard.writeText(shareUrl);alert("Kiungo kimenakiliwa. Shiriki kwa marafiki.");}
      catch(e){prompt("Nakili kiungo hiki:",shareUrl);}
    });
- }).catch(function(){showError("Imeshindikana kupakia makala. Angalia intaneti kisha ujaribu tena.");});
+ }).catch(function(){showRetryError("Imeshindikana kupakia makala. Angalia intaneti kisha bonyeza Jaribu tena.");});
   function updateReadingProgress(){
     const doc=document.documentElement;
     const scrollable=doc.scrollHeight-window.innerHeight;
