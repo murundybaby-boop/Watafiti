@@ -194,6 +194,19 @@ header{padding:8px 10px}.nav{display:block;text-align:center}.logo-area{justify-
 #supabaseArticles .article-card-actions .btn{flex-basis:100%}
 }
 
+
+/* WATAFITI search usability polish */
+.tools{align-items:stretch}
+.tools input{min-height:48px;border-color:#c8d9df;background:#fff}
+.tools input::placeholder{color:#68777d;opacity:1}
+.tools input:focus-visible,.category-tools select:focus-visible{outline:3px solid #118ab2;outline-offset:2px}
+.lang{min-height:44px;font-weight:700;transition:background .16s,transform .16s}
+.lang:active{transform:translateY(1px)}
+.category-tools{padding-top:5px;padding-bottom:5px}
+.category-tools .hint{padding:5px 9px;background:#eaf4f7;border-radius:999px;font-weight:700}
+#articleNoResults{margin:12px auto;max-width:760px;padding:18px;border:1px dashed #b8d3dc;border-radius:12px;background:#fff;color:#526b75}
+@media(max-width:760px){.tools{gap:8px}.tools input{min-height:50px}.category-tools{gap:8px}.category-tools .hint{width:100%;text-align:center}}
+
 </style>
 </head>
 
@@ -666,6 +679,15 @@ document.getElementById("enButton").addEventListener("click",function(){
 setEnglish();
 });
 
+document.getElementById("searchInput").addEventListener("keydown",function(event){
+ if(event.key==="Escape"){
+   event.preventDefault();
+   var reset=document.getElementById("resetSearchButton");
+   if(reset&&!reset.hidden){reset.click();}
+   else{this.value="";this.dispatchEvent(new Event("input"));}
+   this.focus();
+ }
+});
 document.getElementById("searchInput").addEventListener("input",function(){
 var word=document.getElementById("searchInput").value.toLowerCase().trim();
 var sections=document.querySelectorAll("body > section");
@@ -777,8 +799,14 @@ setSwahili();
       card.style.display=visible?"":"none";
       if(visible)shown++;
     });
-    if(articleResultCount) articleResultCount.textContent=cards.length?(shown+" / "+cards.length+" makala"):"Hakuna makala";
-    if(articleNoResults) articleNoResults.hidden=cards.length===0||shown>0;
+    if(articleResultCount){
+       const english=document.documentElement.lang==="en";
+       articleResultCount.textContent=cards.length?(english?(shown+" of "+cards.length+" articles"):(shown+" kati ya "+cards.length+" makala")):(english?"No articles":"Hakuna makala");
+     }
+    if(articleNoResults){
+       articleNoResults.hidden=cards.length===0||shown>0;
+       articleNoResults.textContent=document.documentElement.lang==="en"?"No articles match your search or selected category. Try different words or clear the filters.":"Hakuna makala zinazolingana na utafutaji au kategoria uliyochagua. Badili maneno au futa vichujio.";
+     }
     if(resetSearchButton) resetSearchButton.hidden=!(document.getElementById("searchInput").value.trim()||categoryFilter.value);
   }
   document.getElementById("searchInput").addEventListener("input",filterCloudArticles);
