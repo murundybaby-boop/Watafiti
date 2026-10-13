@@ -167,6 +167,33 @@ header{padding:8px 10px}.nav{display:block;text-align:center}.logo-area{justify-
 .survey-request-actions .btn{border:0;cursor:pointer}
 .survey-request-note{font-size:12px;color:#60757c;line-height:1.5}
 @media(max-width:640px){.survey-request-grid{grid-template-columns:1fr}.survey-field.full{grid-column:auto}.survey-request{padding:18px}}
+
+/* WATAFITI mobile article polish */
+#supabaseArticles{align-items:stretch}
+#supabaseArticles article{display:flex;flex-direction:column;min-width:0;padding:clamp(14px,2.2vw,22px);border:1px solid #e2ebef;border-radius:16px;background:linear-gradient(180deg,#fff 0%,#fcfeff 100%);box-shadow:0 4px 16px rgba(7,59,76,.065);overflow:hidden}
+#supabaseArticles .article-card-image{width:calc(100% + 2px);max-width:none;aspect-ratio:16/9;height:auto;max-height:300px;object-fit:cover;object-position:center;border-radius:11px;margin:-1px 0 14px;background:#edf2f4}
+#supabaseArticles .article-card-title{font-size:clamp(18px,2vw,22px);line-height:1.35;color:#073b4c;margin:3px 0 5px;overflow-wrap:anywhere}
+#supabaseArticles .article-date{font-size:12px;letter-spacing:.15px}
+#supabaseArticles .article-content{color:#3f535b;line-height:1.7;font-size:15px}
+#supabaseArticles .article-card-actions{margin-top:auto;padding-top:14px;display:flex;flex-wrap:wrap;gap:8px}
+#supabaseArticles .article-card-actions .btn{min-height:44px;flex:1 1 135px;display:inline-flex;align-items:center;justify-content:center;text-align:center;line-height:1.35;white-space:normal}
+#supabaseArticles article:focus-within{outline:2px solid #118ab2;outline-offset:2px}
+@media(hover:hover){#supabaseArticles article{transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}#supabaseArticles article:hover{transform:translateY(-3px);border-color:#c8e1e8;box-shadow:0 10px 26px rgba(7,59,76,.11)}#supabaseArticles .article-card-image{transition:filter .18s ease}#supabaseArticles article:hover .article-card-image{filter:saturate(1.04)}}
+@media(max-width:760px){
+#supabaseArticles{gap:13px}
+#supabaseArticles article{padding:14px;border-radius:13px}
+#supabaseArticles .article-card-image{aspect-ratio:16/9;max-height:230px;border-radius:9px;margin-bottom:12px}
+#supabaseArticles .article-card-title{font-size:19px}
+#supabaseArticles .article-content{font-size:14px;line-height:1.65}
+#supabaseArticles .article-card-actions{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding-top:12px}
+#supabaseArticles .article-card-actions .btn{min-width:0;width:100%;padding:10px 7px;font-size:13px;flex-basis:calc(50% - 4px)}
+}
+@media(max-width:360px){
+#supabaseArticles article{padding:12px}
+#supabaseArticles .article-card-actions{grid-template-columns:1fr}
+#supabaseArticles .article-card-actions .btn{flex-basis:100%}
+}
+
 </style>
 </head>
 
