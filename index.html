@@ -959,15 +959,39 @@ setSwahili();
     event.preventDefault();
     if (!form.reportValidity()) return;
     const val = id => (document.getElementById(id).value || "").trim();
+    const name = val("surveyClientName");
+    const phone = val("surveyClientPhone");
+    const service = val("surveyJobType");
+    const location = val("surveyProjectLocation");
+    const size = val("surveyProjectSize");
+    const date = val("surveyProjectDate");
+    const details = val("surveyProjectDetails");
     const message = ["OMBI LA HUDUMA ZA SURVEY — WATAFITI",
-      "Jina: " + val("surveyClientName"),
-      "Simu: " + val("surveyClientPhone"),
-      "Huduma: " + val("surveyJobType"),
-      "Eneo la mradi: " + val("surveyProjectLocation"),
-      "Ukubwa wa eneo/jengo: " + (val("surveyProjectSize") || "Haijabainishwa"),
-      "Tarehe inayohitajika: " + (val("surveyProjectDate") || "Haijabainishwa"),
-      "Maelezo: " + (val("surveyProjectDetails") || "Hakuna maelezo ya ziada")].join("\n");
-    window.open("https://wa.me/255624528944?text=" + encodeURIComponent(message), "_blank", "noopener,noreferrer");
+      "Jina: " + name, "Simu: " + phone, "Huduma: " + service,
+      "Eneo la mradi: " + location,
+      "Ukubwa wa eneo/jengo: " + (size || "Haijabainishwa"),
+      "Tarehe inayohitajika: " + (date || "Haijabainishwa"),
+      "Maelezo: " + (details || "Hakuna maelezo ya ziada")].join("\n");
+    const waWindow = window.open("about:blank", "_blank");
+    const payload = {name:name, phone:phone, service_type:service, project_location:location, project_size:size || null, requested_date:date || null, details:details || null, status:"new"};
+    fetch("https://zleflmeepyearrocaheg.supabase.co/rest/v1/survey_requests", {
+      method:"POST",
+      headers:{"Content-Type":"application/json","apikey":"sb_publishable_0SA-j8i6kAJT69XO0T-gpA_WHWMaEcF","Authorization":"Bearer sb_publishable_0SA-j8i6kAJT69XO0T-gpA_WHWMaEcF","Prefer":"return=minimal"},
+      body:JSON.stringify(payload)
+    }).then(function(response){
+      if (!response.ok) throw new Error("database unavailable");
+      return true;
+    }).then(function(){
+      if (waWindow) waWindow.location.href = "https://wa.me/255624528944?text=" + encodeURIComponent(message);
+      else window.location.href = "https://wa.me/255624528944?text=" + encodeURIComponent(message);
+      const note = form.querySelector(".survey-request-note");
+      if (note) note.textContent = "Ombi limehifadhiwa. WhatsApp itafunguka; bonyeza Tuma ili umtumie ujumbe Pro Murundy.";
+    }).catch(function(){
+      if (waWindow) waWindow.location.href = "https://wa.me/255624528944?text=" + encodeURIComponent(message);
+      else window.location.href = "https://wa.me/255624528944?text=" + encodeURIComponent(message);
+      const note = form.querySelector(".survey-request-note");
+      if (note) note.textContent = "WhatsApp itafunguka ili utume ombi. Hifadhi ya tovuti haikuthibitishwa; hakikisha SQL ya survey-requests imeendeshwa Supabase.";
+    });
   });
 })();
 </script>
