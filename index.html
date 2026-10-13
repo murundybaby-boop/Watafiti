@@ -808,7 +808,11 @@ setSwahili();
     }).catch(()=>{
       articleHost.setAttribute("aria-busy","false");
       articleHost.innerHTML="";
-      const message=document.createElement("p");message.className="empty";message.textContent="Makala hayajapakiwa kwa sasa. Tafadhali jaribu tena baada ya muda.";articleHost.appendChild(message);
+      const message=document.createElement("p");message.className="empty";message.textContent="Makala hayajapakiwa kwa sasa. Angalia intaneti kisha ujaribu tena.";articleHost.appendChild(message);
+      const retry=document.createElement("button");
+      retry.type="button";retry.className="btn";retry.textContent="↻ Jaribu tena";
+      retry.addEventListener("click",function(){location.reload();});
+      articleHost.appendChild(retry);
     });
   /* Record page visits and display the shared counter when the database function is available. */
   fetch(SUPABASE_URL+"/rest/v1/visitor_events", {method:"POST",headers:{...headers,"Content-Type":"application/json","Prefer":"return=minimal"},body:JSON.stringify({page:location.pathname+location.hash})})
