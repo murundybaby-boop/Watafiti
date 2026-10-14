@@ -121,6 +121,8 @@
    meta("description",description,false);
    meta("og:title",title,true);meta("og:description",description,true);meta("og:url",shareUrl,true);
    meta("twitter:title",title,false);meta("twitter:description",description,false);
+   if(a.created_at)meta("article:published_time",a.created_at,true);
+   if(a.category)meta("article:section",a.category,true);
    let canonical=document.querySelector('link[rel="canonical"]');if(canonical)canonical.href=shareUrl;
    const articleSchema={"@context":"https://schema.org","@type":"Article","headline":title,"description":description,"url":shareUrl,"mainEntityOfPage":{"@type":"WebPage","@id":shareUrl},"inLanguage":"sw-TZ","publisher":{"@type":"Organization","name":"WATAFITI","url":"https://murundybaby-boop.github.io/Watafiti/"}};
    if(a.created_at)articleSchema.datePublished=a.created_at;
