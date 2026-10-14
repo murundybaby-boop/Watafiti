@@ -96,7 +96,7 @@
  const status=document.getElementById("status");
  const actions=document.getElementById("actions");
  const progressBar=document.getElementById("readingProgressBar");
- const shareUrl=location.href;
+ const shareUrl=location.origin+location.pathname+(id?"?id="+encodeURIComponent(id):"");
  function meta(name,content,property){
    let el=document.querySelector(property?'meta[property="'+name+'"]':'meta[name="'+name+'"]');
    if(!el){el=document.createElement("meta");if(property)el.setAttribute("property",name);else el.setAttribute("name",name);document.head.appendChild(el);}
