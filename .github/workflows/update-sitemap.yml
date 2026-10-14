@@ -79,7 +79,8 @@ jobs:
             ].join('\n');
 
             fs.writeFileSync('sitemap.xml', xml, 'utf8');
-            console.log('Generated sitemap with ' + urls.length + ' URLs.');
+            fs.writeFileSync('sitemap.txt', urls.map(item => item.loc).join('\n') + '\n', 'utf8');
+            console.log('Generated XML and text sitemaps with ' + urls.length + ' URLs.');
           }
 
           main().catch(error => {
@@ -88,14 +89,14 @@ jobs:
           });
           NODE
 
-      - name: Commit sitemap if changed
+      - name: Commit sitemaps if changed
         run: |
-          if git diff --quiet -- sitemap.xml; then
-            echo "Sitemap is already up to date."
+          if git diff --quiet -- sitemap.xml sitemap.txt; then
+            echo "Sitemaps are already up to date."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add sitemap.xml
-          git commit -m "chore: refresh sitemap for published articles"
+          git add sitemap.xml sitemap.txt
+          git commit -m "chore: refresh XML and text sitemaps for published articles"
           git push
