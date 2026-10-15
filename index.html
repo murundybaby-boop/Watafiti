@@ -496,7 +496,7 @@ header{padding:8px 10px}.nav{display:block;text-align:center}.logo-area{justify-
       <div class="survey-field"><label for="surveyProjectDate">Unahitaji huduma lini?</label><input id="surveyProjectDate" name="date" type="date"></div>
       <div class="survey-field full"><label for="surveyProjectDetails">Maelezo ya kazi</label><textarea id="surveyProjectDetails" name="details" placeholder="Eleza mahitaji yako, vifaa au mafunzo unayotaka, na taarifa nyingine muhimu."></textarea></div>
     </div>
-    <div class="survey-request-actions"><button class="btn surveyor-cta" type="submit">💬 Endelea kupitia WhatsApp</button><span class="survey-request-note">Fomu hii haijahifadhi taarifa kwenye tovuti; utahitaji kutuma ujumbe ndani ya WhatsApp.</span></div>
+    <div class="survey-request-actions"><button class="btn surveyor-cta" type="submit">📤 Tuma Ombi / Send Request</button><span class="survey-request-note">Bonyeza kitufe, WhatsApp itafunguka; kisha bonyeza SEND/TUMA ndani ya WhatsApp ili ombi lifike.</span></div>
   </form>
 </div>
 <div class="surveyor-final-cta"><h3>Unahitaji Surveyor au mafunzo ya vifaa?</h3><p>Wasiliana na Pro Murundy kwa maelezo ya mradi wako au kujadili mafunzo.</p><a class="btn surveyor-cta" href="https://wa.me/255624528944?text=Habari%20Pro%20Murundy%2C%20nahitaji%20taarifa%20za%20huduma%20za%20survey%20au%20mafunzo%20ya%20vifaa." target="_blank" rel="noopener noreferrer">Wasiliana WhatsApp</a></div>
@@ -1064,12 +1064,12 @@ setSwahili();
       if (waWindow) waWindow.location.href = "https://wa.me/255624528944?text=" + encodeURIComponent(message);
       else window.location.href = "https://wa.me/255624528944?text=" + encodeURIComponent(message);
       const note = form.querySelector(".survey-request-note");
-      if (note) note.textContent = "Ombi limehifadhiwa. WhatsApp itafunguka; bonyeza Tuma ili umtumie ujumbe Pro Murundy.";
+      if (note) note.textContent = "Ombi limehifadhiwa kwenye tovuti. WhatsApp inafunguka sasa; bonyeza SEND/TUMA ndani ya WhatsApp ili umtumie Pro Murundy.";
     }).catch(function(){
       if (waWindow) waWindow.location.href = "https://wa.me/255624528944?text=" + encodeURIComponent(message);
       else window.location.href = "https://wa.me/255624528944?text=" + encodeURIComponent(message);
       const note = form.querySelector(".survey-request-note");
-      if (note) note.textContent = "WhatsApp itafunguka ili utume ombi. Hifadhi ya tovuti haikuthibitishwa; hakikisha SQL ya survey-requests imeendeshwa Supabase.";
+      if (note) note.textContent = "WhatsApp inafunguka ili utume ombi. Hifadhi ya tovuti haikuthibitishwa; bonyeza SEND/TUMA ndani ya WhatsApp ili ujumbe ufike.";
     });
   });
 })();
