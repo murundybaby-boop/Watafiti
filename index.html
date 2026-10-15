@@ -228,6 +228,18 @@ header{padding:8px 10px}.nav{display:block;text-align:center}.logo-area{justify-
 #articleNoResults{margin:12px auto;max-width:760px;padding:18px;border:1px dashed #b8d3dc;border-radius:12px;background:#fff;color:#526b75}
 @media(max-width:760px){.tools{gap:8px}.tools input{min-height:50px}.category-tools{gap:8px}.category-tools .hint{width:100%;text-align:center}}
 
+
+/* Category-first homepage navigation */
+.category-dashboard{max-width:1180px;margin:24px auto 34px;padding:26px 20px;background:linear-gradient(135deg,#f2fbfa,#fff);border:1px solid #d9eae7;border-radius:24px}
+.category-intro{text-align:center;color:#587078;max-width:680px;margin:0 auto 22px;line-height:1.7}
+.category-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.category-tile{display:flex;flex-direction:column;align-items:flex-start;gap:9px;min-height:155px;padding:22px;text-decoration:none;color:#073b4c;background:#fff;border:1px solid #dce9e7;border-radius:18px;box-shadow:0 5px 18px rgba(7,59,76,.06);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+.category-tile:hover,.category-tile:focus-visible{transform:translateY(-3px);border-color:#0b8278;box-shadow:0 12px 26px rgba(7,59,76,.12);outline:2px solid transparent}
+.category-tile span{font-size:30px}.category-tile strong{font-size:17px}.category-tile small{font-size:13px;color:#60757c;line-height:1.5}
+.category-anchor{scroll-margin-top:100px}
+@media(max-width:760px){.category-dashboard{margin:16px 12px 26px;padding:20px 14px;border-radius:20px}.category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.category-tile{min-height:145px;padding:15px}.category-tile strong{font-size:15px}}
+@media(max-width:380px){.category-grid{grid-template-columns:1fr}.category-tile{min-height:auto}}
+
 </style>
 </head>
 
@@ -279,6 +291,22 @@ header{padding:8px 10px}.nav{display:block;text-align:center}.logo-area{justify-
 <a class="btn" href="#huduma">🛠️ HUDUMA ZETU</a>
 <a class="btn" href="#mawasiliano">📞 WASILIANA NASI</a>
 </section>
+
+
+<section id="vitengo" class="category-dashboard">
+  <h2 class="title">Karibu WATAFITI — Chagua Kipengele</h2>
+  <p class="category-intro">Tumeweka maudhui na huduma katika vipengele rahisi. Fungua kipengele unachohitaji ili uone taarifa zake.</p>
+  <div class="category-grid">
+    <a class="category-tile" href="#taarifa"><span>📰</span><strong>Taarifa na Habari</strong><small>Makala, taarifa mpya na habari</small></a>
+    <a class="category-tile" href="#media"><span>🎬</span><strong>Video, Picha na Mahojiano</strong><small>Vipindi, picha na mahojiano</small></a>
+    <a class="category-tile" href="#mafunzo"><span>🎓</span><strong>Elimu na Mafunzo</strong><small>Kichina, elimu na mafunzo</small></a>
+    <a class="category-tile" href="#huduma"><span>🛠️</span><strong>Huduma Zetu</strong><small>Survey, ujenzi, teknolojia na nyingine</small></a>
+    <a class="category-tile" href="#kuhusu"><span>👤</span><strong>Kuhusu WATAFITI</strong><small>Wasifu na taarifa za WATAFITI</small></a>
+    <a class="category-tile" href="#mawasiliano"><span>📞</span><strong>Mawasiliano</strong><small>Wasiliana nasi au tuma ombi</small></a>
+  </div>
+</section>
+<div id="media" class="category-anchor" aria-hidden="true"></div>
+<div id="mafunzo" class="category-anchor" aria-hidden="true"></div>
 
 <section class="contact" id="mawasiliano">
 <h2 class="title" data-sw="Mawasiliano" data-en="Contact Us">Mawasiliano</h2>
