@@ -1,0 +1,59 @@
+name: Recover GitHub Pages deployment
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout website
+        uses: actions/checkout@v4
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload website files
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: .
+
+      - name: Clear stale Pages deployment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            try {
+              const response = await github.request(
+                'POST /repos/{owner}/{repo}/pages/deployments/{pages_deployment_id}/cancel',
+                {
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  pages_deployment_id: '452c95a8e7a3fddc260f88f6079bb3126b98df3'
+                }
+              );
+              core.info('Stale Pages deployment cancellation requested.');
+            } catch (error) {
+              if (error.status === 404 || error.status === 409) {
+                core.info('The stale deployment was already cleared or is no longer cancellable; continuing.');
+              } else {
+                throw error;
+              }
+            }
+
+      - name: Deploy website
+        id: deployment
+        uses: actions/deploy-pages@v5
