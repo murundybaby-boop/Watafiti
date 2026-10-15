@@ -281,6 +281,48 @@ footer{background:linear-gradient(110deg,#041f29,#073b4c);border-top:3px solid #
 
 /* Final responsive/accessibility polish */
 :root{scroll-behavior:smooth;scroll-padding-top:90px}body{line-height:1.65;-webkit-font-smoothing:antialiased}a,button,input,select,textarea{transition:color .18s ease,background-color .18s ease,border-color .18s ease,box-shadow .18s ease,transform .18s ease}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #ffd166;outline-offset:3px}.category-tile,.card,.article-card,.service-card{overflow:hidden}.category-tile:hover,.card:hover,.article-card:hover,.service-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px #073b4c16}img{max-width:100%}::selection{background:#bce9d7;color:#073b4c}@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+/* Premium opening hero: brand, founder and services */
+.hero-showcase{padding:clamp(32px,5vw,66px) clamp(16px,3vw,34px) 0;text-align:left;min-height:0}
+.hero-showcase-inner{position:relative;z-index:1;max-width:1240px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.12fr) minmax(290px,.88fr);align-items:center;gap:clamp(25px,5vw,68px);padding-bottom:clamp(34px,5vw,62px)}
+.hero-copy{position:relative;z-index:2}
+.hero-brandline{display:flex;align-items:center;gap:12px;margin-bottom:26px;color:#d5f1f5;font-size:12px;letter-spacing:2px;font-weight:800}
+.hero-brandline img{width:62px;height:62px;object-fit:contain;border-radius:16px;background:#fff;padding:4px;box-shadow:0 7px 24px #001b253f}
+.hero-brandline i{font-style:normal;color:#ffd166;margin:0 4px}
+.hero-welcome{display:inline-flex;padding:7px 12px;border:1px solid #ffffff42;border-radius:999px;background:#ffffff12;color:#ffe3a0;font-size:11px;letter-spacing:1.8px;font-weight:800}
+.hero-showcase h1{font-size:clamp(46px,7vw,82px);line-height:.98;letter-spacing:clamp(1px,.5vw,5px);margin:19px 0 15px}
+.hero-showcase .hero-tagline{font-size:clamp(20px,2.5vw,29px);font-weight:800;line-height:1.25;margin:0 0 13px;color:#fff}
+.hero-showcase .hero-description{max-width:610px;font-size:clamp(15px,1.5vw,18px);line-height:1.8;color:#e0f0f3;margin:0}
+.hero-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.hero-actions .btn{margin:0;padding:12px 15px;border-radius:11px;font-size:13px;min-height:46px;display:inline-flex;align-items:center;justify-content:center}
+.hero-actions .hero-primary{background:#ffd166;color:#17343d}
+.hero-actions .hero-secondary{background:#ffffff14;color:#fff;border:1px solid #ffffff48}
+.hero-actions .hero-contact{background:#138a70;color:#fff}
+.hero-trust-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:23px}
+.hero-trust-row span{padding:7px 10px;border-radius:999px;background:#ffffff10;border:1px solid #ffffff24;color:#e5f3f5;font-size:11px;font-weight:700}
+.hero-visual{position:relative;min-height:370px;display:flex;align-items:center;justify-content:center;isolation:isolate}
+.hero-photo-frame{position:relative;z-index:2;width:min(100%,355px);height:390px;border:1px solid #ffffff75;border-radius:170px 170px 28px 28px;padding:8px;background:linear-gradient(145deg,#ffffff6b,#ffffff0b);box-shadow:0 25px 55px #001c2860;transform:rotate(2deg)}
+.hero-pro-photo{display:block;width:100%;height:100%;object-fit:cover;object-position:center 28%;border-radius:160px 160px 22px 22px;background:#dcebf0}
+.hero-photo-caption{position:absolute;left:18px;right:18px;bottom:18px;display:flex;align-items:center;gap:11px;padding:13px 15px;border:1px solid #ffffff3d;border-radius:14px;background:#062d3bd9;backdrop-filter:blur(12px);color:#fff;transform:rotate(-2deg)}
+.hero-photo-caption strong,.hero-photo-caption small{display:block}.hero-photo-caption strong{font-size:16px}.hero-photo-caption small{font-size:11px;color:#d0e8ed;margin-top:2px}
+.hero-live-dot{width:10px;height:10px;flex:0 0 10px;border-radius:50%;background:#ffd166;box-shadow:0 0 0 5px #ffd16626}
+.hero-floating-logo{position:absolute;z-index:3;left:-12px;top:48px;display:flex;align-items:center;gap:10px;padding:11px 14px;border:1px solid #ffffff70;border-radius:15px;background:#fff;color:#073b4c;box-shadow:0 12px 28px #001c2840;transform:rotate(-3deg)}
+.hero-floating-logo img{width:46px;height:46px;object-fit:contain;border-radius:9px}
+.hero-floating-logo strong,.hero-floating-logo small{display:block}.hero-floating-logo strong{font-size:14px;letter-spacing:1px}.hero-floating-logo small{font-size:10px;color:#637880;margin-top:2px}
+.hero-glow{position:absolute;z-index:-1;border-radius:50%;pointer-events:none;filter:blur(2px)}
+.hero-glow-one{width:360px;height:360px;right:5%;top:-160px;background:#ffd16615}
+.hero-glow-two{width:280px;height:280px;left:-120px;bottom:10px;background:#66d9e815}
+.hero-orbit{position:absolute;z-index:0;border:1px solid #ffffff20;border-radius:50%;pointer-events:none}
+.hero-orbit-one{width:390px;height:390px;right:-12px;top:-8px}.hero-orbit-two{width:450px;height:450px;right:-42px;top:-38px;border-style:dashed}
+.hero-service-strip{position:relative;z-index:2;max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;padding:0 0 24px}
+.hero-service-strip a{display:grid;grid-template-columns:42px 1fr;grid-template-rows:auto auto;align-items:center;column-gap:10px;padding:14px;border:1px solid #ffffff35;border-radius:14px;background:#ffffff12;color:#fff;text-decoration:none;transition:transform .18s,background .18s,border-color .18s;min-width:0}
+.hero-service-strip a:hover{transform:translateY(-3px);background:#ffffff20;border-color:#ffffff75}
+.hero-service-strip a>span{grid-row:1/3;display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:12px;background:#ffd166;color:#073b4c;font-size:20px}
+.hero-service-strip strong{font-size:13px;line-height:1.3}.hero-service-strip small{font-size:10px;color:#d7edf0;line-height:1.4;margin-top:3px}
+@media(max-width:850px){.hero-showcase-inner{grid-template-columns:minmax(0,1fr) minmax(230px,.78fr);gap:22px}.hero-photo-frame{height:330px}.hero-visual{min-height:330px}.hero-floating-logo{left:-8px;top:25px}.hero-service-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.hero-showcase{padding:28px 15px 0}.hero-showcase-inner{grid-template-columns:1fr;gap:28px;padding-bottom:30px}.hero-brandline{margin-bottom:18px}.hero-brandline img{width:52px;height:52px}.hero-showcase h1{font-size:clamp(43px,13vw,64px);margin-top:16px}.hero-visual{min-height:320px;margin:0 10px}.hero-photo-frame{width:min(82%,310px);height:335px}.hero-floating-logo{left:-4px;top:24px}.hero-orbit-one{width:310px;height:310px;right:0;top:4px}.hero-orbit-two{width:350px;height:350px;right:-14px;top:-16px}.hero-service-strip{gap:8px;padding-bottom:18px}.hero-service-strip a{padding:11px 9px;grid-template-columns:34px 1fr;column-gap:8px}.hero-service-strip a>span{width:34px;height:34px;font-size:17px}.hero-service-strip strong{font-size:12px}.hero-service-strip small{font-size:10px}.hero-actions .btn{flex:1 1 145px}}
+@media(max-width:360px){.hero-service-strip{grid-template-columns:1fr}.hero-visual{margin:0}.hero-photo-frame{width:84%;height:310px}.hero-trust-row span{font-size:10px}}
+
 </style>
 </head>
 
@@ -324,13 +366,35 @@ footer{background:linear-gradient(110deg,#041f29,#073b4c);border-top:3px solid #
 <span class="hint" id="articleResultCount" aria-live="polite">Makala zote</span>
 </div>
 
-<section class="hero" id="nyumbani">
-<h1>WATAFITI</h1>
-<p data-sw="Tuchunguze Ukweli wa Dunia Pamoja" data-en="Let Us Explore the Truth of the World Together">Tuchunguze Ukweli wa Dunia Pamoja</p>
-<p data-sw="Habari, elimu, mahojiano, huduma na maendeleo kwa jamii." data-en="News, education, interviews, services and community development.">Habari, elimu, mahojiano, huduma na maendeleo kwa jamii.</p>
-<a class="btn" href="#taarifa">📰 TAARIFA MPYA</a>
-<a class="btn" href="#huduma">🛠️ HUDUMA ZETU</a>
-<a class="btn" href="#mawasiliano">📞 WASILIANA NASI</a>
+<section class="hero hero-showcase" id="nyumbani">
+  <div class="hero-glow hero-glow-one" aria-hidden="true"></div>
+  <div class="hero-glow hero-glow-two" aria-hidden="true"></div>
+  <div class="hero-showcase-inner">
+    <div class="hero-copy">
+      <div class="hero-brandline"><img src="1789865720521.jpg" alt="Nembo ya WATAFITI" width="66" height="66"><span>WATAFITI TV <i>•</i> TANZANIA</span></div>
+      <span class="hero-welcome" data-sw="KARIBU KWENYE WATAFITI" data-en="WELCOME TO WATAFITI">KARIBU KWENYE WATAFITI</span>
+      <h1>WATAFITI</h1>
+      <p class="hero-tagline" data-sw="Tuchunguze Ukweli wa Dunia Pamoja" data-en="Let Us Explore the Truth of the World Together">Tuchunguze Ukweli wa Dunia Pamoja</p>
+      <p class="hero-description" data-sw="Habari, elimu, mahojiano, utafiti na huduma zinazochochea maarifa na maendeleo ya jamii." data-en="News, education, interviews, research and services that inspire knowledge and community development.">Habari, elimu, mahojiano, utafiti na huduma zinazochochea maarifa na maendeleo ya jamii.</p>
+      <div class="hero-actions">
+        <a class="btn hero-primary" href="#huduma">🛠️ Tazama Huduma Zetu</a>
+        <a class="btn hero-secondary" href="#taarifa">📰 Habari na Makala</a>
+        <a class="btn hero-contact" href="https://wa.me/255624528944?text=Habari%20WATAFITI%2C%20naomba%20taarifa%20kuhusu%20huduma%20zenu." target="_blank" rel="noopener noreferrer">💬 Wasiliana Nasi</a>
+      </div>
+      <div class="hero-trust-row"><span>🇹🇿 Tanzania</span><span>🎓 Elimu na Mafunzo</span><span>📐 Survey na Ujenzi</span></div>
+    </div>
+    <div class="hero-visual" aria-label="WATAFITI na mwanzilishi wake">
+      <div class="hero-photo-frame"><img class="hero-pro-photo" src="1790088089145.jpg" alt="Pro Murundy, mwanzilishi wa WATAFITI" fetchpriority="high" decoding="async"><div class="hero-photo-caption"><span class="hero-live-dot"></span><span><strong>Pro Murundy</strong><small>Mwanzilishi wa WATAFITI</small></span></div></div>
+      <div class="hero-floating-logo"><img src="1789865720521.jpg" alt="" width="54" height="54"><span><strong>WATAFITI</strong><small>Maarifa • Huduma • Maendeleo</small></span></div>
+      <div class="hero-orbit hero-orbit-one" aria-hidden="true"></div><div class="hero-orbit hero-orbit-two" aria-hidden="true"></div>
+    </div>
+  </div>
+  <div class="hero-service-strip" aria-label="Huduma kuu za WATAFITI">
+    <a href="./survey-services.html"><span>📐</span><strong>Survey</strong><small>Upimaji wa ardhi</small></a>
+    <a href="./construction-services.html"><span>🏗️</span><strong>Ujenzi</strong><small>Building & Construction</small></a>
+    <a href="./chinese-training.html"><span>🎓</span><strong>Mafunzo ya Kichina</strong><small>Mandarin Chinese</small></a>
+    <a href="./community-support.html"><span>🤝</span><strong>Msaada wa Jamii</strong><small>Community support</small></a>
+  </div>
 </section>
 
 
