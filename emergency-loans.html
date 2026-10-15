@@ -84,25 +84,47 @@
 const form=document.getElementById('loanApplication');
 const amount=document.getElementById('amount');
 const fmt=n=>'TSh '+Number(n).toLocaleString('en-US');
-function updateEstimate(){const p=Number(amount.value)||0;const i=Math.round(p*.15);document.getElementById('principal').textContent=p?fmt(p):'—';document.getElementById('interest').textContent=p?fmt(i):'—';document.getElementById('total').textContent=p?fmt(p+i):'—';}
+function updateEstimate(){
+ const p=Number(amount.value)||0;
+ const i=Math.round(p*.15);
+ document.getElementById('principal').textContent=p?fmt(p):'—';
+ document.getElementById('interest').textContent=p?fmt(i):'—';
+ document.getElementById('total').textContent=p?fmt(p+i):'—';
+}
 amount.addEventListener('change',updateEstimate);
-form.addEventListener('submit',async function(e){e.preventDefault();if(!form.reportValidity())return;
-const d=new FormData(form);
-const button=form.querySelector('button[type="submit"]');
-const status=document.getElementById('formStatus');
-button.disabled=true;status.textContent='Inatuma ombi kwa mfumo...';
-try{
-const response=await fetch('https://zleflmeepyearrocaheg.supabase.co/rest/v1/loan_applications',{
-method:'POST',
-headers:{'apikey':'sb_publishable_0SA-j8i6kAJT69XO0T-gpA_WHWMaEcF','Content-Type':'application/json','Prefer':'return=minimal'},
-body:JSON.stringify({full_name:String(d.get('fullName')).trim(),phone:String(d.get('phone')).trim(),amount:Number(d.get('amount')),income_source:String(d.get('income')),repayment_period:String(d.get('repayment')),region:String(d.get('region')).trim(),purpose:String(d.get('purpose')).trim(),interest_rate:15,status:'new'})
-});
-if(!response.ok){const detail=await response.text();throw new Error(detail||'Ombi halijahifadhiwa.');}
-status.textContent='Ombi limepokelewa! WATAFITI wanaweza kuliona kwenye Admin Dashboard baada ya kuweka SQL ya maombi kwenye Supabase.';
-form.reset();updateEstimate();
-}catch(err){status.textContent='Imeshindikana kuhifadhi ombi. Hakikisha msimamizi ameendesha loan-applications.sql kwenye Supabase. Maelezo: '+err.message;}
-finally{button.disabled=false;}
-
+form.addEventListener('submit',function(e){
+ e.preventDefault();
+ if(!form.reportValidity())return;
+ const d=new FormData(form);
+ const name=String(d.get('fullName')).trim();
+ const phone=String(d.get('phone')).trim();
+ const requested=Number(d.get('amount'));
+ const income=String(d.get('income'));
+ const repayment=String(d.get('repayment'));
+ const region=String(d.get('region')).trim();
+ const purpose=String(d.get('purpose')).trim();
+ const interest=Math.round(requested*.15);
+ const total=requested+interest;
+ const message=[
+ 'HABARI WATAFITI LOAN, NINATUMA OMBI LA MKOPO.',
+ '',
+ 'Jina kamili: '+name,
+ 'Namba ya simu: '+phone,
+ 'Kiasi ninachoomba: '+fmt(requested),
+ 'Riba ya makadirio (15%): '+fmt(interest),
+ 'Jumla ya makadirio: '+fmt(total),
+ 'Chanzo cha kipato: '+income,
+ 'Muda ninaopendekeza: '+repayment,
+ 'Mkoa/eneo: '+region,
+ 'Sababu ya mkopo: '+purpose,
+ '',
+ 'Naelewa kuwa kutuma ombi si uthibitisho wa kuidhinishwa, na nitathibitisha masharti rasmi kabla ya kukubali mkopo.'
+ ].join('\n');
+ const url='https://wa.me/255624528944?text='+encodeURIComponent(message);
+ const status=document.getElementById('formStatus');
+ status.textContent='WhatsApp inafunguliwa pamoja na taarifa zako. Tafadhali kagua ujumbe kisha bonyeza Tuma ndani ya WhatsApp.';
+ const opened=window.open(url,'_blank','noopener,noreferrer');
+ if(!opened){status.innerHTML='WhatsApp haikufunguka yenyewe. <a href="'+url+'" target="_blank" rel="noopener noreferrer">Bonyeza hapa kutuma ombi kupitia WhatsApp</a>.';}
 });
 })();
 </script>
