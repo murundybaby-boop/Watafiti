@@ -68,6 +68,8 @@ nav a[href="./admin.html"]:hover{background:#ffe19a;border-color:#ffe19a}
   header nav a[href="./admin.html"]{background:#ffd166;color:#17343d}
 }
 @keyframes navReveal{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+/* Highlight the WATAFITI LOAN service on the category dashboard and service list */
+.loan-category-tile{background:radial-gradient(circle at 90% 10%,#ffffff30,transparent 34%),linear-gradient(135deg,#073b4c,#087e8b)!important;color:#fff!important;border:2px solid #ffd166!important;box-shadow:0 12px 28px #073b4c2e!important;position:relative;overflow:hidden}.loan-category-tile span{background:#ffd166!important;color:#073b4c!important}.loan-category-tile strong,.loan-category-tile small,.loan-category-tile b{color:#fff!important}.loan-category-tile b{display:block;margin-top:8px;font-size:13px}.watafiti-loan-card{border:2px solid #ffd166;background:linear-gradient(145deg,#fff,#f1fbfc);box-shadow:0 8px 22px #073b4c12}.watafiti-loan-card h3{font-size:22px}.watafiti-loan-card .btn{background:#073b4c;color:#fff}
 @media(max-width:420px){header .nav{grid-template-columns:1fr auto}.menu-toggle{min-width:0;padding:10px 12px}header nav{grid-template-columns:repeat(2,minmax(0,1fr));padding:9px;gap:6px}header nav a{font-size:12px;padding:9px 5px}}
 @media(max-width:340px){header .logo-text{font-size:18px}header .logo-area img{width:40px;height:40px}.menu-toggle{font-size:13px;padding:9px}header nav{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){header nav.open{animation:none}}
@@ -308,6 +310,7 @@ body.category-open #vitengo .category-back{display:inline-flex}
   <h2 class="title">Karibu WATAFITI — Chagua Kipengele</h2>
   <p class="category-intro">Tumeweka maudhui na huduma katika vipengele rahisi. Fungua kipengele unachohitaji ili uone taarifa zake.</p>
   <div class="category-grid">
+    <a class="category-tile loan-category-tile" href="./emergency-loans.html"><span>💳</span><strong>WATAFITI LOAN</strong><small>Maelezo ya mikopo na namna ya kuulizia</small><b>Fungua huduma →</b></a>
     <a class="category-tile" href="#taarifa"><span>📰</span><strong>Taarifa na Habari</strong><small>Makala, taarifa mpya na habari</small></a>
     <a class="category-tile" href="#video"><span>🎬</span><strong>Video, Picha na Mahojiano</strong><small>Vipindi, picha na mahojiano</small></a>
     <a class="category-tile" href="#kichina"><span>🎓</span><strong>Elimu na Mafunzo</strong><small>Kichina, elimu na mafunzo</small></a>
@@ -555,7 +558,7 @@ body.category-open #vitengo .category-back{display:inline-flex}
 
 <div class="card"><h3>🌍 Land & Building Survey</h3><p data-sw="Huduma za upimaji wa ardhi na majengo pamoja na ushauri unaohusiana na survey." data-en="Land and building surveying services and related surveying advice.">Huduma za upimaji wa ardhi na majengo pamoja na ushauri unaohusiana na survey.</p><a class="btn" href="#mawasiliano">Uliza Huduma</a></div>
 
-<div class="card"><h3>💰 Emergency Small Loans</h3><p data-sw="Mikopo midogo kwa mahitaji ya dharura ya nyumbani, hasa kwa wanafunzi wa vyuo. Kiasi hadi TSh 150,000." data-en="Small emergency loans for urgent household needs, especially for college students. Amount up to TSh 150,000.">Mikopo midogo kwa mahitaji ya dharura ya nyumbani, hasa kwa wanafunzi wa vyuo. Kiasi hadi TSh 150,000.</p><a class="btn" href="./emergency-loans.html">Fungua Maelezo</a></div>
+<div class="card watafiti-loan-card"><span class="surveyor-kicker">HUDUMA MAALUMU • WATAFITI</span><h3>💳 WATAFITI LOAN</h3><p data-sw="Pata taarifa kuhusu huduma ya mikopo, masharti, gharama na ustahiki. Upatikanaji na kiwango cha mkopo lazima vithibitishwe moja kwa moja na WATAFITI." data-en="Explore loan-service information, terms, costs and eligibility. Availability and loan amounts must be confirmed directly with WATAFITI.">Pata taarifa kuhusu huduma ya mikopo, masharti, gharama na ustahiki. Upatikanaji na kiwango cha mkopo lazima vithibitishwe moja kwa moja na WATAFITI.</p><a class="btn" href="./emergency-loans.html">Angalia WATAFITI LOAN →</a></div>
 
 <div class="card"><h3>🙏 Huduma za Kiroho</h3><p data-sw="Huduma na ushauri wa kiroho pamoja na kusaidia kuelewa maandiko." data-en="Spiritual services, guidance and help with understanding scriptures.">Huduma na ushauri wa kiroho pamoja na kusaidia kuelewa maandiko.</p><a class="btn" href="./spiritual-services.html">Fungua Maelezo</a></div>
 
