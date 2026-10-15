@@ -89,7 +89,7 @@ label{display:block;margin:8px 0 14px}button{border:0;background:linear-gradient
 <p id="surveyRequestCount" class="hint" aria-live="polite"></p><div id="surveyRequestList" class="article-list"><p class="empty">Inapakia maombi...</p></div>
 </section>
 <section class="panel hidden" id="loanApplicationsPanel">
-<div class="topline"><div><h2>Maombi ya WATAFITI LOAN</h2><p class="hint">Ona maombi, kagua taarifa na wasiliana na mwombaji kwa WhatsApp.</p></div><button id="refreshLoanApplicationsBtn" class="secondary" type="button">↻ Pakia maombi</button></div>
+<div class="topline"><div><h2>Maombi ya WATAFITI LOAN</h2><p class="hint">Ona maombi, kagua taarifa na wasiliana na mwombaji kwa WhatsApp.</p></div><button id="refreshLoanApplicationsBtn" class="secondary" type="button">↻ Pakia maombi</button><button id="exportLoanApplicationsBtn" class="gold" type="button">⬇ Pakua CSV</button></div>
 <div class="row"><label>Tafuta ombi<input id="loanApplicationSearch" type="search" placeholder="Tafuta jina, simu, eneo..."></label><label>Hali<select id="loanApplicationStatusFilter"><option value="all">Maombi yote</option><option value="new">Mapya</option><option value="reviewing">Yanapitiwa</option><option value="answered">Yamejibiwa</option><option value="approved">Yameidhinishwa</option><option value="declined">Yamekataliwa</option></select></label></div>
 <p id="loanApplicationCount" class="hint" aria-live="polite"></p><div id="loanApplicationList" class="article-list"><p class="empty">Inapakia maombi ya mikopo...</p></div>
 </section>
@@ -215,6 +215,14 @@ function renderLoanApplications(){
 }
 function filterContactMessages(){const q=(el("contactSearch").value||"").trim().toLocaleLowerCase();const status=el("contactStatusFilter").value;Array.from(el("contactMessageList").children).forEach(card=>{const t=card.textContent.toLocaleLowerCase();const matchesText=!q||t.includes(q);const isUnread=t.includes("· mpya");const matchesStatus=status==="all"||(status==="unread"&&isUnread)||(status==="read"&&!isUnread&&!t.includes("inapakia")&&!t.includes("bado hakuna"));card.classList.toggle("hidden",!(matchesText&&matchesStatus));});}
 function filterAdminReviews(){const q=(el("reviewSearch").value||"").trim().toLocaleLowerCase();const status=el("reviewStatusFilter").value;const cards=Array.from(el("reviewAdminList").children);let shown=0;cards.forEach(card=>{const t=card.textContent.toLocaleLowerCase();const matchesText=!q||t.includes(q);const pending=t.includes("inasubiri idhini");const matchesStatus=status==="all"||(status==="pending"&&pending)||(status==="approved"&&t.includes("imeidhinishwa"));const visible=matchesText&&matchesStatus;card.classList.toggle("hidden",!visible);if(visible&&!card.classList.contains("empty"))shown++;});el("reviewFilterCount").textContent="Inaonyesha "+shown+" kati ya maoni "+cards.filter(card=>!card.classList.contains("empty")).length+".";}
+el("exportLoanApplicationsBtn").addEventListener("click",function(){
+ if(!allLoanApplications.length){alert("Hakuna maombi ya mikopo ya kupakua.");return;}
+ const columns=[["Tarehe","created_at"],["Jina","full_name"],["Simu","phone"],["Kiasi TSh","amount"],["Chanzo cha kipato","income_source"],["Muda wa marejesho","repayment_period"],["Eneo","region"],["Riba asilimia","interest_rate"],["Hali","status"],["Sababu","purpose"],["Jibu la admin","admin_reply"]];
+ const csvCell=value=>'"'+String(value==null?"":value).replace(/"/g,'""')+'"';
+ const lines=[columns.map(c=>csvCell(c[0])).join(",")].concat(allLoanApplications.map(row=>columns.map(c=>csvCell(row[c[1]])).join(",")));
+ const blob=new Blob(["\\uFEFF"+lines.join("\\r\\n")],{type:"text/csv;charset=utf-8;"});
+ const url=URL.createObjectURL(blob);const link=document.createElement("a");link.href=url;link.download="WATAFITI-maombi-mikopo.csv";document.body.appendChild(link);link.click();link.remove();URL.revokeObjectURL(url);
+});
 el("contactSearch").addEventListener("input",filterContactMessages);el("contactStatusFilter").addEventListener("change",filterContactMessages);
 el("reviewSearch").addEventListener("input",filterAdminReviews);el("reviewStatusFilter").addEventListener("change",filterAdminReviews);
 el("refreshContactBtn").addEventListener("click",loadContactMessages);
