@@ -253,6 +253,32 @@ body.category-open #vitengo .category-back{display:inline-flex}
 @media(max-width:760px){.category-dashboard{margin:16px 12px 26px;padding:20px 14px;border-radius:20px}.category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.category-tile{min-height:145px;padding:15px}.category-tile strong{font-size:15px}}
 @media(max-width:380px){.category-grid{grid-template-columns:1fr}.category-tile{min-height:auto}}
 
+
+/* WATAFITI visual refresh — service illustration, depth and responsive polish */
+.hero{min-height:350px;text-align:left;padding:clamp(44px,6vw,76px) max(22px,calc((100% - 1180px)/2));background:linear-gradient(105deg,#052d3a 0%,#073b4c 44%,#073b4cdd 62%,#073b4c55 100%),url('./images/watafiti-survey-hero.svg') right center/auto 100% no-repeat,linear-gradient(135deg,#073b4c,#118ab2);isolation:isolate}
+.hero h1{font-size:clamp(38px,5vw,58px);letter-spacing:1px;max-width:620px;line-height:1.1}
+.hero>p{margin:10px 0;max-width:590px;text-align:left}
+.hero .btn{border-radius:999px;padding:13px 20px;box-shadow:0 6px 16px #00182035}
+.hero .btn:first-of-type{background:#ffd166;color:#12333c}
+.category-dashboard{box-shadow:0 12px 34px rgba(7,59,76,.08);background:radial-gradient(circle at 100% 0,#e4f4ed 0,transparent 34%),linear-gradient(135deg,#f2fbfa,#fff)}
+.category-tile{position:relative;overflow:hidden;border-radius:20px;min-height:165px}
+.category-tile:after{content:"";position:absolute;right:-24px;bottom:-33px;width:104px;height:104px;border-radius:50%;background:linear-gradient(135deg,#d9f1e7,#edf7fb);opacity:.72;z-index:0}
+.category-tile>*{position:relative;z-index:1}
+.category-tile span{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:15px;background:#e4f3f7;box-shadow:inset 0 0 0 1px #d2e9ef}
+.category-tile:nth-child(2) span{background:#e9f4ff}.category-tile:nth-child(3) span{background:#fff1dc}.category-tile:nth-child(4) span{background:#eee8ff}.category-tile:nth-child(5) span{background:#dff6eb}.category-tile:nth-child(6) span{background:#fff0e8}
+.category-tile small{max-width:290px}
+section:not(.hero){scroll-margin-top:95px}
+.title{letter-spacing:-.4px}
+.card,.about,.review-box,.privacy-box,.map-card,.donation-box{border-radius:18px}
+.contact{border:1px solid #dce9ed;border-radius:22px;background:linear-gradient(145deg,#fff,#f0f8fa);box-shadow:0 12px 30px #073b4c0d}
+.contact-form-wrap{max-width:760px;margin:26px auto 0;padding:clamp(17px,3vw,28px);background:#fff;border:1px solid #dce9ed;border-radius:18px;box-shadow:0 5px 18px #073b4c09}
+.contact-form input,.contact-form select,.contact-form textarea{border:1px solid #cbdde2;border-radius:11px;background:#fbfdfe;transition:border-color .18s,box-shadow .18s}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:#168aad;box-shadow:0 0 0 3px #168aad20;outline:none}
+footer{background:linear-gradient(110deg,#041f29,#073b4c);border-top:3px solid #ffd166}
+@media(min-width:761px){.hero{min-height:390px}.hero>p:first-of-type{font-size:clamp(20px,2.2vw,26px);font-weight:800;color:#ffd166}.hero .btn{margin-top:18px}.category-grid{gap:18px}}
+@media(max-width:760px){.hero{min-height:330px;text-align:center;padding:42px 17px;background:linear-gradient(180deg,#052d3af2 0%,#073b4cf0 60%,#073b4cc7 100%),url('./images/watafiti-survey-hero.svg') center/cover no-repeat}.hero h1{font-size:clamp(34px,9vw,46px)}.hero>p{text-align:center;margin:10px auto}.hero .btn{min-width:145px}.category-tile{min-height:150px}.contact{margin-left:10px;margin-right:10px}}
+@media(max-width:380px){.hero .btn{width:100%;max-width:290px;margin:6px auto}.hero{padding:34px 14px}}
+
 </style>
 </head>
 
