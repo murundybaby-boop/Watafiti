@@ -233,8 +233,13 @@ header{padding:8px 10px}.nav{display:block;text-align:center}.logo-area{justify-
 /* Start with categories only; reveal matching content when a category is chosen */
 body.home-categories > section:not(.hero):not(#vitengo){display:none}
 body.home-categories > .category-anchor{display:none}
+body.home-categories > .tools,body.home-categories > .category-tools{display:none}
+body.category-open > .category-tools{display:none}
+body.category-open.category-news > .category-tools{display:flex}
 #vitengo .category-back{display:none;margin:0 auto 18px}
 body.category-open #vitengo .category-back{display:inline-flex}
+#vitengo{scroll-margin-top:100px}
+@media(max-width:600px){.category-dashboard{margin:12px 10px 24px;padding:22px 14px;border-radius:18px}.category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.category-tile{min-height:140px;padding:15px 12px;border-radius:14px}.category-tile span{font-size:27px}.category-tile strong{font-size:14px;line-height:1.35}.category-tile small{font-size:12px;line-height:1.4}}
 
 .category-dashboard{max-width:1180px;margin:24px auto 34px;padding:26px 20px;background:linear-gradient(135deg,#f2fbfa,#fff);border:1px solid #d9eae7;border-radius:24px}
 .category-intro{text-align:center;color:#587078;max-width:680px;margin:0 auto 22px;line-height:1.7}
@@ -1135,33 +1140,46 @@ setSwahili();
   const groups={
     "#taarifa":["taarifa"],
     "#video":["video","mahojiano","picha"],
+    "#mahojiano":["video","mahojiano","picha"],
+    "#picha":["video","mahojiano","picha"],
     "#kichina":["kichina"],
     "#huduma":["surveyor","huduma"],
     "#kuhusu":["kuhusu","mmiliki","mitandao","donation","maoni","privacy","location"],
+    "#donation":["kuhusu","mmiliki","mitandao","donation","maoni","privacy","location"],
+    "#maoni":["kuhusu","mmiliki","mitandao","donation","maoni","privacy","location"],
+    "#privacy":["kuhusu","mmiliki","mitandao","donation","maoni","privacy","location"],
+    "#location":["kuhusu","mmiliki","mitandao","donation","maoni","privacy","location"],
     "#mawasiliano":["mawasiliano"]
   };
   const dashboard=document.getElementById("vitengo");
   if(!dashboard)return;
   document.body.classList.add("home-categories");
   const back=document.createElement("button");
-  back.type="button"; back.className="btn category-back"; back.textContent="← Rudi kwenye vipengele";
-  back.addEventListener("click",function(){
-    document.body.classList.remove("category-open");
-    document.body.classList.add("home-categories");
-    dashboard.scrollIntoView({behavior:"smooth",block:"start"});
-  });
+  back.type="button";
+  back.className="btn category-back";
+  back.textContent="← Rudi kwenye vipengele";
+  back.addEventListener("click",showDashboard);
   dashboard.insertBefore(back,dashboard.querySelector(".category-grid"));
+  function showDashboard(){
+    document.body.classList.remove("category-open","category-news");
+    document.body.classList.add("home-categories");
+    document.querySelectorAll("body > section").forEach(function(section){section.style.display="";});
+    dashboard.scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});
+    history.replaceState(null,"",location.pathname+location.search);
+  }
   function showGroup(hash){
     const ids=groups[hash];
     if(!ids)return false;
-    document.body.classList.remove("home-categories");
+    document.body.classList.remove("home-categories","category-news");
     document.body.classList.add("category-open");
+    if(hash==="#taarifa")document.body.classList.add("category-news");
     document.querySelectorAll("body > section").forEach(function(section){
       if(section.id!=="nyumbani"&&section.id!=="vitengo")section.style.display=ids.includes(section.id)?"":"none";
     });
     dashboard.style.display="";
-    const first=document.getElementById(ids[0]);
-    if(first)setTimeout(function(){first.scrollIntoView({behavior:"smooth",block:"start"});},40);
+    const requested=document.getElementById(hash.slice(1));
+    const first=(requested&&ids.includes(requested.id))?requested:document.getElementById(ids[0]);
+    if(first)setTimeout(function(){first.scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});},40);
     return true;
   }
   dashboard.querySelectorAll(".category-tile").forEach(function(tile){
@@ -1173,6 +1191,7 @@ setSwahili();
   document.querySelectorAll('#mainNavigation a[href^="#"]').forEach(function(link){
     link.addEventListener("click",function(event){
       const hash=link.getAttribute("href");
+      if(hash==="#nyumbani"){event.preventDefault();showDashboard();return;}
       if(showGroup(hash)){event.preventDefault();history.replaceState(null,"",hash);}
     });
   });
