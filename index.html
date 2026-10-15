@@ -40,19 +40,37 @@ header{background:#073b4c;color:#fff;position:sticky;top:0;z-index:1000;padding:
 .logo-area{display:flex;align-items:center;gap:9px;min-width:170px}
 .logo-area img{width:58px;height:58px;object-fit:contain;border-radius:10px}
 .logo-text{font-size:24px;font-weight:bold;letter-spacing:1px}
-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:2px}
-nav a{color:#fff;text-decoration:none;padding:7px 8px;font-size:14px;border-radius:6px}
-nav a:hover{background:#118ab2}
-.menu-toggle{display:none;border:1px solid #ffffff50;background:#ffffff12;color:#fff;border-radius:9px;padding:10px 15px;font:inherit;font-weight:700;cursor:pointer;min-height:44px}
+/* Modern, accessible WATAFITI navigation */
+header{background:rgba(5,45,58,.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 8px 24px rgba(0,20,28,.16);border-bottom:1px solid rgba(255,255,255,.12)}
+.nav{max-width:1320px;gap:16px}
+.logo-area{flex:0 0 auto}
+.logo-area img{border:1px solid rgba(255,255,255,.24);box-shadow:0 3px 12px rgba(0,0,0,.18)}
+.logo-text{letter-spacing:1.5px}
+nav{display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:center;gap:5px}
+nav a{position:relative;color:#f5fbfd;text-decoration:none;padding:9px 11px;font-size:13px;font-weight:700;border:1px solid transparent;border-radius:999px;transition:background .18s,border-color .18s,transform .18s;white-space:nowrap}
+nav a:hover,nav a:focus-visible{background:rgba(17,138,178,.28);border-color:rgba(255,255,255,.22);transform:translateY(-1px)}
+nav a[href="./admin.html"]{background:#ffd166;color:#17343d;border-color:#ffd166}
+nav a[href="./admin.html"]:hover{background:#ffe19a;border-color:#ffe19a}
+.menu-toggle{display:none;border:1px solid rgba(255,255,255,.3);background:linear-gradient(135deg,#ffffff1c,#ffffff0b);color:#fff;border-radius:12px;padding:11px 16px;font:inherit;font-weight:800;cursor:pointer;min-height:46px;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:background .2s,border-color .2s}
+.menu-toggle:hover{background:rgba(17,138,178,.32);border-color:#ffffff80}
+@media(min-width:761px) and (max-width:1080px){.nav{flex-wrap:wrap}.logo-area{margin:0 auto}header nav{justify-content:center;width:100%;padding:2px 0 4px}}
 @media(max-width:760px){
-  .menu-toggle{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin:4px auto 2px;min-width:150px}
-  header .nav{display:flex;flex-direction:column;align-items:stretch}
-  header .logo-area{justify-content:center;margin-bottom:4px}
-  header nav{display:none;width:100%;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:8px}
-  header nav.open{display:grid}
-  header nav a{font-size:14px;min-height:44px;padding:10px 6px}
+  header{padding:8px 12px}
+  .menu-toggle{display:inline-flex;align-items:center;justify-content:center;gap:9px;margin:6px auto 2px;min-width:160px}
+  header .nav{display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px}
+  header .logo-area{justify-content:flex-start;margin:0;min-width:0;gap:8px}
+  header .logo-area img{width:46px;height:46px}
+  header .logo-text{font-size:21px}
+  header .menu-toggle{grid-column:2;grid-row:1;margin:0}
+  header nav{display:none;grid-column:1/-1;width:100%;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:6px;padding:12px;background:rgba(0,18,25,.22);border:1px solid rgba(255,255,255,.12);border-radius:16px}
+  header nav.open{display:grid;animation:navReveal .18s ease-out}
+  header nav a{display:flex;align-items:center;justify-content:center;text-align:center;font-size:13px;min-height:46px;padding:10px 8px;border-radius:11px;background:rgba(255,255,255,.055);white-space:normal}
+  header nav a[href="./admin.html"]{background:#ffd166;color:#17343d}
 }
-@media(max-width:360px){header nav.open{grid-template-columns:1fr}.menu-toggle{width:100%}}
+@keyframes navReveal{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:420px){header .nav{grid-template-columns:1fr auto}.menu-toggle{min-width:0;padding:10px 12px}header nav{grid-template-columns:repeat(2,minmax(0,1fr));padding:9px;gap:6px}header nav a{font-size:12px;padding:9px 5px}}
+@media(max-width:340px){header .logo-text{font-size:18px}header .logo-area img{width:40px;height:40px}.menu-toggle{font-size:13px;padding:9px}header nav{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){header nav.open{animation:none}}
 .tools{max-width:1150px;margin:auto;padding:14px 18px 4px;display:flex;gap:9px;flex-wrap:wrap;justify-content:center}
 .tools input{flex:1;min-width:210px;max-width:650px;padding:12px;border:1px solid #c9c9c9;border-radius:9px;font-size:16px}
 .category-tools{max-width:1150px;margin:8px auto 0;padding:0 18px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}.category-tools label{font-weight:bold;color:#073b4c}.category-tools select{flex:1;min-width:210px;max-width:420px;padding:12px;border:1px solid #c9c9c9;border-radius:9px;background:#fff;font-size:16px}.category-tools .hint{color:#68777d;font-size:13px}
