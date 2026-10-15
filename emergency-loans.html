@@ -86,20 +86,23 @@ const amount=document.getElementById('amount');
 const fmt=n=>'TSh '+Number(n).toLocaleString('en-US');
 function updateEstimate(){const p=Number(amount.value)||0;const i=Math.round(p*.15);document.getElementById('principal').textContent=p?fmt(p):'—';document.getElementById('interest').textContent=p?fmt(i):'—';document.getElementById('total').textContent=p?fmt(p+i):'—';}
 amount.addEventListener('change',updateEstimate);
-form.addEventListener('submit',function(e){e.preventDefault();if(!form.reportValidity())return;
+form.addEventListener('submit',async function(e){e.preventDefault();if(!form.reportValidity())return;
 const d=new FormData(form);
-const msg='OMBI LA WATAFITI LOAN%0A' +
-'Jina: '+encodeURIComponent(d.get('fullName'))+'%0A'+
-'Namba ya simu: '+encodeURIComponent(d.get('phone'))+'%0A'+
-'Kiasi kinachoombwa: '+encodeURIComponent(fmt(d.get('amount')))+'%0A'+
-'Riba ya makadirio 15%: '+encodeURIComponent(fmt(Number(d.get('amount'))*.15))+'%0A'+
-'Jumla ya makadirio: '+encodeURIComponent(fmt(Number(d.get('amount'))*1.15))+'%0A'+
-'Chanzo cha kipato: '+encodeURIComponent(d.get('income'))+'%0A'+
-'Muda unaopendekezwa: '+encodeURIComponent(d.get('repayment'))+'%0A'+
-'Mkoa/eneo: '+encodeURIComponent(d.get('region'))+'%0A'+
-'Sababu ya mkopo: '+encodeURIComponent(d.get('purpose'));
-document.getElementById('formStatus').textContent='WhatsApp itafunguka ikiwa na maelezo ya ombi lako. Bonyeza Tuma ndani ya WhatsApp ili kulifikisha kwa WATAFITI.';
-window.open('https://wa.me/255624528944?text='+msg,'_blank','noopener,noreferrer');
+const button=form.querySelector('button[type="submit"]');
+const status=document.getElementById('formStatus');
+button.disabled=true;status.textContent='Inatuma ombi kwa mfumo...';
+try{
+const response=await fetch('https://zleflmeepyearrocaheg.supabase.co/rest/v1/loan_applications',{
+method:'POST',
+headers:{'apikey':'sb_publishable_0SA-j8i6kAJT69XO0T-gpA_WHWMaEcF','Content-Type':'application/json','Prefer':'return=minimal'},
+body:JSON.stringify({full_name:String(d.get('fullName')).trim(),phone:String(d.get('phone')).trim(),amount:Number(d.get('amount')),income_source:String(d.get('income')),repayment_period:String(d.get('repayment')),region:String(d.get('region')).trim(),purpose:String(d.get('purpose')).trim(),interest_rate:15,status:'new'})
+});
+if(!response.ok){const detail=await response.text();throw new Error(detail||'Ombi halijahifadhiwa.');}
+status.textContent='Ombi limepokelewa! WATAFITI wanaweza kuliona kwenye Admin Dashboard baada ya kuweka SQL ya maombi kwenye Supabase.';
+form.reset();updateEstimate();
+}catch(err){status.textContent='Imeshindikana kuhifadhi ombi. Hakikisha msimamizi ameendesha loan-applications.sql kwenye Supabase. Maelezo: '+err.message;}
+finally{button.disabled=false;}
+
 });
 })();
 </script>
