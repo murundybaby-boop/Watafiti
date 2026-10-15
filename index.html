@@ -230,6 +230,12 @@ header{padding:8px 10px}.nav{display:block;text-align:center}.logo-area{justify-
 
 
 /* Category-first homepage navigation */
+/* Start with categories only; reveal matching content when a category is chosen */
+body.home-categories > section:not(.hero):not(#vitengo){display:none}
+body.home-categories > .category-anchor{display:none}
+#vitengo .category-back{display:none;margin:0 auto 18px}
+body.category-open #vitengo .category-back{display:inline-flex}
+
 .category-dashboard{max-width:1180px;margin:24px auto 34px;padding:26px 20px;background:linear-gradient(135deg,#f2fbfa,#fff);border:1px solid #d9eae7;border-radius:24px}
 .category-intro{text-align:center;color:#587078;max-width:680px;margin:0 auto 22px;line-height:1.7}
 .category-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
@@ -298,8 +304,8 @@ header{padding:8px 10px}.nav{display:block;text-align:center}.logo-area{justify-
   <p class="category-intro">Tumeweka maudhui na huduma katika vipengele rahisi. Fungua kipengele unachohitaji ili uone taarifa zake.</p>
   <div class="category-grid">
     <a class="category-tile" href="#taarifa"><span>📰</span><strong>Taarifa na Habari</strong><small>Makala, taarifa mpya na habari</small></a>
-    <a class="category-tile" href="#media"><span>🎬</span><strong>Video, Picha na Mahojiano</strong><small>Vipindi, picha na mahojiano</small></a>
-    <a class="category-tile" href="#mafunzo"><span>🎓</span><strong>Elimu na Mafunzo</strong><small>Kichina, elimu na mafunzo</small></a>
+    <a class="category-tile" href="#video"><span>🎬</span><strong>Video, Picha na Mahojiano</strong><small>Vipindi, picha na mahojiano</small></a>
+    <a class="category-tile" href="#kichina"><span>🎓</span><strong>Elimu na Mafunzo</strong><small>Kichina, elimu na mafunzo</small></a>
     <a class="category-tile" href="#huduma"><span>🛠️</span><strong>Huduma Zetu</strong><small>Survey, ujenzi, teknolojia na nyingine</small></a>
     <a class="category-tile" href="#kuhusu"><span>👤</span><strong>Kuhusu WATAFITI</strong><small>Wasifu na taarifa za WATAFITI</small></a>
     <a class="category-tile" href="#mawasiliano"><span>📞</span><strong>Mawasiliano</strong><small>Wasiliana nasi au tuma ombi</small></a>
@@ -1123,5 +1129,55 @@ setSwahili();
   });
 })();
 </script>
+
+<script>
+(function(){
+  const groups={
+    "#taarifa":["taarifa"],
+    "#video":["video","mahojiano","picha"],
+    "#kichina":["kichina"],
+    "#huduma":["surveyor","huduma"],
+    "#kuhusu":["kuhusu","mmiliki","mitandao","donation","maoni","privacy","location"],
+    "#mawasiliano":["mawasiliano"]
+  };
+  const dashboard=document.getElementById("vitengo");
+  if(!dashboard)return;
+  document.body.classList.add("home-categories");
+  const back=document.createElement("button");
+  back.type="button"; back.className="btn category-back"; back.textContent="← Rudi kwenye vipengele";
+  back.addEventListener("click",function(){
+    document.body.classList.remove("category-open");
+    document.body.classList.add("home-categories");
+    dashboard.scrollIntoView({behavior:"smooth",block:"start"});
+  });
+  dashboard.insertBefore(back,dashboard.querySelector(".category-grid"));
+  function showGroup(hash){
+    const ids=groups[hash];
+    if(!ids)return false;
+    document.body.classList.remove("home-categories");
+    document.body.classList.add("category-open");
+    document.querySelectorAll("body > section").forEach(function(section){
+      if(section.id!=="nyumbani"&&section.id!=="vitengo")section.style.display=ids.includes(section.id)?"":"none";
+    });
+    dashboard.style.display="";
+    const first=document.getElementById(ids[0]);
+    if(first)setTimeout(function(){first.scrollIntoView({behavior:"smooth",block:"start"});},40);
+    return true;
+  }
+  dashboard.querySelectorAll(".category-tile").forEach(function(tile){
+    tile.addEventListener("click",function(event){
+      const hash=tile.getAttribute("href");
+      if(showGroup(hash)){event.preventDefault();history.replaceState(null,"",hash);}
+    });
+  });
+  document.querySelectorAll('#mainNavigation a[href^="#"]').forEach(function(link){
+    link.addEventListener("click",function(event){
+      const hash=link.getAttribute("href");
+      if(showGroup(hash)){event.preventDefault();history.replaceState(null,"",hash);}
+    });
+  });
+})();
+</script>
+
 </body>
 </html>
