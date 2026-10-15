@@ -90,6 +90,7 @@ label{display:block;margin:8px 0 14px}button{border:0;background:linear-gradient
 </section>
 <section class="panel hidden" id="loanApplicationsPanel">
 <div class="topline"><div><h2>Maombi ya WATAFITI LOAN</h2><p class="hint">Ona maombi, kagua taarifa na wasiliana na mwombaji kwa WhatsApp.</p></div><button id="refreshLoanApplicationsBtn" class="secondary" type="button">↻ Pakia maombi</button><button id="exportLoanApplicationsBtn" class="gold" type="button">⬇ Pakua CSV</button></div>
+<div class="stats-grid" id="loanReportStats" style="margin:16px 0"><div class="stat-card"><div class="stat-label">Maombi yote</div><div class="stat-value" id="loanStatTotal">0</div></div><div class="stat-card"><div class="stat-label">Maombi mapya</div><div class="stat-value" id="loanStatNew">0</div></div><div class="stat-card"><div class="stat-label">Yaliyoidhinishwa</div><div class="stat-value" id="loanStatApproved">0</div></div><div class="stat-card"><div class="stat-label">Kiasi kilichoombwa (TSh)</div><div class="stat-value" id="loanStatAmount">0</div></div><div class="stat-card"><div class="stat-label">Maombi mwezi huu</div><div class="stat-value" id="loanStatMonth">0</div></div><div class="stat-card"><div class="stat-label">Yaliyokataliwa</div><div class="stat-value" id="loanStatDeclined">0</div></div></div><p class="hint">Muhtasari huu huhesabu maombi yaliyopakiwa kutoka kwenye hifadhidata.</p>
 <div class="row"><label>Tafuta ombi<input id="loanApplicationSearch" type="search" placeholder="Tafuta jina, simu, eneo..."></label><label>Hali<select id="loanApplicationStatusFilter"><option value="all">Maombi yote</option><option value="new">Mapya</option><option value="reviewing">Yanapitiwa</option><option value="answered">Yamejibiwa</option><option value="approved">Yameidhinishwa</option><option value="declined">Yamekataliwa</option></select></label></div>
 <p id="loanApplicationCount" class="hint" aria-live="polite"></p><div id="loanApplicationList" class="article-list"><p class="empty">Inapakia maombi ya mikopo...</p></div>
 </section>
@@ -195,6 +196,9 @@ async function loadLoanApplications(){
  catch(e){host.textContent="";const p=document.createElement("p");p.className="empty";p.textContent="Maombi hayajapakiwa. Hakikisha loan-applications.sql imeendeshwa kwenye Supabase na akaunti hii ipo kwenye admin_users. "+e.message;host.appendChild(p);el("loanApplicationCount").textContent="";}
 }
 function renderLoanApplications(){
+ const now=new Date();const monthKey=now.getFullYear()+"-"+String(now.getMonth()+1).padStart(2,"0");
+ const thisMonth=allLoanApplications.filter(r=>{const d=new Date(r.created_at);return !Number.isNaN(d.getTime())&&(d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0"))===monthKey;}).length;
+ setStat("loanStatTotal",allLoanApplications.length);setStat("loanStatNew",allLoanApplications.filter(r=>r.status==="new").length);setStat("loanStatApproved",allLoanApplications.filter(r=>r.status==="approved").length);setStat("loanStatDeclined",allLoanApplications.filter(r=>r.status==="declined").length);setStat("loanStatMonth",thisMonth);setStat("loanStatAmount",allLoanApplications.reduce((sum,r)=>sum+(Number(r.amount)||0),0).toLocaleString("en-US"));
  const host=el("loanApplicationList");if(!host)return;const q=(el("loanApplicationSearch").value||"").trim().toLocaleLowerCase();const status=el("loanApplicationStatusFilter").value;
  const rows=allLoanApplications.filter(r=>[r.full_name,r.phone,r.region,r.purpose,r.income_source].some(v=>(v||"").toLocaleLowerCase().includes(q))&&(status==="all"||r.status===status));
  el("loanApplicationCount").textContent="Inaonyesha "+rows.length+" kati ya maombi "+allLoanApplications.length+" · Mapya: "+allLoanApplications.filter(r=>r.status==="new").length;
@@ -220,7 +224,7 @@ el("exportLoanApplicationsBtn").addEventListener("click",function(){
  const columns=[["Tarehe","created_at"],["Jina","full_name"],["Simu","phone"],["Kiasi TSh","amount"],["Chanzo cha kipato","income_source"],["Muda wa marejesho","repayment_period"],["Eneo","region"],["Riba asilimia","interest_rate"],["Hali","status"],["Sababu","purpose"],["Jibu la admin","admin_reply"]];
  const csvCell=value=>'"'+String(value==null?"":value).replace(/"/g,'""')+'"';
  const lines=[columns.map(c=>csvCell(c[0])).join(",")].concat(allLoanApplications.map(row=>columns.map(c=>csvCell(row[c[1]])).join(",")));
- const blob=new Blob(["\\uFEFF"+lines.join("\\r\\n")],{type:"text/csv;charset=utf-8;"});
+ const blob=new Blob([String.fromCharCode(65279)+lines.join(String.fromCharCode(13,10))],{type:"text/csv;charset=utf-8;"});
  const url=URL.createObjectURL(blob);const link=document.createElement("a");link.href=url;link.download="WATAFITI-maombi-mikopo.csv";document.body.appendChild(link);link.click();link.remove();URL.revokeObjectURL(url);
 });
 el("contactSearch").addEventListener("input",filterContactMessages);el("contactStatusFilter").addEventListener("change",filterContactMessages);
