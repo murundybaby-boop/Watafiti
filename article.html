@@ -136,7 +136,7 @@
    const h=document.createElement("h1");h.textContent=title;host.appendChild(h);
    const date=document.createElement("p");date.className="date";date.textContent=a.created_at?new Date(a.created_at).toLocaleDateString("sw-TZ",{day:"numeric",month:"long",year:"numeric"}):"";host.appendChild(date);
    const readingMeta=document.createElement("p");readingMeta.className="date reading-meta";
-   const wordCount=(a.content||"").trim().split(/\\s+/).filter(Boolean).length;
+   const wordCount=(a.content||"").trim().split(/\s+/).filter(Boolean).length;
    const readingMinutes=Math.max(1,Math.ceil(wordCount/200));
    readingMeta.textContent=(wordCount.toLocaleString("sw-TZ")+" maneno • Dakika "+readingMinutes+" za kusoma");
    readingMeta.setAttribute("aria-label","Makadirio ya muda wa kusoma");
