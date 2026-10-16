@@ -1006,6 +1006,13 @@ setSwahili();
         });
         actions.appendChild(read);actions.appendChild(share);card.appendChild(actions);articleHost.appendChild(card);
       });
+      /* Keep the category list tidy and predictable as new categories are published. */
+      const allCategoriesOption=categoryFilter.querySelector('option[value=""]');
+      const categoryOptions=Array.from(categoryFilter.options).filter(option=>option.value!=="");
+      categoryOptions.sort((a,b)=>a.textContent.localeCompare(b.textContent,document.documentElement.lang==="en"?"en":"sw"));
+      categoryOptions.forEach(option=>categoryFilter.appendChild(option));
+      if(allCategoriesOption) categoryFilter.insertBefore(allCategoriesOption,categoryFilter.firstChild);
+
       /* Reapply any active search to articles loaded asynchronously from the cloud. */
       const searchInput=document.getElementById("searchInput");
       if(searchInput && searchInput.value.trim()) searchInput.dispatchEvent(new Event("input"));
