@@ -682,6 +682,7 @@ footer{background:linear-gradient(110deg,#041f29,#073b4c);border-top:3px solid #
 
 <section id="mitandao">
 <h2 class="title" data-sw="🌐 Mitandao ya Kijamii" data-en="🌐 Social Media">🌐 Mitandao ya Kijamii</h2>
+<p style="max-width:760px;margin:-10px auto 22px;text-align:center;color:#526b75" data-sw="Tufuate kwenye mitandao yetu ili upate taarifa, video, mahojiano na elimu mpya. Bonyeza mtandao unaotumia." data-en="Follow us for news, videos, interviews and new learning content. Choose your preferred platform.">Tufuate kwenye mitandao yetu ili upate taarifa, video, mahojiano na elimu mpya. Bonyeza mtandao unaotumia.</p>
 <div class="social">
 <a href="https://www.facebook.com/WATAFITITV" target="_blank" rel="noopener noreferrer">Facebook: WATAFITI TV</a>
 <a href="https://www.instagram.com/WATAFITI205/" target="_blank" rel="noopener noreferrer">Instagram: WATAFITI205</a>
@@ -1010,7 +1011,12 @@ setSwahili();
             else {prompt("Nakili kiungo hiki cha makala:",url);}
           }catch(error){if(error&&error.name!=="AbortError")prompt("Nakili kiungo hiki cha makala:",url);}
         });
-        actions.appendChild(read);actions.appendChild(share);card.appendChild(actions);articleHost.appendChild(card);
+        const whatsappShare=document.createElement("a");whatsappShare.className="btn";whatsappShare.style="background:#16834a;color:#fff";whatsappShare.target="_blank";whatsappShare.rel="noopener noreferrer";whatsappShare.textContent="WhatsApp";
+        const articleUrl=location.origin+location.pathname.replace(/[^/]*$/,"article.html")+"?id="+encodeURIComponent(a.id);
+        whatsappShare.href="https://wa.me/?text="+encodeURIComponent((a.title||"Makala ya WATAFITI")+" — "+articleUrl);
+        const facebookShare=document.createElement("a");facebookShare.className="btn";facebookShare.style="background:#1877f2;color:#fff";facebookShare.target="_blank";facebookShare.rel="noopener noreferrer";facebookShare.textContent="Facebook";
+        facebookShare.href="https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(articleUrl);
+        actions.appendChild(read);actions.appendChild(share);actions.appendChild(whatsappShare);actions.appendChild(facebookShare);card.appendChild(actions);articleHost.appendChild(card);
       });
       /* Keep the category list tidy and predictable as new categories are published. */
       const allCategoriesOption=categoryFilter.querySelector('option[value=""]');
