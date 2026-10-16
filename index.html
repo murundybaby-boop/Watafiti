@@ -323,6 +323,16 @@ footer{background:linear-gradient(110deg,#041f29,#073b4c);border-top:3px solid #
 @media(max-width:620px){.hero-showcase{padding:28px 15px 0}.hero-showcase-inner{grid-template-columns:1fr;gap:28px;padding-bottom:30px}.hero-brandline{margin-bottom:18px}.hero-brandline img{width:52px;height:52px}.hero-showcase h1{font-size:clamp(43px,13vw,64px);margin-top:16px}.hero-visual{min-height:320px;margin:0 10px}.hero-photo-frame{width:min(82%,310px);height:335px}.hero-floating-logo{left:-4px;top:24px}.hero-orbit-one{width:310px;height:310px;right:0;top:4px}.hero-orbit-two{width:350px;height:350px;right:-14px;top:-16px}.hero-service-strip{gap:8px;padding-bottom:18px}.hero-service-strip a{padding:11px 9px;grid-template-columns:34px 1fr;column-gap:8px}.hero-service-strip a>span{width:34px;height:34px;font-size:17px}.hero-service-strip strong{font-size:12px}.hero-service-strip small{font-size:10px}.hero-actions .btn{flex:1 1 145px}}
 @media(max-width:360px){.hero-service-strip{grid-template-columns:1fr}.hero-visual{margin:0}.hero-photo-frame{width:84%;height:310px}.hero-trust-row span{font-size:10px}}
 
+
+/* Mawasiliano: njia za haraka zilizo wazi na rahisi kutumia */
+.contact-quick-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:900px;margin:22px auto 18px;text-align:left}
+.contact-quick-link{display:flex;align-items:center;gap:13px;min-width:0;padding:16px;border:1px solid #cfe2e8;border-radius:15px;background:linear-gradient(135deg,#fff 0%,#f2fafc 100%);color:#123b49;text-decoration:none;box-shadow:0 5px 16px #0637460d}
+.contact-quick-link>span:first-child{display:grid;place-items:center;flex:0 0 44px;width:44px;height:44px;border-radius:12px;background:#e0f4f7;font-size:23px}
+.contact-quick-link>span:last-child{display:grid;gap:2px;min-width:0}
+.contact-quick-link strong{font-size:15px}.contact-quick-link small{font-size:12px;color:#526b75;overflow-wrap:anywhere}
+.contact-quick-link:hover{border-color:#16899a;transform:translateY(-2px)}
+.contact-extra-email{font-size:13px;overflow-wrap:anywhere}.contact-extra-email a{color:#087f8c;font-weight:700}
+@media(max-width:520px){.contact-quick-links{grid-template-columns:1fr;gap:9px;margin:18px 0}.contact-quick-link{padding:13px}.contact-quick-link>span:first-child{flex-basis:40px;width:40px;height:40px}}
 </style>
 </head>
 
@@ -415,11 +425,13 @@ footer{background:linear-gradient(110deg,#041f29,#073b4c);border-top:3px solid #
 <section class="contact" id="mawasiliano">
 <h2 class="title" data-sw="Mawasiliano" data-en="Contact Us">Mawasiliano</h2>
 <p data-sw="Kwa huduma, mahojiano, matangazo au maelezo zaidi, wasiliana nasi." data-en="For services, interviews, advertising or more information, contact us.">Kwa huduma, mahojiano, matangazo au maelezo zaidi, wasiliana nasi.</p>
-<p>📱 <strong>0624528944</strong></p>
-<p>📧 <strong>Murundybaby@gmail.com</strong></p>
-<p>📧 <strong>Yuehanbaby@gmail.com</strong></p>
-<p>📧 <strong>Johnmarwa8114@gmail.com</strong></p>
-<p>📍 Moshi, Kilimanjaro, Tanzania</p>
+<div class="contact-quick-links" aria-label="Njia za haraka za mawasiliano">
+<a class="contact-quick-link" href="tel:+255624528944"><span aria-hidden="true">📞</span><span><strong>Piga simu</strong><small>0624528944</small></span></a>
+<a class="contact-quick-link" href="https://wa.me/255624528944?text=Habari%20WATAFITI%2C%20nahitaji%20huduma." target="_blank" rel="noopener noreferrer"><span aria-hidden="true">💬</span><span><strong>WhatsApp</strong><small>Tuma ujumbe wa haraka</small></span></a>
+<a class="contact-quick-link" href="mailto:Murundybaby@gmail.com"><span aria-hidden="true">✉️</span><span><strong>Barua pepe</strong><small>Murundybaby@gmail.com</small></span></a>
+<a class="contact-quick-link" href="https://www.google.com/maps/search/?api=1&query=Moshi%2C%20Kilimanjaro%2C%20Tanzania" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">📍</span><span><strong>Mahali tulipo</strong><small>Moshi, Kilimanjaro, Tanzania · Fungua ramani</small></span></a>
+</div>
+<p class="contact-extra-email">Barua pepe nyingine: <a href="mailto:Yuehanbaby@gmail.com">Yuehanbaby@gmail.com</a> · <a href="mailto:Johnmarwa8114@gmail.com">Johnmarwa8114@gmail.com</a></p>
 <div class="contact-form-wrap">
 <h3 style="margin:22px 0 8px">✉️ Tuma Ujumbe / Send a Message</h3>
 <p style="font-size:14px">Jaza fomu hapa chini. Ujumbe utahifadhiwa na tutapokea taarifa kwa barua pepe.</p>
