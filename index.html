@@ -405,7 +405,6 @@ footer{background:linear-gradient(110deg,#041f29,#073b4c);border-top:3px solid #
   <div class="category-grid">
     <a class="category-tile loan-category-tile" href="./emergency-loans.html"><span>💳</span><strong>WATAFITI LOAN</strong><small>Maelezo ya mikopo na namna ya kuulizia</small><b>Fungua huduma →</b></a>
     <a class="category-tile" href="#taarifa"><span>📰</span><strong>Taarifa na Habari</strong><small>Makala, taarifa mpya na habari</small></a>
-    <a class="category-tile" href="#video"><span>🎬</span><strong>Video, Picha na Mahojiano</strong><small>Vipindi, picha na mahojiano</small></a>
     <a class="category-tile" href="#kichina"><span>🎓</span><strong>Elimu na Mafunzo</strong><small>Kichina, elimu na mafunzo</small></a>
     <a class="category-tile" href="#huduma"><span>🛠️</span><strong>Huduma Zetu</strong><small>Survey, ujenzi, teknolojia na nyingine</small></a>
     <a class="category-tile" href="#kuhusu"><span>👤</span><strong>Kuhusu WATAFITI</strong><small>Wasifu na taarifa za WATAFITI</small></a>
@@ -466,18 +465,6 @@ footer{background:linear-gradient(110deg,#041f29,#073b4c);border-top:3px solid #
 </div>
 </section>
 
-<section id="video">
-<h2 class="title" data-sw="🎥 Video Zetu" data-en="🎥 Our Videos">🎥 Video Zetu</h2>
-<div class="news">
-<div class="card"><h3>WATAFITI TV</h3><p data-sw="Tazama video, vipindi na maudhui mbalimbali ya WATAFITI TV." data-en="Watch videos, programs and content from WATAFITI TV.">Tazama video, vipindi na maudhui mbalimbali ya WATAFITI TV.</p>
-<a class="btn" href="https://youtube.com/@watafiti" target="_blank" rel="noopener">▶️ YouTube</a>
-<a class="btn" href="https://vm.tiktok.com/ZS9AumT8yMRd5-7AMgZ/" target="_blank" rel="noopener">🎵 TikTok</a>
-<a class="btn" href="https://www.facebook.com/WATAFITITV" target="_blank" rel="noopener">📘 Facebook</a>
-</div>
-<div class="card"><h3 data-sw="Video za Elimu" data-en="Educational Videos">Video za Elimu</h3><p data-sw="Video zinazolenga kuongeza maarifa na uelewa wa mambo mbalimbali." data-en="Videos designed to increase knowledge and understanding of different subjects.">Video zinazolenga kuongeza maarifa na uelewa wa mambo mbalimbali.</p></div>
-</div>
-</section>
-
 <section id="mahojiano">
 <h2 class="title" data-sw="🎤 Mahojiano" data-en="🎤 Interviews">🎤 Mahojiano</h2>
 <div class="card">
@@ -511,16 +498,6 @@ footer{background:linear-gradient(110deg,#041f29,#073b4c);border-top:3px solid #
 <button class="btn" id="interviewSubmit" type="submit">Tuma Ombi la Mahojiano</button>
 <p id="interviewRequestStatus" role="status" aria-live="polite"></p>
 </form>
-</div>
-</section>
-
-<section id="picha">
-<h2 class="title" data-sw="📸 Picha" data-en="📸 Photos">📸 Picha</h2>
-<div class="gallery">
-<div class="card">
-<h3 data-sw="Gallery ya WATAFITI" data-en="WATAFITI Gallery">Gallery ya WATAFITI</h3>
-<p data-sw="Sehemu hii itatumika kuweka picha za shughuli, mahojiano, safari na matukio ya WATAFITI." data-en="This section will display photos of WATAFITI activities, interviews, trips and events.">Sehemu hii itatumika kuweka picha za shughuli, mahojiano, safari na matukio ya WATAFITI.</p>
-</div>
 </div>
 </section>
 
@@ -1253,9 +1230,7 @@ setSwahili();
 (function(){
   const groups={
     "#taarifa":["taarifa"],
-    "#video":["video","mahojiano","picha"],
-    "#mahojiano":["video","mahojiano","picha"],
-    "#picha":["video","mahojiano","picha"],
+    "#mahojiano":["mahojiano"],
     "#kichina":["kichina"],
     "#huduma":["surveyor","huduma"],
     "#kuhusu":["kuhusu","mmiliki","mitandao","donation","maoni","privacy","location"],
