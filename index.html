@@ -1047,8 +1047,10 @@ setSwahili();
   const status=document.getElementById("contactFormStatus");
   form.addEventListener("submit",async function(event){
     event.preventDefault();
-    if(!form.reportValidity())return;
+    if(button.disabled||!form.reportValidity())return;
     button.disabled=true;
+    form.setAttribute("aria-busy","true");
+    button.setAttribute("aria-disabled","true");
     button.textContent="Inatuma... / Sending...";
     status.textContent="";
     status.replaceChildren();
@@ -1092,6 +1094,8 @@ setSwahili();
       status.appendChild(document.createElement("br"));
       status.appendChild(fallback);
     }finally{
+      form.removeAttribute("aria-busy");
+      button.removeAttribute("aria-disabled");
       button.disabled=false;
       button.textContent="Tuma Ujumbe / Send Message";
     }
