@@ -83,6 +83,7 @@
 <div id="actions" hidden>
 <button class="btn" id="share">🔗 Shiriki makala</button>
 <a class="btn" id="shareWhatsApp" href="#" target="_blank" rel="noopener noreferrer" style="background:#16834a;color:#fff">📲 Shiriki WhatsApp</a>
+<a class="btn" id="shareFacebook" href="#" target="_blank" rel="noopener noreferrer" style="background:#1877f2;color:#fff">📘 Shiriki Facebook</a>
 <button class="btn dark" id="copy">Nakili kiungo</button>
 <a class="btn dark" href="./#taarifa">📰 Makala nyingine</a>
 <div class="reader-tools" aria-label="Mipangilio ya kusoma"><span class="reader-label">Ukubwa wa maandishi:</span><button class="btn dark" id="fontDown" type="button" aria-label="Punguza ukubwa wa maandishi">A−</button><button class="btn dark" id="fontUp" type="button" aria-label="Ongeza ukubwa wa maandishi">A+</button><button class="btn" id="fontReset" type="button">Rudisha kawaida</button></div>
@@ -101,7 +102,9 @@
  const progressBar=document.getElementById("readingProgressBar");
  const shareUrl=location.origin+location.pathname+(id?"?id="+encodeURIComponent(id):"");
  const whatsappShare=document.getElementById("shareWhatsApp");
+ const facebookShare=document.getElementById("shareFacebook");
  if(whatsappShare)whatsappShare.href="https://wa.me/?text="+encodeURIComponent("WATAFITI: "+shareUrl);
+ if(facebookShare)facebookShare.href="https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(shareUrl);
  function meta(name,content,property){
    let el=document.querySelector(property?'meta[property="'+name+'"]':'meta[name="'+name+'"]');
    if(!el){el=document.createElement("meta");if(property)el.setAttribute("property",name);else el.setAttribute("name",name);document.head.appendChild(el);}
@@ -124,6 +127,7 @@
    const a=rows[0], title=a.title||"Makala ya WATAFITI", description=(a.content||"Soma makala kutoka WATAFITI.").replace(/\s+/g," ").slice(0,180);
    document.title=title+" | WATAFITI";
    if(whatsappShare)whatsappShare.href="https://wa.me/?text="+encodeURIComponent(title+" — WATAFITI\n\n"+description+"\n\n"+shareUrl);
+   if(facebookShare)facebookShare.href="https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(shareUrl);
    meta("description",description,false);
    meta("og:title",title,true);meta("og:description",description,true);meta("og:url",shareUrl,true);
    meta("twitter:title",title,false);meta("twitter:description",description,false);
