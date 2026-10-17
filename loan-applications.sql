@@ -14,13 +14,32 @@ create table if not exists public.loan_applications (
  created_at timestamptz not null default now(),
  updated_at timestamptz not null default now()
 );
+-- Extra fields for the applicant's proposed collateral. Existing rows remain valid.
+alter table public.loan_applications add column if not exists collateral_type text;
+alter table public.loan_applications add column if not exists collateral_description text;
+alter table public.loan_applications add column if not exists collateral_image_path text;
+alter table public.loan_applications drop constraint if exists loan_applications_collateral_type_check;
+alter table public.loan_applications add constraint loan_applications_collateral_type_check
+ check (collateral_type is null or collateral_type in ('Simu ya mkononi','Laptop/Kompyuta','Televisheni','Tableti/Kamera','Saa/Vito vya thamani','Kifaa cha nyumbani','Nyingine'));
+alter table public.loan_applications drop constraint if exists loan_applications_collateral_description_check;
+alter table public.loan_applications add constraint loan_applications_collateral_description_check
+ check (collateral_description is null or char_length(collateral_description) between 5 and 500);
+alter table public.loan_applications drop constraint if exists loan_applications_collateral_image_path_check;
+alter table public.loan_applications add constraint loan_applications_collateral_image_path_check
+ check (collateral_image_path is null or char_length(collateral_image_path) between 1 and 500);
+
 alter table public.loan_applications enable row level security;
 revoke all on public.loan_applications from anon, authenticated;
 grant insert on public.loan_applications to anon;
 grant usage, select on sequence public.loan_applications_id_seq to anon;
 grant select, update on public.loan_applications to authenticated;
 drop policy if exists "WATAFITI public submit loan application" on public.loan_applications;
-create policy "WATAFITI public submit loan application" on public.loan_applications for insert to anon with check (status='new' and interest_rate in (10,20,30,40) and amount between 10000 and 150000 and amount % 5000 = 0);
+create policy "WATAFITI public submit loan application" on public.loan_applications for insert to anon with check (
+ status='new' and interest_rate in (10,20,30,40) and amount between 10000 and 150000 and amount % 5000 = 0
+ and collateral_type in ('Simu ya mkononi','Laptop/Kompyuta','Televisheni','Tableti/Kamera','Saa/Vito vya thamani','Kifaa cha nyumbani','Nyingine')
+ and char_length(collateral_description) between 5 and 500
+ and collateral_image_path is not null and char_length(collateral_image_path) between 1 and 500
+);
 drop policy if exists "WATAFITI admins read loan applications" on public.loan_applications;
 create policy "WATAFITI admins read loan applications" on public.loan_applications for select to authenticated using (exists(select 1 from public.admin_users where user_id=auth.uid()));
 drop policy if exists "WATAFITI admins update loan applications" on public.loan_applications;
@@ -31,3 +50,28 @@ alter table public.loan_applications add constraint loan_applications_amount_che
 alter table public.loan_applications drop constraint if exists loan_applications_interest_rate_check;
 alter table public.loan_applications add constraint loan_applications_interest_rate_check check (interest_rate in (10,20,30,40));
 create index if not exists loan_applications_created_at_idx on public.loan_applications(created_at desc);
+
+
+-- Private bucket for collateral photos. Photos are not publicly readable.
+insert into storage.buckets (id,name,public,file_size_limit,allowed_mime_types)
+values ('loan-collateral','loan-collateral',false,5242880,array['image/jpeg','image/png','image/webp'])
+on conflict (id) do update set
+ public=false,
+ file_size_limit=5242880,
+ allowed_mime_types=array['image/jpeg','image/png','image/webp'];
+
+drop policy if exists "WATAFITI public upload loan collateral" on storage.objects;
+create policy "WATAFITI public upload loan collateral"
+on storage.objects for insert to anon
+with check (
+ bucket_id='loan-collateral'
+ and (storage.extension(name) = any (array['jpg','jpeg','png','webp']))
+);
+
+drop policy if exists "WATAFITI admins read loan collateral" on storage.objects;
+create policy "WATAFITI admins read loan collateral"
+on storage.objects for select to authenticated
+using (
+ bucket_id='loan-collateral'
+ and exists (select 1 from public.admin_users where user_id=auth.uid())
+);
