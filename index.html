@@ -912,6 +912,12 @@ items[i].textContent=items[i].getAttribute("data-sw");
 }
 document.documentElement.lang="sw";
 document.getElementById("searchInput").placeholder="🔎 Tafuta kwenye WATAFITI...";
+document.querySelectorAll("#supabaseArticles .article-card-actions").forEach(function(actions){
+var buttons=actions.querySelectorAll("button");
+if(buttons[0])buttons[0].textContent="Soma makala yote";
+if(buttons[1])buttons[1].textContent="Shiriki makala";
+});
+document.getElementById("searchInput").dispatchEvent(new Event("input"));
 localStorage.setItem("watafitiLanguage","sw");
 }
 
@@ -923,6 +929,12 @@ items[i].textContent=items[i].getAttribute("data-en");
 }
 document.documentElement.lang="en";
 document.getElementById("searchInput").placeholder="🔎 Search WATAFITI...";
+document.querySelectorAll("#supabaseArticles .article-card-actions").forEach(function(actions){
+var buttons=actions.querySelectorAll("button");
+if(buttons[0])buttons[0].textContent="Read full article";
+if(buttons[1])buttons[1].textContent="Share article";
+});
+document.getElementById("searchInput").dispatchEvent(new Event("input"));
 localStorage.setItem("watafitiLanguage","en");
 }
 
