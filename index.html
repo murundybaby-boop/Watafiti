@@ -362,6 +362,27 @@ footer{background:linear-gradient(110deg,#041f29,#073b4c);border-top:3px solid #
 @media(max-width:520px){.home-spotlight{width:calc(100% - 22px);padding:15px;margin:22px auto;border-radius:18px}.home-spotlight-heading{margin-bottom:17px}.home-spotlight-heading p{font-size:14px}.home-loan-feature{align-items:flex-start;gap:12px;padding:17px 14px;border-radius:16px}.home-loan-icon{flex-basis:48px;width:48px;height:48px;font-size:25px;border-radius:14px}.home-loan-copy{gap:7px}.home-loan-copy strong{font-size:24px}.home-loan-copy>span:not(.home-loan-badge){font-size:13px}.home-loan-copy small{font-size:12px;padding:10px}.home-loan-arrow{display:none}.home-quick-services{gap:9px}.home-quick-card{padding:13px;border-radius:13px}.home-quick-icon{width:38px;height:38px;font-size:20px;margin-bottom:9px}.home-quick-card strong{font-size:13px}.home-quick-card small{font-size:11px}.home-quick-link{font-size:11px;padding-top:11px}}
 @media(prefers-reduced-motion:reduce){.home-loan-feature,.home-quick-card{transition:none}}
 
+
+/* Homepage category tiles: make every main section feel like a featured service */
+.category-dashboard .category-grid{align-items:stretch;gap:16px}
+.category-dashboard .category-tile{isolation:isolate;min-height:190px;padding:20px;gap:10px;border:1px solid #d7e6ea;border-radius:20px;background:radial-gradient(circle at 100% 0%,var(--tile-glow,#d9f1e7) 0,transparent 42%),linear-gradient(145deg,#fff 0%,var(--tile-bg,#f3fafb) 100%);box-shadow:0 8px 22px rgba(7,59,76,.09);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.category-dashboard .category-tile:after{width:125px;height:125px;right:-34px;bottom:-43px;background:var(--tile-glow,#d9f1e7);opacity:.42}
+.category-dashboard .category-tile>span{width:54px;height:54px;flex:0 0 54px;border-radius:16px;font-size:29px;background:var(--tile-icon,#e4f3f7);box-shadow:inset 0 0 0 1px #ffffffb0,0 5px 13px #073b4c0c}
+.category-dashboard .category-tile>strong{font-size:18px;line-height:1.3;color:var(--tile-title,#073b4c)}
+.category-dashboard .category-tile>small{font-size:13px;line-height:1.55;color:#536b73}
+.category-dashboard .category-tile>b{display:inline-flex;align-items:center;gap:6px;margin-top:auto;padding-top:4px;color:var(--tile-action,#087e8b);font-size:12px;font-weight:900}
+.category-dashboard .category-tile:not(.loan-category-tile):hover{transform:translateY(-4px);border-color:var(--tile-action,#087e8b);box-shadow:0 15px 30px rgba(7,59,76,.14)}
+.category-dashboard .category-tile:focus-visible{outline:3px solid #f4a261;outline-offset:3px}
+.category-dashboard .category-tile:nth-child(2){--tile-bg:#f0f8ff;--tile-glow:#c7e4ff;--tile-icon:#dceeff;--tile-title:#164b79;--tile-action:#1768a3}
+.category-dashboard .category-tile:nth-child(3){--tile-bg:#fff8ed;--tile-glow:#ffe0a8;--tile-icon:#fff0d3;--tile-title:#74430b;--tile-action:#a55b08}
+.category-dashboard .category-tile:nth-child(4){--tile-bg:#f5f0ff;--tile-glow:#ded0ff;--tile-icon:#e9e0ff;--tile-title:#4e3289;--tile-action:#6c48b5}
+.category-dashboard .category-tile:nth-child(5){--tile-bg:#effbf5;--tile-glow:#c6eed9;--tile-icon:#dcf7e8;--tile-title:#155f45;--tile-action:#168052}
+.category-dashboard .category-tile:nth-child(6){--tile-bg:#fff3ed;--tile-glow:#ffd8c5;--tile-icon:#ffe7dc;--tile-title:#823e22;--tile-action:#b6532d}
+.category-dashboard .loan-category-tile{min-height:190px}
+@media(max-width:760px){.category-dashboard .category-grid{gap:11px}.category-dashboard .category-tile{min-height:177px;padding:15px;border-radius:16px;gap:9px}.category-dashboard .category-tile>span{width:45px;height:45px;flex-basis:45px;border-radius:13px;font-size:25px}.category-dashboard .category-tile>strong{font-size:15px}.category-dashboard .category-tile>small{font-size:12px}.category-dashboard .category-tile>b{font-size:11px}}
+@media(max-width:380px){.category-dashboard .category-grid{grid-template-columns:1fr}.category-dashboard .category-tile{min-height:150px}}
+@media(prefers-reduced-motion:reduce){.category-dashboard .category-tile{transition:none}}
+
 </style>
 </head>
 
@@ -464,11 +485,11 @@ footer{background:linear-gradient(110deg,#041f29,#073b4c);border-top:3px solid #
   <p class="category-intro">Tumeweka maudhui na huduma katika vipengele rahisi. Fungua kipengele unachohitaji ili uone taarifa zake.</p>
   <div class="category-grid">
     <a class="category-tile loan-category-tile" href="./emergency-loans.html"><span>💳</span><strong>WATAFITI LOAN</strong><small>Maelezo ya mikopo na namna ya kuulizia</small><b>Fungua huduma →</b></a>
-    <a class="category-tile" href="#taarifa"><span>📰</span><strong>Taarifa na Habari</strong><small>Makala, taarifa mpya na habari</small></a>
-    <a class="category-tile" href="#kichina"><span>🎓</span><strong>Elimu na Mafunzo</strong><small>Kichina, elimu na mafunzo</small></a>
-    <a class="category-tile" href="#huduma"><span>🛠️</span><strong>Huduma Zetu</strong><small>Survey, ujenzi, teknolojia na nyingine</small></a>
-    <a class="category-tile" href="#kuhusu"><span>👤</span><strong>Kuhusu WATAFITI</strong><small>Wasifu na taarifa za WATAFITI</small></a>
-    <a class="category-tile" href="#mawasiliano"><span>📞</span><strong>Mawasiliano</strong><small>Wasiliana nasi au tuma ombi</small></a>
+    <a class="category-tile" href="#taarifa"><span>📰</span><strong>Taarifa na Habari</strong><small>Makala, taarifa mpya na habari</small><b>Fungua habari →</b></a>
+    <a class="category-tile" href="#kichina"><span>🎓</span><strong>Elimu na Mafunzo</strong><small>Kichina, elimu na mafunzo</small><b>Angalia mafunzo →</b></a>
+    <a class="category-tile" href="#huduma"><span>🛠️</span><strong>Huduma Zetu</strong><small>Survey, ujenzi, teknolojia na nyingine</small><b>Chunguza huduma →</b></a>
+    <a class="category-tile" href="#kuhusu"><span>👤</span><strong>Kuhusu WATAFITI</strong><small>Wasifu na taarifa za WATAFITI</small><b>Fahamu zaidi →</b></a>
+    <a class="category-tile" href="#mawasiliano"><span>📞</span><strong>Mawasiliano</strong><small>Wasiliana nasi au tuma ombi</small><b>Wasiliana nasi →</b></a>
   </div>
 </section>
 <div id="media" class="category-anchor" aria-hidden="true"></div>
