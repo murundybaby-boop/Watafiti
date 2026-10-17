@@ -92,6 +92,21 @@ label{display:block;margin:8px 0 14px}button{border:0;background:linear-gradient
 </section>
 <section class="panel hidden" id="loanApplicationsPanel">
 <div class="topline"><div><h2>Maombi ya WATAFITI LOAN</h2><p class="hint">Ona maombi, kagua taarifa na wasiliana na mwombaji kwa WhatsApp.</p></div><button id="refreshLoanApplicationsBtn" class="secondary" type="button">↻ Pakia maombi</button><button id="exportLoanApplicationsBtn" class="gold" type="button">⬇ Pakua CSV</button></div>
+<div class="panel" style="margin:16px 0;background:#f8fbfc;border-color:#d7e3e8">
+<h3 style="margin-top:0">Njia za kupokea marejesho (mwongozo wa msimamizi)</h3>
+<p class="hint">Mpe mkopaji maelezo ya njia hizi baada ya kuthibitisha masharti ya mkopo. Malipo bado yanathibitishwa kwa mkono; mfumo huu hauunganishwi moja kwa moja na HaloPesa au Voda Lipa.</p>
+<div class="row">
+<div style="flex:1;min-width:220px;border:1px solid #e0e9ed;border-radius:12px;padding:14px;background:#fff">
+<strong>🔴 Voda Lipa</strong><h2 style="margin:6px 0">54087511</h2><span class="hint">Mpokeaji: John Murundi</span>
+<button class="secondary" type="button" style="margin-top:10px" onclick="navigator.clipboard.writeText('54087511').then(()=>alert('Namba ya Voda Lipa imenakiliwa.')).catch(()=>alert('Nakili namba hii kwa mkono: 54087511'))">Nakili namba</button>
+</div>
+<div style="flex:1;min-width:220px;border:1px solid #e0e9ed;border-radius:12px;padding:14px;background:#fff">
+<strong>🟡 HaloPesa</strong><h2 style="margin:6px 0">0624528944</h2><span class="hint">Mpokeaji: John Murundi</span>
+<button class="secondary" type="button" style="margin-top:10px" onclick="navigator.clipboard.writeText('0624528944').then(()=>alert('Namba ya HaloPesa imenakiliwa.')).catch(()=>alert('Nakili namba hii kwa mkono: 0624528944'))">Nakili namba</button>
+</div>
+</div>
+<p class="hint" style="margin-bottom:0">Rekodi marejesho kwenye ombi husika baada tu ya kuthibitisha fedha zimeingia na kuhifadhi namba ya muamala.</p>
+</div>
 <div class="stats-grid" id="loanReportStats" style="margin:16px 0"><div class="stat-card"><div class="stat-label">Maombi yote</div><div class="stat-value" id="loanStatTotal">0</div></div><div class="stat-card"><div class="stat-label">Maombi mapya</div><div class="stat-value" id="loanStatNew">0</div></div><div class="stat-card"><div class="stat-label">Yanapitiwa</div><div class="stat-value" id="loanStatReviewing">0</div></div><div class="stat-card"><div class="stat-label">Yaliyoidhinishwa</div><div class="stat-value" id="loanStatApproved">0</div></div><div class="stat-card"><div class="stat-label">Kiasi kilichoombwa (TSh)</div><div class="stat-value" id="loanStatAmount">0</div></div><div class="stat-card"><div class="stat-label">Maombi mwezi huu</div><div class="stat-value" id="loanStatMonth">0</div></div><div class="stat-card"><div class="stat-label">Yaliyokataliwa</div><div class="stat-value" id="loanStatDeclined">0</div></div></div><p class="hint">Muhtasari huu huhesabu maombi yaliyopakiwa kutoka kwenye hifadhidata.</p>
 <div class="row"><label>Tafuta ombi<input id="loanApplicationSearch" type="search" placeholder="Tafuta jina, simu, eneo..."></label><label>Hali<select id="loanApplicationStatusFilter"><option value="all">Maombi yote</option><option value="new">Mapya</option><option value="reviewing">Yanapitiwa</option><option value="answered">Yamejibiwa</option><option value="approved">Yameidhinishwa</option><option value="declined">Yamekataliwa</option></select></label></div>
 <p id="loanApplicationCount" class="hint" aria-live="polite"></p><div id="loanApplicationList" class="article-list"><p class="empty">Inapakia maombi ya mikopo...</p></div>
