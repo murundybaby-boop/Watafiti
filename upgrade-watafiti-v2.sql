@@ -56,9 +56,9 @@ returns bigint
 language sql
 security definer
 set search_path = ''
-as $
+as $$
   select count(*)::bigint from public.visitor_events;
-$;
+$$;
 revoke all on function public.get_visitor_count() from public;
 grant execute on function public.get_visitor_count() to anon, authenticated;
 
