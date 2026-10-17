@@ -333,6 +333,35 @@ footer{background:linear-gradient(110deg,#041f29,#073b4c);border-top:3px solid #
 .contact-quick-link:hover{border-color:#16899a;transform:translateY(-2px)}
 .contact-extra-email{font-size:13px;overflow-wrap:anywhere}.contact-extra-email a{color:#087f8c;font-weight:700}
 @media(max-width:520px){.contact-quick-links{grid-template-columns:1fr;gap:9px;margin:18px 0}.contact-quick-link{padding:13px}.contact-quick-link>span:first-child{flex-basis:40px;width:40px;height:40px}}
+
+/* WATAFITI homepage spotlight and quick service access */
+.home-spotlight{max-width:1240px;margin:clamp(24px,4vw,46px) auto;padding:clamp(18px,3vw,30px);width:calc(100% - 32px);border:1px solid #dce9ed;border-radius:24px;background:linear-gradient(145deg,#f8fcfd,#edf6f8);box-shadow:0 14px 38px rgba(7,59,76,.07)}
+.home-spotlight-heading{text-align:center;max-width:680px;margin:0 auto 22px}
+.home-spotlight-kicker{display:inline-block;color:#087e8b;font-size:11px;font-weight:900;letter-spacing:1.8px;margin-bottom:8px}
+.home-spotlight-heading h2{margin:0 0 8px;color:#073b4c;font-size:clamp(23px,3.2vw,34px);line-height:1.25}
+.home-spotlight-heading p{margin:0;color:#536b73;line-height:1.65;font-size:15px}
+.home-loan-feature{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;gap:clamp(14px,3vw,28px);padding:clamp(20px,4vw,34px);border:2px solid #ffd166;border-radius:20px;text-decoration:none;color:#fff;background:radial-gradient(circle at 90% 0%,rgba(255,255,255,.17),transparent 33%),linear-gradient(115deg,#052d3a 0%,#07566a 58%,#087e8b 100%);box-shadow:0 14px 28px rgba(7,59,76,.16);transition:transform .18s,box-shadow .18s}
+.home-loan-feature:before{content:"";position:absolute;z-index:-1;width:230px;height:230px;border:1px solid #ffffff18;border-radius:50%;right:8%;top:-130px;box-shadow:0 0 0 24px #ffffff08,0 0 0 48px #ffffff05}
+.home-loan-feature:hover{transform:translateY(-3px);box-shadow:0 19px 34px rgba(7,59,76,.22)}
+.home-loan-icon{flex:0 0 68px;width:68px;height:68px;display:grid;place-items:center;border-radius:19px;background:#ffd166;color:#073b4c;font-size:34px;box-shadow:0 7px 18px #001b2535}
+.home-loan-copy{display:flex;flex:1;min-width:0;flex-direction:column;align-items:flex-start;gap:8px}
+.home-loan-badge{display:inline-block;padding:5px 9px;border-radius:999px;background:#ffffff18;border:1px solid #ffffff42;color:#ffe3a0;font-size:10px;font-weight:900;letter-spacing:1.4px}
+.home-loan-copy strong{font-size:clamp(24px,4vw,36px);line-height:1.15;letter-spacing:.2px}
+.home-loan-copy>span:not(.home-loan-badge){max-width:680px;color:#e4f3f5;line-height:1.65;font-size:14px}
+.home-loan-copy small{display:inline-flex;gap:8px;align-items:center;margin-top:4px;padding:10px 14px;border-radius:10px;background:#ffd166;color:#073b4c;font-size:13px;font-weight:900}
+.home-loan-arrow{align-self:flex-start;display:grid;place-items:center;flex:0 0 40px;width:40px;height:40px;border-radius:50%;background:#ffffff18;color:#ffd166;font-size:23px}
+.home-quick-services{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:14px}
+.home-quick-card{display:flex;min-width:0;flex-direction:column;align-items:flex-start;padding:17px;border:1px solid #dce8ec;border-radius:15px;background:#fff;text-decoration:none;box-shadow:0 4px 14px #073b4c08;transition:transform .18s,border-color .18s,box-shadow .18s}
+.home-quick-card:hover{transform:translateY(-3px);border-color:#a7d1da;box-shadow:0 9px 22px #073b4c12}
+.home-quick-icon{display:grid;place-items:center;width:43px;height:43px;border-radius:12px;background:#eaf5f7;font-size:23px;margin-bottom:12px}
+.home-quick-card strong{color:#073b4c;font-size:15px;line-height:1.4}
+.home-quick-card small{margin-top:6px;color:#5a7078;font-size:12px;line-height:1.55}
+.home-quick-link{margin-top:auto;padding-top:14px;color:#087e8b;font-size:12px;font-weight:900}
+.home-loan-feature:focus-visible,.home-quick-card:focus-visible{outline:3px solid #f4a261;outline-offset:4px}
+@media(max-width:900px){.home-quick-services{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.home-spotlight{width:calc(100% - 22px);padding:15px;margin:22px auto;border-radius:18px}.home-spotlight-heading{margin-bottom:17px}.home-spotlight-heading p{font-size:14px}.home-loan-feature{align-items:flex-start;gap:12px;padding:17px 14px;border-radius:16px}.home-loan-icon{flex-basis:48px;width:48px;height:48px;font-size:25px;border-radius:14px}.home-loan-copy{gap:7px}.home-loan-copy strong{font-size:24px}.home-loan-copy>span:not(.home-loan-badge){font-size:13px}.home-loan-copy small{font-size:12px;padding:10px}.home-loan-arrow{display:none}.home-quick-services{gap:9px}.home-quick-card{padding:13px;border-radius:13px}.home-quick-icon{width:38px;height:38px;font-size:20px;margin-bottom:9px}.home-quick-card strong{font-size:13px}.home-quick-card small{font-size:11px}.home-quick-link{font-size:11px;padding-top:11px}}
+@media(prefers-reduced-motion:reduce){.home-loan-feature,.home-quick-card{transition:none}}
+
 </style>
 </head>
 
@@ -406,6 +435,29 @@ footer{background:linear-gradient(110deg,#041f29,#073b4c);border-top:3px solid #
   </div>
 </section>
 
+<section class="home-spotlight" aria-labelledby="homeSpotlightTitle">
+  <div class="home-spotlight-heading">
+    <span class="home-spotlight-kicker">HUDUMA ZILIZOPO • WATAFITI</span>
+    <h2 id="homeSpotlightTitle">Unahitaji huduma gani leo?</h2>
+    <p>Chagua huduma kwa haraka, pata maelezo na wasiliana nasi kwa hatua inayofuata.</p>
+  </div>
+  <a class="home-loan-feature" href="./emergency-loans.html">
+    <span class="home-loan-icon" aria-hidden="true">💳</span>
+    <span class="home-loan-copy">
+      <span class="home-loan-badge">HUDUMA MAALUM</span>
+      <strong>WATAFITI LOAN</strong>
+      <span>Angalia maelezo ya huduma ya mikopo na hatua za kuulizia au kuwasilisha ombi.</span>
+      <small>Fahamu zaidi kuhusu huduma <b aria-hidden="true">→</b></small>
+    </span>
+    <span class="home-loan-arrow" aria-hidden="true">↗</span>
+  </a>
+  <div class="home-quick-services">
+    <a class="home-quick-card" href="./survey-services.html"><span class="home-quick-icon">📐</span><strong>Survey na Upimaji</strong><small>Huduma za upimaji wa ardhi</small><span class="home-quick-link">Tazama huduma →</span></a>
+    <a class="home-quick-card" href="./chinese-training.html"><span class="home-quick-icon">🎓</span><strong>Mafunzo ya Kichina</strong><small>Jifunze Mandarin kwa hatua</small><span class="home-quick-link">Angalia mafunzo →</span></a>
+    <a class="home-quick-card" href="#taarifa"><span class="home-quick-icon">📰</span><strong>Habari na Maarifa</strong><small>Soma makala na taarifa mpya</small><span class="home-quick-link">Soma makala →</span></a>
+    <a class="home-quick-card" href="#mawasiliano"><span class="home-quick-icon">💬</span><strong>Wasiliana nasi</strong><small>Simu, SMS, WhatsApp na barua pepe</small><span class="home-quick-link">Wasiliana →</span></a>
+  </div>
+</section>
 
 <section id="vitengo" class="category-dashboard">
   <h2 class="title">Karibu WATAFITI — Chagua Kipengele</h2>
