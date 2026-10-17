@@ -138,7 +138,7 @@ section{max-width:1150px;margin:auto;padding:48px 18px}
 .map-card iframe{width:100%;height:350px;border:0;border-radius:12px;margin-top:14px}
 .visitor{background:linear-gradient(100deg,#052d3a,#073b4c,#118ab2);color:#fff;text-align:center;padding:17px 12px;font-size:18px;letter-spacing:.2px}.visitor span{display:inline-block;min-width:28px;font-weight:bold;color:#ffd166}
 .donation{background:#f4f8fb}
-.donation-banner{display:block;width:100%;max-width:1000px;margin:18px auto;border-radius:15px}
+.donation-banner{display:block;width:100%;max-width:1000px;margin:18px auto;border-radius:15px}.donation-visual-banner{position:relative;isolation:isolate;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:190px;margin:18px auto;padding:28px 18px;text-align:center;color:#fff;border-radius:18px;background:radial-gradient(circle at 15% 20%,#ffffff30 0 3px,transparent 4px),radial-gradient(circle at 85% 75%,#ffffff22 0 5px,transparent 6px),linear-gradient(135deg,#073b4c 0%,#0b6372 55%,#118ab2 100%);box-shadow:0 12px 28px #073b4c20}.donation-visual-banner:before,.donation-visual-banner:after{content:"";position:absolute;z-index:-1;border:1px solid #ffffff28;border-radius:50%;width:210px;height:210px}.donation-visual-banner:before{left:-90px;top:-125px}.donation-visual-banner:after{right:-95px;bottom:-145px}.donation-heart{font-size:40px;line-height:1}.donation-visual-banner strong{font-size:clamp(24px,5vw,36px);letter-spacing:2px}.donation-visual-banner span{max-width:520px;font-size:15px;line-height:1.6;color:#e9f7fb}.donation-box>p:first-child{max-width:760px;margin:0 auto 12px;text-align:center;line-height:1.8;color:#415d66}
 .payment-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;max-width:850px;margin:26px auto 0}
 .payment{position:relative;overflow:hidden;min-width:0;padding:28px 22px 24px;border-radius:20px;text-align:center;background:linear-gradient(160deg,#fff 0%,#f8fbfd 100%);box-shadow:0 12px 28px rgba(7,59,76,.10);transition:transform .2s,box-shadow .2s}
 .payment:hover{transform:translateY(-4px);box-shadow:0 17px 34px rgba(7,59,76,.16)}
@@ -825,7 +825,7 @@ function fallbackCopy(number,done){
 <h2 class="title" data-sw="❤️ Donation" data-en="❤️ Donation">❤️ Donation</h2>
 <div class="donation-box">
 <p data-sw="Jiunge nasi kusaidia maendeleo ya elimu, utafiti, mafunzo na huduma kwa jamii." data-en="Join us in supporting education, research, training and community services.">Jiunge nasi kusaidia maendeleo ya elimu, utafiti, mafunzo na huduma kwa jamii.</p>
-<img class="donation-banner" src="donation.jpg" alt="WATAFITI Donation - Pro Murundy" onerror="this.style.display='none'">
+<div class="donation-visual-banner" role="img" aria-label="WATAFITI donation banner"><div class="donation-heart" aria-hidden="true">❤️</div><strong>WATAFITI</strong><span data-sw="Tusaidiane kukuza elimu, utafiti, mafunzo na maendeleo ya jamii." data-en="Together, let us support education, research, training and community development.">Tusaidiane kukuza elimu, utafiti, mafunzo na maendeleo ya jamii.</span></div>
 <h2 style="text-align:center;color:#073b4c;margin:12px 0">Tuma mchango wako / Send your donation</h2>
 <div class="payment-grid">
 <div class="payment voda"><h2>🔴 Voda Lipa</h2><h1>54087511</h1><p>Jina la Mpokeaji / Recipient</p><h3>John Murundi</h3><button class="copy-payment" type="button" onclick="copyPaymentNumber('54087511',this)">▣ Nakili namba</button></div>
