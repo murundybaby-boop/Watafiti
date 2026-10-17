@@ -765,7 +765,7 @@ footer{background:linear-gradient(110deg,#041f29,#073b4c);border-top:3px solid #
 </div></div>
 </section>
 
-<div class="visitor">👥 Visitors: <span id="visitorCount">0</span></div>
+<div class="visitor" role="status" aria-live="polite"><span data-sw="👥 Ziara za tovuti:" data-en="👥 Website visits:">👥 Ziara za tovuti:</span> <span id="visitorCount">—</span></div>
 
 <section id="mitandao">
 <h2 class="title" data-sw="🌐 Mitandao ya Kijamii" data-en="🌐 Social Media">🌐 Mitandao ya Kijamii</h2>
@@ -956,14 +956,7 @@ section.style.display=(section.innerText||"").toLowerCase().indexOf(word)>=0?"":
 }
 });
 
-var visitorNumber=localStorage.getItem("watafitiVisitors");
-if(!visitorNumber){
-visitorNumber="1";
-}else{
-visitorNumber=String(Number(visitorNumber)+1);
-}
-localStorage.setItem("watafitiVisitors",visitorNumber);
-document.getElementById("visitorCount").textContent=visitorNumber;
+// Takwimu halisi hujazwa na hesabu ya pamoja kutoka Supabase hapa chini.
 
 function safeText(){
 var value=arguments[0];
