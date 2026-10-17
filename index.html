@@ -383,11 +383,26 @@ footer{background:linear-gradient(110deg,#041f29,#073b4c);border-top:3px solid #
 @media(max-width:380px){.category-dashboard .category-grid{grid-template-columns:1fr}.category-dashboard .category-tile{min-height:150px}}
 @media(prefers-reduced-motion:reduce){.category-dashboard .category-tile{transition:none}}
 
+
+/* Animated phone ribbon at the very top of the homepage */
+.watafiti-phone-ribbon{position:relative;z-index:1001;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:10px 14px;background:linear-gradient(100deg,#062b3a,#087f8c,#0b5d76,#062b3a);background-size:220% 100%;color:#fff;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,.16);animation:phoneRibbonFlow 9s ease-in-out infinite}
+.watafiti-phone-ribbon .phone-ribbon-label{font-size:12px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase}
+.watafiti-phone-ribbon a{display:inline-flex;align-items:center;gap:8px;color:#062b3a;background:#fff;border:2px solid rgba(255,255,255,.75);border-radius:999px;padding:7px 16px;font-weight:900;text-decoration:none;white-space:nowrap;box-shadow:0 0 0 0 rgba(255,255,255,.45);animation:phoneNumberPulse 2.2s ease-out infinite}
+.watafiti-phone-ribbon a:hover{background:#fff2c6;transform:translateY(-1px)}
+.watafiti-phone-ribbon .phone-ribbon-icon{display:inline-grid;place-items:center;width:25px;height:25px;border-radius:50%;background:#0b8f64;color:#fff;font-size:15px}
+@keyframes phoneRibbonFlow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes phoneNumberPulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,.5)}70%{box-shadow:0 0 0 7px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
+@media(max-width:480px){.watafiti-phone-ribbon{gap:6px;padding:9px 8px}.watafiti-phone-ribbon .phone-ribbon-label{font-size:10px;letter-spacing:.7px}.watafiti-phone-ribbon a{font-size:14px;padding:6px 12px}}
+@media(prefers-reduced-motion:reduce){.watafiti-phone-ribbon,.watafiti-phone-ribbon a{animation:none}}
 </style>
 </head>
 
 <body>
 <a class="skip-link" href="#nyumbani">Ruka menyu na uende kwenye maudhui / Skip to content</a>
+<div class="watafiti-phone-ribbon" id="watafiti-phone-ribbon" aria-label="Wasiliana na WATAFITI kwa simu">
+  <span class="phone-ribbon-label">📞 Wasiliana na WATAFITI</span>
+  <a href="tel:+255624528944" aria-label="Piga simu WATAFITI kwa namba 0624 528 944"><span class="phone-ribbon-icon" aria-hidden="true">☎</span> +255 624 528 944 <span aria-hidden="true">↗</span></a>
+</div>
 <header>
 <div class="nav">
 <div class="logo-area">
