@@ -125,6 +125,8 @@
  }).then(function(r){if(!r.ok)throw new Error("load");return r.json();}).then(function(rows){
    if(!rows.length){showError("Makala haijapatikana au haijachapishwa. Tafadhali rudi mwanzo.");return;}
    const a=rows[0], title=a.title||"Makala ya WATAFITI", description=(a.content||"Soma makala kutoka WATAFITI.").replace(/\s+/g," ").slice(0,180);
+   /* Rekodi usomaji wa makala kwa jina lake ili dashibodi iweze kuonyesha makala zinazopendwa zaidi. */
+   fetch(SUPABASE_URL+"/rest/v1/visitor_events",{method:"POST",headers:{"apikey":SUPABASE_KEY,"Authorization":"Bearer "+SUPABASE_KEY,"Content-Type":"application/json","Prefer":"return=minimal"},body:JSON.stringify({page:"Makala: "+title})}).catch(function(){});
    document.title=title+" | WATAFITI";
    if(whatsappShare)whatsappShare.href="https://wa.me/?text="+encodeURIComponent(title+" — WATAFITI\n\n"+description+"\n\n"+shareUrl);
    if(facebookShare)facebookShare.href="https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(shareUrl);
