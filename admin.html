@@ -249,8 +249,8 @@ function renderLoanApplications(){
   const repaymentTitle=document.createElement("h4");repaymentTitle.textContent="Rekodi za marejesho (ingiza tu baada ya kuthibitisha malipo)";repaymentTitle.style.margin="0 0 8px";
   const repayments=allLoanRepayments.filter(p=>String(p.loan_application_id)===String(r.id));
   const paid=repayments.reduce((sum,p)=>sum+(Number(p.amount)||0),0);
-  const rate=({"Wiki 1":10,"Siku 14":20,"Siku 21":30,"Mwezi 1":40})[r.repayment_period]||Number(r.interest_rate||0);
-  const estimatedDue=Number(r.amount)+Math.round(Number(r.amount)*rate/100);
+  const repaymentRate=({"Wiki 1":10,"Siku 14":20,"Siku 21":30,"Mwezi 1":40})[r.repayment_period]||Number(r.interest_rate||0);
+  const estimatedDue=Number(r.amount)+Math.round(Number(r.amount)*repaymentRate/100);
   const repaymentSummary=document.createElement("p");repaymentSummary.className="hint";repaymentSummary.textContent="Jumla ya marejesho yaliyorekodiwa: TSh "+paid.toLocaleString("en-US")+" · Salio la makadirio: TSh "+Math.max(0,estimatedDue-paid).toLocaleString("en-US")+" (kulingana na makadirio ya riba; thibitisha masharti halisi).";repaymentSection.append(repaymentTitle,repaymentSummary);
   if(repayments.length){const list=document.createElement("ul");list.style.paddingLeft="20px";repayments.forEach(p=>{const li=document.createElement("li");li.textContent=new Date((p.paid_on||p.created_at)+"T00:00:00").toLocaleDateString("sw-TZ")+" — TSh "+Number(p.amount).toLocaleString("en-US")+(p.reference?" · Kumbukumbu: "+p.reference:"")+(p.notes?" · "+p.notes:"");list.appendChild(li);});repaymentSection.appendChild(list);}
   const repaymentForm=document.createElement("form");repaymentForm.className="row";repaymentForm.style.marginTop="10px";
