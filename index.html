@@ -578,13 +578,16 @@ footer{background:linear-gradient(110deg,#041f29,#073b4c);border-top:3px solid #
         <option>Huduma nyingine</option>
       </select>
     </label>
+    <label>Barua pepe yako
+      <input name="quoteEmail" type="email" maxlength="254" autocomplete="email" placeholder="mfano@gmail.com" required>
+    </label>
     <label class="quote-wide">Eneo la huduma (hiari)
       <input name="quoteLocation" type="text" maxlength="160" placeholder="Mfano: Moshi, Kilimanjaro">
     </label>
     <label class="quote-wide">Maelezo ya mahitaji yako
       <textarea name="quoteDetails" rows="3" maxlength="1200" placeholder="Eleza kwa kifupi unachohitaji..." required></textarea>
     </label>
-    <p class="quote-hint quote-wide">Ukibonyeza kitufe, WhatsApp itafunguka ikiwa na maelezo yako. Kisha bonyeza TUMA ndani ya WhatsApp ili ujumbe utufikie. Fomu hii haikusanyi malipo wala kuahidi bei kabla ya tathmini.</p>
+    <p class="quote-hint quote-wide">Ombi litahifadhiwa kwenye dashibodi ya msimamizi na WhatsApp itafunguka. Bonyeza TUMA ndani ya WhatsApp pia ili ujumbe utufikie. Fomu hii haikusanyi malipo wala kuahidi bei kabla ya tathmini.</p>
     <button class="sales-quote-submit quote-wide" type="submit">💬 Tuma ombi kupitia WhatsApp</button>
     <p class="quote-hint quote-wide" id="salesQuoteStatus" aria-live="polite"></p>
   </form>
@@ -1478,19 +1481,43 @@ setSwahili();
 (function(){
   const form=document.getElementById("salesQuoteForm");
   if(!form)return;
-  form.addEventListener("submit",function(event){
+  const SUPABASE_URL="https://zleflmeepyearrocaheg.supabase.co";
+  const SUPABASE_KEY="sb_publishable_0SA-j8i6kAJT69XO0T-gpA_WHWMaEcF";
+  form.addEventListener("submit",async function(event){
     event.preventDefault();
+    if(!form.reportValidity())return;
     const data=new FormData(form);
     const name=String(data.get("quoteName")||"").trim();
     const service=String(data.get("quoteService")||"").trim();
+    const email=String(data.get("quoteEmail")||"").trim();
     const location=String(data.get("quoteLocation")||"").trim();
     const details=String(data.get("quoteDetails")||"").trim();
-    if(!name||!service||!details)return;
-    const message="HABARI WATAFITI, NINAOMBA BEI/USHAURI WA HUDUMA.\n\nJina: "+name+"\nHuduma: "+service+"\nEneo: "+(location||"Sijataja") +"\nMaelezo: "+details+"\n\nNimetuma ombi kupitia website ya WATAFITI.";
-    const url="https://wa.me/255624528944?text="+encodeURIComponent(message);
+    if(!name||!service||!email||!details)return;
+    const message="OMBI LA BEI/USHAURI WA HUDUMA WATAFITI\n\nJina: "+name+"\nHuduma: "+service+"\nEneo: "+(location||"Sijataja")+"\nMaelezo: "+details;
+    const whatsappMessage=message+"\nBarua pepe: "+email+"\n\nNimetuma ombi kupitia website ya WATAFITI.";
+    const url="https://wa.me/255624528944?text="+encodeURIComponent(whatsappMessage);
     const status=document.getElementById("salesQuoteStatus");
-    if(status)status.textContent="WhatsApp inafunguka. Tafadhali bonyeza TUMA/SEND ndani ya WhatsApp ili ombi lifike.";
+    const submit=form.querySelector('button[type="submit"]');
+    if(submit)submit.disabled=true;
+    if(status)status.textContent="Ombi linahifadhiwa kwenye dashibodi na WhatsApp inafunguliwa...";
     window.open(url,"_blank","noopener,noreferrer");
+    try{
+      const response=await fetch(SUPABASE_URL+"/functions/v1/contact-message",{
+        method:"POST",
+        headers:{"Content-Type":"application/json","apikey":SUPABASE_KEY,"Authorization":"Bearer "+SUPABASE_KEY},
+        body:JSON.stringify({name:name,email:email,phone:"",subject:"Ombi la huduma: "+service,message:message,website:""})
+      });
+      const result=await response.json().catch(()=>({}));
+      if(!response.ok||!result.ok||result.saved===false)throw new Error(result.error||"Ombi halijahifadhiwa.");
+      if(status)status.textContent=result.email_sent
+        ?"Ombi limehifadhiwa kwenye Dashibodi ya msimamizi na arifa imetumwa kwa barua pepe. Bonyeza TUMA ndani ya WhatsApp pia."
+        :"Ombi limehifadhiwa kwenye Dashibodi ya msimamizi. Bonyeza TUMA ndani ya WhatsApp ili ujumbe wa WhatsApp ufike.";
+      form.reset();
+    }catch(error){
+      if(status)status.textContent="WhatsApp imefunguliwa. Hifadhi ya dashibodi haikuthibitishwa; tafadhali bonyeza TUMA ndani ya WhatsApp au tumia fomu ya Mawasiliano. ("+error.message+")";
+    }finally{
+      if(submit)submit.disabled=false;
+    }
   });
   document.querySelectorAll("[data-quote-service]").forEach(function(link){
     link.addEventListener("click",function(){
