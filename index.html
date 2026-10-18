@@ -587,8 +587,8 @@ footer{background:linear-gradient(110deg,#041f29,#073b4c);border-top:3px solid #
     <label class="quote-wide">Maelezo ya mahitaji yako
       <textarea name="quoteDetails" rows="3" maxlength="1200" placeholder="Eleza kwa kifupi unachohitaji..." required></textarea>
     </label>
-    <p class="quote-hint quote-wide">Ombi litahifadhiwa kwenye dashibodi ya msimamizi na WhatsApp itafunguka. Bonyeza TUMA ndani ya WhatsApp pia ili ujumbe utufikie. Fomu hii haikusanyi malipo wala kuahidi bei kabla ya tathmini.</p>
-    <button class="sales-quote-submit quote-wide" type="submit">💬 Tuma ombi kupitia WhatsApp</button>
+    <p class="quote-hint quote-wide">Bonyeza “Tuma ombi” ili ombi lihifadhiwe kwenye dashibodi ya msimamizi. Hatua hii haitakupeleka WhatsApp moja kwa moja. Fomu hii haikusanyi malipo wala kuahidi bei kabla ya tathmini.</p>
+    <button class="sales-quote-submit quote-wide" type="submit">📨 Tuma ombi</button>
     <p class="quote-hint quote-wide" id="salesQuoteStatus" aria-live="polite"></p>
   </form>
 </section>
@@ -1499,8 +1499,7 @@ setSwahili();
     const status=document.getElementById("salesQuoteStatus");
     const submit=form.querySelector('button[type="submit"]');
     if(submit)submit.disabled=true;
-    if(status)status.textContent="Ombi linahifadhiwa kwenye dashibodi na WhatsApp inafunguliwa...";
-    window.open(url,"_blank","noopener,noreferrer");
+    if(status)status.textContent="Ombi lako linatumwa na kuhifadhiwa kwenye dashibodi. Tafadhali subiri...";
     try{
       const response=await fetch(SUPABASE_URL+"/functions/v1/contact-message",{
         method:"POST",
@@ -1510,11 +1509,11 @@ setSwahili();
       const result=await response.json().catch(()=>({}));
       if(!response.ok||!result.ok||result.saved===false)throw new Error(result.error||"Ombi halijahifadhiwa.");
       if(status)status.textContent=result.email_sent
-        ?"Ombi limehifadhiwa kwenye Dashibodi ya msimamizi na arifa imetumwa kwa barua pepe. Bonyeza TUMA ndani ya WhatsApp pia."
-        :"Ombi limehifadhiwa kwenye Dashibodi ya msimamizi. Bonyeza TUMA ndani ya WhatsApp ili ujumbe wa WhatsApp ufike.";
+        ?"Hongera! Ombi limehifadhiwa kwenye Dashibodi ya msimamizi na arifa imetumwa kwa barua pepe."
+        :"Hongera! Ombi limehifadhiwa kwenye Dashibodi ya msimamizi. Tutawasiliana nawe.";
       form.reset();
     }catch(error){
-      if(status)status.textContent="WhatsApp imefunguliwa. Hifadhi ya dashibodi haikuthibitishwa; tafadhali bonyeza TUMA ndani ya WhatsApp au tumia fomu ya Mawasiliano. ("+error.message+")";
+      if(status)status.textContent="Samahani, ombi halikuhifadhiwa kwenye dashibodi. Jaribu tena, au wasiliana nasi kupitia WhatsApp. Sababu: "+error.message;
     }finally{
       if(submit)submit.disabled=false;
     }
