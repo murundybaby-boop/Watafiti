@@ -427,7 +427,7 @@ footer{background:linear-gradient(110deg,#041f29,#073b4c);border-top:3px solid #
 .sales-quote-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:18px;border-radius:15px;background:#fff;color:#18343b}
 .sales-quote-form label{display:flex;flex-direction:column;gap:6px;font-weight:700;font-size:14px}
 .sales-quote-form input,.sales-quote-form select,.sales-quote-form textarea{width:100%;min-width:0;padding:12px;border:1px solid #cbd5d9;border-radius:9px;background:#fff;color:#18343b;font:inherit}
-.sales-quote-form .quote-wide{grid-column:1/-1}.sales-quote-form .quote-hint{font-size:13px;color:#4b6269;line-height:1.5}
+.sales-quote-form .quote-wide{grid-column:1/-1}.sales-quote-form .quote-hint{font-size:13px;color:#4b6269;line-height:1.5}.quote-actions{display:flex;gap:10px;flex-wrap:wrap}.quote-actions button{flex:1;min-width:220px;margin:0}.quote-whatsapp{background:#16834a!important;color:#fff!important}@media(max-width:700px){.quote-actions{flex-direction:column}.quote-actions button{width:100%;min-width:0}}
 .watafiti-floating-wa{position:fixed;right:17px;bottom:18px;z-index:9999;display:flex;align-items:center;gap:9px;padding:13px 17px;border-radius:999px;background:#128c52;color:#fff;font-weight:800;text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,.25)}
 .watafiti-floating-wa:focus-visible{outline:3px solid #ffd166;outline-offset:4px}
 @media(max-width:700px){.sales-cta{margin:18px 12px;padding:18px;border-radius:17px}.sales-service-grid{grid-template-columns:1fr}.sales-quote-form{grid-template-columns:1fr}.sales-quote-form .quote-wide{grid-column:auto}.watafiti-floating-wa{right:12px;bottom:12px;padding:12px 15px}.watafiti-floating-wa .wa-label{display:inline}}
@@ -587,8 +587,11 @@ footer{background:linear-gradient(110deg,#041f29,#073b4c);border-top:3px solid #
     <label class="quote-wide">Maelezo ya mahitaji yako
       <textarea name="quoteDetails" rows="3" maxlength="1200" placeholder="Eleza kwa kifupi unachohitaji..." required></textarea>
     </label>
-    <p class="quote-hint quote-wide">Bonyeza “Tuma ombi” ili ombi lihifadhiwe kwenye dashibodi ya msimamizi. Hatua hii haitakupeleka WhatsApp moja kwa moja. Fomu hii haikusanyi malipo wala kuahidi bei kabla ya tathmini.</p>
-    <button class="sales-quote-submit quote-wide" type="submit">📨 Tuma ombi</button>
+    <p class="quote-hint quote-wide">Chagua njia unayotaka: chaguo la kwanza huhifadhi ombi kwenye dashibodi ya msimamizi; chaguo la pili hufungua WhatsApp ili utume ombi moja kwa moja.</p>
+    <div class="quote-actions quote-wide">
+      <button class="sales-quote-submit" type="submit">1. 📨 Hifadhi kwenye dashibodi</button>
+      <button class="sales-quote-submit quote-whatsapp" id="salesQuoteWhatsApp" type="button">2. 💬 Tuma kupitia WhatsApp</button>
+    </div>
     <p class="quote-hint quote-wide" id="salesQuoteStatus" aria-live="polite"></p>
   </form>
 </section>
@@ -1518,6 +1521,20 @@ setSwahili();
       if(submit)submit.disabled=false;
     }
   });
+  const whatsappButton=document.getElementById("salesQuoteWhatsApp");
+  if(whatsappButton){
+    whatsappButton.addEventListener("click",function(){
+      if(!form.reportValidity())return;
+      const data=new FormData(form);
+      const name=String(data.get("quoteName")||"").trim();
+      const service=String(data.get("quoteService")||"").trim();
+      const email=String(data.get("quoteEmail")||"").trim();
+      const location=String(data.get("quoteLocation")||"").trim();
+      const details=String(data.get("quoteDetails")||"").trim();
+      const message="OMBI LA BEI/USHAURI WA HUDUMA WATAFITI\\n\\nJina: "+name+"\\nHuduma: "+service+"\\nEneo: "+(location||"Sijataja")+"\\nMaelezo: "+details+"\\nBarua pepe: "+email+"\\n\\nNimetuma ombi kupitia website ya WATAFITI.";
+      window.open("https://wa.me/255624528944?text="+encodeURIComponent(message),"_blank","noopener,noreferrer");
+    });
+  }
   document.querySelectorAll("[data-quote-service]").forEach(function(link){
     link.addEventListener("click",function(){
       const select=form.querySelector('[name="quoteService"]');
