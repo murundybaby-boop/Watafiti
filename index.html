@@ -416,6 +416,22 @@ footer{background:linear-gradient(110deg,#041f29,#073b4c);border-top:3px solid #
   #supabaseArticles .article-card-actions .btn{flex-basis:100%}
   #supabaseArticles article.card{padding:12px}
 }
+
+/* WATAFITI customer-conversion improvements */
+.sales-cta{max-width:1180px;margin:28px auto;padding:clamp(18px,4vw,34px);border-radius:22px;background:linear-gradient(135deg,#102f3b,#176b63);color:#fff;box-shadow:0 14px 38px rgba(10,45,52,.16)}
+.sales-cta .sales-intro{max-width:760px;margin:8px 0 22px;color:#e7f4f1;line-height:1.7}
+.sales-service-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0 24px}
+.sales-service-card{display:flex;flex-direction:column;gap:9px;min-width:0;padding:18px;border:1px solid rgba(255,255,255,.2);border-radius:15px;background:rgba(255,255,255,.08)}
+.sales-service-card strong{font-size:17px}.sales-service-card p{font-size:14px;line-height:1.6;color:#e7f4f1;flex:1}
+.sales-service-card a,.sales-quote-submit{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:11px 15px;border:0;border-radius:10px;background:#ffd166;color:#17333b;font-weight:800;text-decoration:none;cursor:pointer}
+.sales-quote-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:18px;border-radius:15px;background:#fff;color:#18343b}
+.sales-quote-form label{display:flex;flex-direction:column;gap:6px;font-weight:700;font-size:14px}
+.sales-quote-form input,.sales-quote-form select,.sales-quote-form textarea{width:100%;min-width:0;padding:12px;border:1px solid #cbd5d9;border-radius:9px;background:#fff;color:#18343b;font:inherit}
+.sales-quote-form .quote-wide{grid-column:1/-1}.sales-quote-form .quote-hint{font-size:13px;color:#4b6269;line-height:1.5}
+.watafiti-floating-wa{position:fixed;right:17px;bottom:18px;z-index:9999;display:flex;align-items:center;gap:9px;padding:13px 17px;border-radius:999px;background:#128c52;color:#fff;font-weight:800;text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.watafiti-floating-wa:focus-visible{outline:3px solid #ffd166;outline-offset:4px}
+@media(max-width:700px){.sales-cta{margin:18px 12px;padding:18px;border-radius:17px}.sales-service-grid{grid-template-columns:1fr}.sales-quote-form{grid-template-columns:1fr}.sales-quote-form .quote-wide{grid-column:auto}.watafiti-floating-wa{right:12px;bottom:12px;padding:12px 15px}.watafiti-floating-wa .wa-label{display:inline}}
+
 </style>
 </head>
 
@@ -536,6 +552,43 @@ footer{background:linear-gradient(110deg,#041f29,#073b4c);border-top:3px solid #
 </section>
 <div id="media" class="category-anchor" aria-hidden="true"></div>
 <div id="mafunzo" class="category-anchor" aria-hidden="true"></div>
+
+
+<section class="sales-cta" id="omba-bei" aria-labelledby="salesCtaTitle">
+  <h2 id="salesCtaTitle">🚀 Geuza wazo lako kuwa mradi — Wasiliana na WATAFITI</h2>
+  <p class="sales-intro">Unahitaji upimaji wa ardhi, ushauri wa mradi, usanifu, ujenzi au mafunzo? Tuambie unachohitaji. Tutapokea maelezo yako kupitia WhatsApp ili tujadili hatua inayofuata na bei kulingana na mahitaji ya mradi.</p>
+  <div class="sales-service-grid">
+    <article class="sales-service-card"><strong>📐 Survey na Upimaji</strong><p>Eleza eneo, aina ya upimaji na mahitaji ya mradi wako.</p><a href="./survey-services.html">Ona huduma za Survey →</a></article>
+    <article class="sales-service-card"><strong>🏗️ Ujenzi na Usanifu</strong><p>Wasiliana nasi kuhusu ushauri, michoro na mahitaji ya ujenzi.</p><a href="#mawasiliano" data-quote-service="Ujenzi na usanifu">Ulizia huduma →</a></article>
+    <article class="sales-service-card"><strong>🇨🇳 Mafunzo ya Kichina</strong><p>Ulizia mafunzo ya Mandarin na mpango unaokufaa.</p><a href="./chinese-training.html">Ona mafunzo →</a></article>
+  </div>
+  <h3 style="margin:4px 0 12px">📝 Omba bei au ushauri wa huduma</h3>
+  <form class="sales-quote-form" id="salesQuoteForm">
+    <label>Jina lako
+      <input name="quoteName" type="text" minlength="2" maxlength="100" autocomplete="name" placeholder="Andika jina lako" required>
+    </label>
+    <label>Huduma unayohitaji
+      <select name="quoteService" required>
+        <option value="">Chagua huduma</option>
+        <option>Survey / Upimaji wa ardhi</option>
+        <option>Architectural Design / Usanifu</option>
+        <option>Ujenzi na ushauri wa mradi</option>
+        <option>Mafunzo ya lugha ya Kichina</option>
+        <option>WATAFITI LOAN — maelezo</option>
+        <option>Huduma nyingine</option>
+      </select>
+    </label>
+    <label class="quote-wide">Eneo la huduma (hiari)
+      <input name="quoteLocation" type="text" maxlength="160" placeholder="Mfano: Moshi, Kilimanjaro">
+    </label>
+    <label class="quote-wide">Maelezo ya mahitaji yako
+      <textarea name="quoteDetails" rows="3" maxlength="1200" placeholder="Eleza kwa kifupi unachohitaji..." required></textarea>
+    </label>
+    <p class="quote-hint quote-wide">Ukibonyeza kitufe, WhatsApp itafunguka ikiwa na maelezo yako. Kisha bonyeza TUMA ndani ya WhatsApp ili ujumbe utufikie. Fomu hii haikusanyi malipo wala kuahidi bei kabla ya tathmini.</p>
+    <button class="sales-quote-submit quote-wide" type="submit">💬 Tuma ombi kupitia WhatsApp</button>
+    <p class="quote-hint quote-wide" id="salesQuoteStatus" aria-live="polite"></p>
+  </form>
+</section>
 
 <section class="contact" id="mawasiliano">
 <h2 class="title" data-sw="Mawasiliano" data-en="Contact Us">Mawasiliano</h2>
@@ -1414,6 +1467,36 @@ setSwahili();
       const hash=link.getAttribute("href");
       if(hash==="#nyumbani"){event.preventDefault();showDashboard();return;}
       if(showGroup(hash)){event.preventDefault();history.replaceState(null,"",hash);}
+    });
+  });
+})();
+</script>
+
+
+<a class="watafiti-floating-wa" href="https://wa.me/255624528944?text=Habari%20WATAFITI%2C%20nimefika%20kwenye%20website%20yenu%20na%20nahitaji%20taarifa%20za%20huduma." target="_blank" rel="noopener noreferrer" aria-label="Wasiliana na WATAFITI kupitia WhatsApp"><span aria-hidden="true">💬</span><span class="wa-label">WhatsApp · Uliza huduma</span></a>
+<script>
+(function(){
+  const form=document.getElementById("salesQuoteForm");
+  if(!form)return;
+  form.addEventListener("submit",function(event){
+    event.preventDefault();
+    const data=new FormData(form);
+    const name=String(data.get("quoteName")||"").trim();
+    const service=String(data.get("quoteService")||"").trim();
+    const location=String(data.get("quoteLocation")||"").trim();
+    const details=String(data.get("quoteDetails")||"").trim();
+    if(!name||!service||!details)return;
+    const message="HABARI WATAFITI, NINAOMBA BEI/USHAURI WA HUDUMA.\n\nJina: "+name+"\nHuduma: "+service+"\nEneo: "+(location||"Sijataja") +"\nMaelezo: "+details+"\n\nNimetuma ombi kupitia website ya WATAFITI.";
+    const url="https://wa.me/255624528944?text="+encodeURIComponent(message);
+    const status=document.getElementById("salesQuoteStatus");
+    if(status)status.textContent="WhatsApp inafunguka. Tafadhali bonyeza TUMA/SEND ndani ya WhatsApp ili ombi lifike.";
+    window.open(url,"_blank","noopener,noreferrer");
+  });
+  document.querySelectorAll("[data-quote-service]").forEach(function(link){
+    link.addEventListener("click",function(){
+      const select=form.querySelector('[name="quoteService"]');
+      const wanted=link.getAttribute("data-quote-service");
+      if(select&&wanted){for(const option of select.options){if(option.textContent===wanted||option.value===wanted){select.value=option.value;break;}}}
     });
   });
 })();
