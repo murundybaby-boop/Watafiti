@@ -173,7 +173,7 @@ form.addEventListener('submit',async function(e){
  const payoutProvider=String(d.get('payoutProvider')||'').trim();
  const payoutPhone=String(d.get('payoutPhone')||'').trim();
  const payoutName=String(d.get('payoutName')||'').trim();
- const normalizeName=value=>value.toLocaleLowerCase('sw-TZ').trim().replace(/\\s+/g,' ');
+ const normalizeName=value=>value.toLocaleLowerCase('sw-TZ').trim().replace(/\s+/g,' ');
  if(normalizeName(payoutName)!==normalizeName(name)){
   document.getElementById('formStatus').textContent='Jina la akaunti ya mobile money lazima lilingane na jina kamili ulilojaza kwenye fomu.';
   document.getElementById('payoutName').focus();return;
@@ -205,7 +205,10 @@ form.addEventListener('submit',async function(e){
  'HABARI WATAFITI LOAN, NINATUMA OMBI LA MKOPO.',
  '',
  'Jina kamili: '+name,
- 'Namba ya simu: '+phone,\n 'Mtandao wa kupokea mkopo: '+payoutProvider,\n 'Namba ya kupokea fedha: '+payoutPhone,\n 'Jina la akaunti ya mobile money: '+payoutName,
+ 'Namba ya simu: '+phone,
+ 'Mtandao wa kupokea mkopo: '+payoutProvider,
+ 'Namba ya kupokea fedha: '+payoutPhone,
+ 'Jina la akaunti ya mobile money: '+payoutName,
  'Kiasi ninachoomba: '+fmt(requested),
  'Muda ninaopendekeza: '+term,
  'Riba ya makadirio ('+rate+'%): '+fmt(interest),
