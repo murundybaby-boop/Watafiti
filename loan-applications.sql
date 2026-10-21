@@ -24,7 +24,7 @@ alter table public.loan_applications add column if not exists payout_phone text;
 alter table public.loan_applications add column if not exists payout_name text;
 alter table public.loan_applications drop constraint if exists loan_applications_payout_provider_check;
 alter table public.loan_applications add constraint loan_applications_payout_provider_check
- check (payout_provider is null or payout_provider in ('M-Pesa','Tigo Pesa','Airtel Money'));
+ check (payout_provider is null or payout_provider in ('M-Pesa','Tigo Pesa','Airtel Money','Halotel'));
 alter table public.loan_applications drop constraint if exists loan_applications_payout_phone_check;
 alter table public.loan_applications add constraint loan_applications_payout_phone_check
  check (payout_phone is null or char_length(payout_phone) between 9 and 20);
@@ -52,7 +52,7 @@ create policy "WATAFITI public submit loan application" on public.loan_applicati
  and collateral_type in ('Simu ya mkononi','Laptop/Kompyuta','Televisheni','Tableti/Kamera','Saa/Vito vya thamani','Kifaa cha nyumbani','Nyingine')
  and char_length(collateral_description) between 5 and 500
  and collateral_image_path is not null and char_length(collateral_image_path) between 1 and 500
- and payout_provider in ('M-Pesa','Tigo Pesa','Airtel Money')
+ and payout_provider in ('M-Pesa','Tigo Pesa','Airtel Money','Halotel')
  and char_length(payout_phone) between 9 and 20 and char_length(payout_name) between 2 and 100
 );
 drop policy if exists "WATAFITI admins read loan applications" on public.loan_applications;
