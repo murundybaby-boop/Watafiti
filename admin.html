@@ -305,13 +305,13 @@ async function loadLoanApplications(){
 }
 function loanFraudSignals(r){
  const signals=[];
- const digits=v=>String(v||"").replace(/\\D/g,"");
+ const digits=v=>String(v||"").replace(/\D/g,"");
  const phone=digits(r.phone);
- const name=String(r.full_name||"").trim().toLocaleLowerCase().replace(/\\s+/g," ");
+ const name=String(r.full_name||"").trim().toLocaleLowerCase().replace(/\s+/g," ");
  const recent=allLoanApplications.filter(x=>String(x.id)!==String(r.id)&&Date.now()-new Date(x.created_at).getTime()<=90*86400000);
  if(phone.length<9||phone.length>13)signals.push("Namba ya simu inaonekana si ya kawaida; thibitisha na mwombaji.");
  if(recent.some(x=>digits(x.phone)===phone))signals.push("Namba hii ya simu imetumika kwenye ombi jingine ndani ya siku 90.");
- if(name.length>=2&&recent.some(x=>String(x.full_name||"").trim().toLocaleLowerCase().replace(/\\s+/g," ")===name&&digits(x.phone)!==phone))signals.push("Jina hili limeonekana kwenye ombi lenye namba tofauti ndani ya siku 90.");
+ if(name.length>=2&&recent.some(x=>String(x.full_name||"").trim().toLocaleLowerCase().replace(/\s+/g," ")===name&&digits(x.phone)!==phone))signals.push("Jina hili limeonekana kwenye ombi lenye namba tofauti ndani ya siku 90.");
  if(!r.collateral_type||!String(r.collateral_description||"").trim()||!r.collateral_image_path)signals.push("Taarifa au picha ya dhamana haijakamilika.");
  if(!r.payout_provider||!r.payout_phone||!r.payout_name)signals.push("Taarifa za kupokea fedha hazijakamilika.");
  if(r.payout_phone&&digits(r.payout_phone).length<9)signals.push("Namba ya kupokea fedha inahitaji kuthibitishwa.");
