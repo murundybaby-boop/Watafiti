@@ -131,6 +131,17 @@ label{display:block;margin:8px 0 14px}button{border:0;background:linear-gradient
 <p class="hint" style="margin-bottom:0">Rekodi marejesho kwenye ombi husika baada tu ya kuthibitisha fedha zimeingia na kuhifadhi namba ya muamala.</p>
 </div>
 <div class="stats-grid" id="loanReportStats" style="margin:16px 0"><div class="stat-card"><div class="stat-label">Maombi yote</div><div class="stat-value" id="loanStatTotal">0</div></div><div class="stat-card"><div class="stat-label">Maombi mapya</div><div class="stat-value" id="loanStatNew">0</div></div><div class="stat-card"><div class="stat-label">Yanapitiwa</div><div class="stat-value" id="loanStatReviewing">0</div></div><div class="stat-card"><div class="stat-label">Yaliyoidhinishwa</div><div class="stat-value" id="loanStatApproved">0</div></div><div class="stat-card"><div class="stat-label">Kiasi kilichoombwa (TSh)</div><div class="stat-value" id="loanStatAmount">0</div></div><div class="stat-card"><div class="stat-label">Maombi mwezi huu</div><div class="stat-value" id="loanStatMonth">0</div></div><div class="stat-card"><div class="stat-label">Yaliyokataliwa</div><div class="stat-value" id="loanStatDeclined">0</div></div></div><p class="hint">Muhtasari huu huhesabu maombi yaliyopakiwa kutoka kwenye hifadhidata.</p>
+<section class="panel" id="loanRepaymentReport" style="margin:16px 0;background:#fbfcfd">
+ <div class="topline"><div><h3 style="margin:0">Ripoti ya marejesho ya WATAFITI LOAN</h3><p class="hint">Muhtasari wa fedha zilizorekodiwa na salio la makadirio kwa mikopo iliyoidhinishwa.</p></div><button id="exportLoanRepaymentsBtn" class="gold" type="button">⬇ Pakua marejesho CSV</button></div>
+ <div class="stats-grid">
+  <div class="stat-card"><div class="stat-label">Marejesho yote yaliyorekodiwa (TSh)</div><div class="stat-value" id="loanPaidTotal">—</div></div>
+  <div class="stat-card"><div class="stat-label">Mikopo iliyoidhinishwa (TSh)</div><div class="stat-value" id="loanApprovedDue">—</div></div>
+  <div class="stat-card"><div class="stat-label">Salio la makadirio (TSh)</div><div class="stat-value" id="loanOutstandingEstimate">—</div></div>
+  <div class="stat-card"><div class="stat-label">Idadi ya rekodi za malipo</div><div class="stat-value" id="loanRepaymentCount">—</div></div>
+ </div>
+ <h4>Muhtasari wa marejesho — miezi 6</h4><div id="loanMonthlyRepaymentReport" class="report-scroll"><p class="empty">Inapakia ripoti...</p></div>
+ <p class="hint">Haya ni makadirio yanayotokana na kiwango cha riba kilichowekwa kwenye ombi. Thibitisha makubaliano halisi kabla ya kutumia salio kama deni rasmi. Mfumo huhesabu malipo yaliyorekodiwa tu.</p>
+</section>
 <div class="row"><label>Tafuta ombi<input id="loanApplicationSearch" type="search" placeholder="Tafuta jina, simu, eneo..."></label><label>Hali<select id="loanApplicationStatusFilter"><option value="all">Maombi yote</option><option value="new">Mapya</option><option value="reviewing">Yanapitiwa</option><option value="answered">Yamejibiwa</option><option value="approved">Yameidhinishwa</option><option value="declined">Yamekataliwa</option></select></label></div>
 <p id="loanApplicationCount" class="hint" aria-live="polite"></p><div id="loanApplicationList" class="article-list"><p class="empty">Inapakia maombi ya mikopo...</p></div>
 </section>
@@ -318,9 +329,22 @@ async function loadLoanApplications(){
   loanRepaymentLoadError="";
   try{allLoanRepayments=await api("/rest/v1/loan_repayments?select=id,loan_application_id,amount,paid_on,reference,notes,created_at&order=paid_on.desc",{headers:headers()});}
   catch(repaymentError){allLoanRepayments=[];loanRepaymentLoadError=repaymentError.message;}
-  renderLoanApplications();
+  renderLoanRepaymentReport();renderLoanApplications();
 }
  catch(e){host.textContent="";const p=document.createElement("p");p.className="empty";p.textContent="Maombi hayajapakiwa. Hakikisha loan-applications.sql imeendeshwa kwenye Supabase na akaunti hii ipo kwenye admin_users. "+e.message;host.appendChild(p);el("loanApplicationCount").textContent="";}
+}
+function renderLoanRepaymentReport(){
+ const paidTotal=allLoanRepayments.reduce((sum,p)=>sum+(Number(p.amount)||0),0);
+ const approved=allLoanApplications.filter(r=>r.status==="approved");
+ const expected=approved.reduce((sum,r)=>{const rate=({"Wiki 1":10,"Siku 14":20,"Siku 21":30,"Mwezi 1":40})[r.repayment_period]||Number(r.interest_rate||0);return sum+Number(r.amount||0)+Math.round(Number(r.amount||0)*rate/100);},0);
+ const approvedPaid=allLoanRepayments.reduce((sum,p)=>{const loan=approved.find(r=>String(r.id)===String(p.loan_application_id));return sum+(loan?(Number(p.amount)||0):0);},0);
+ setStat("loanPaidTotal",paidTotal.toLocaleString("en-US"));setStat("loanApprovedDue",expected.toLocaleString("en-US"));setStat("loanOutstandingEstimate",Math.max(0,expected-approvedPaid).toLocaleString("en-US"));setStat("loanRepaymentCount",allLoanRepayments.length);
+ const host=el("loanMonthlyRepaymentReport");if(!host)return;host.textContent="";
+ if(loanRepaymentLoadError){const p=document.createElement("p");p.className="empty";p.textContent="Ripoti ya marejesho haipatikani. Hakiki jedwali loan_repayments na ruhusa zake. "+loanRepaymentLoadError;host.appendChild(p);return;}
+ const months=[];const now=new Date();for(let i=5;i>=0;i--){const d=new Date(now.getFullYear(),now.getMonth()-i,1);months.push({key:d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0"),label:new Intl.DateTimeFormat("sw-TZ",{month:"short",year:"numeric"}).format(d),count:0,total:0});}
+ const map=new Map(months.map(m=>[m.key,m]));allLoanRepayments.forEach(p=>{const d=new Date((p.paid_on||p.created_at||"").slice(0,10)+"T12:00:00");if(Number.isNaN(d.getTime()))return;const key=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0");const m=map.get(key);if(m){m.count++;m.total+=Number(p.amount)||0;}});
+ const table=document.createElement("table");table.className="report-table";const thead=document.createElement("thead"),hr=document.createElement("tr");["Mwezi","Idadi ya malipo","Jumla iliyopokelewa (TSh)"].forEach(v=>{const th=document.createElement("th");th.textContent=v;hr.appendChild(th);});thead.appendChild(hr);table.appendChild(thead);
+ const tbody=document.createElement("tbody");months.slice().reverse().forEach(m=>{const tr=document.createElement("tr");[m.label,m.count,m.total.toLocaleString("en-US")].forEach(v=>{const td=document.createElement("td");td.textContent=String(v);tr.appendChild(td);});tbody.appendChild(tr);});table.appendChild(tbody);host.appendChild(table);
 }
 function loanFraudSignals(r){
  const signals=[];
@@ -405,6 +429,15 @@ function renderLoanApplications(){
 }
 function filterContactMessages(){const q=(el("contactSearch").value||"").trim().toLocaleLowerCase();const status=el("contactStatusFilter").value;Array.from(el("contactMessageList").children).forEach(card=>{const t=card.textContent.toLocaleLowerCase();const matchesText=!q||t.includes(q);const isUnread=t.includes("· mpya");const matchesStatus=status==="all"||(status==="unread"&&isUnread)||(status==="read"&&!isUnread&&!t.includes("inapakia")&&!t.includes("bado hakuna"));card.classList.toggle("hidden",!(matchesText&&matchesStatus));});}
 function filterAdminReviews(){const q=(el("reviewSearch").value||"").trim().toLocaleLowerCase();const status=el("reviewStatusFilter").value;const cards=Array.from(el("reviewAdminList").children);let shown=0;cards.forEach(card=>{const t=card.textContent.toLocaleLowerCase();const matchesText=!q||t.includes(q);const pending=t.includes("inasubiri idhini");const matchesStatus=status==="all"||(status==="pending"&&pending)||(status==="approved"&&t.includes("imeidhinishwa"));const visible=matchesText&&matchesStatus;card.classList.toggle("hidden",!visible);if(visible&&!card.classList.contains("empty"))shown++;});el("reviewFilterCount").textContent="Inaonyesha "+shown+" kati ya maoni "+cards.filter(card=>!card.classList.contains("empty")).length+".";}
+el("exportLoanRepaymentsBtn").addEventListener("click",function(){
+ if(loanRepaymentLoadError){alert("Ripoti ya marejesho haipatikani. Hakiki jedwali loan_repayments kwanza.");return;}
+ if(!allLoanRepayments.length){alert("Bado hakuna rekodi za marejesho za kupakua.");return;}
+ const columns=[["Tarehe ya malipo","paid_on"],["ID ya ombi la mkopo","loan_application_id"],["Kiasi TSh","amount"],["Kumbukumbu ya muamala","reference"],["Maelezo","notes"],["Tarehe ya kurekodiwa","created_at"]];
+ const safe=value=>{let s=String(value==null?"":value);if(/^\s*[=+@-]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"';};
+ const rows=[columns.map(c=>safe(c[0])).join(",")].concat(allLoanRepayments.map(r=>columns.map(c=>safe(r[c[1]])).join(",")));
+ const blob=new Blob([String.fromCharCode(65279)+rows.join(String.fromCharCode(13,10))],{type:"text/csv;charset=utf-8;"});
+ const url=URL.createObjectURL(blob),link=document.createElement("a");link.href=url;link.download="WATAFITI-LOAN-marejesho-"+new Date().toISOString().slice(0,10)+".csv";document.body.appendChild(link);link.click();link.remove();URL.revokeObjectURL(url);
+});
 el("exportLoanApplicationsBtn").addEventListener("click",function(){
  if(!allLoanApplications.length){alert("Hakuna maombi ya mikopo ya kupakua.");return;}
  const columns=[["Tarehe","created_at"],["Jina","full_name"],["Simu","phone"],["Mtandao wa kupokea","payout_provider"],["Namba ya kupokea fedha","payout_phone"],["Jina la akaunti ya mobile money","payout_name"],["Kiasi TSh","amount"],["Chanzo cha kipato","income_source"],["Muda wa marejesho","repayment_period"],["Eneo","region"],["Riba asilimia","interest_rate"],["Hali","status"],["Sababu","purpose"],["Jibu la admin","admin_reply"],["Aina ya dhamana","collateral_type"],["Maelezo ya dhamana","collateral_description"],["Njia ya picha ya dhamana","collateral_image_path"]];
