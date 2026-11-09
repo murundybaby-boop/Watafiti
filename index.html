@@ -442,6 +442,9 @@ footer{background:linear-gradient(110deg,#041f29,#073b4c);border-top:3px solid #
 .ai-coming-soon>b{color:#6c48b5!important}
 .ai-coming-soon:hover{transform:none!important;box-shadow:0 8px 22px rgba(75,48,130,.08)!important}
 
+
+/* WATAFITI TV video library cards */
+.video-library{margin:26px auto 0;max-width:1050px}.video-library h3{color:#073b4c;font-size:22px}.video-library-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.video-library-card{display:flex;flex-direction:column;min-width:0;background:#fff;border:1px solid #dce9ed;border-radius:15px;overflow:hidden;box-shadow:0 5px 16px #073b4c0b}.video-library-card img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#e8eff2}.video-library-copy{padding:13px;display:flex;flex:1;flex-direction:column;align-items:flex-start;gap:7px}.video-library-copy strong{color:#073b4c;line-height:1.4}.video-library-copy small{color:#60757c}.video-library-copy p{margin:0;color:#526b75;font-size:14px;line-height:1.55}.video-library-copy button{margin-top:auto;border:0;border-radius:9px;background:#073b4c;color:#fff;padding:10px 14px;font-weight:800;cursor:pointer}.video-library-empty{color:#60757c;text-align:center;padding:16px;background:#f5fafb;border-radius:12px}@media(max-width:760px){.video-library-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.video-library-copy{padding:10px}.video-library-copy p{font-size:13px}}@media(max-width:460px){.video-library-grid{grid-template-columns:1fr}.video-library-card{display:grid;grid-template-columns:112px minmax(0,1fr)}.video-library-card img{height:100%;min-height:112px;aspect-ratio:auto}.video-library-copy button{width:100%;padding:9px}}
 </style>
 </head>
 
@@ -677,6 +680,7 @@ footer{background:linear-gradient(110deg,#041f29,#073b4c);border-top:3px solid #
     <span class="youtube-fallback-play" aria-hidden="true">▶</span>
     <span class="youtube-fallback-caption" data-sw="Video haionekani? Bonyeza hapa kuitazama YouTube" data-en="Video not showing? Tap here to watch on YouTube">Video haionekani? Bonyeza hapa kuitazama YouTube</span>
   </a>
+  <div class="video-library" aria-labelledby="videoLibraryHeading"><h3 id="videoLibraryHeading">Video nyingine za WATAFITI TV</h3><div id="watafitiVideoLibrary" class="video-library-grid" aria-live="polite"><p class="video-library-empty">Video nyingine zitaonekana hapa.</p></div></div>
   <div class="youtube-video-actions">
     <a class="btn youtube-subscribe-btn" href="https://youtube.com/@watafiti" target="_blank" rel="noopener noreferrer">▶ SUBSCRIBE WATAFITI TV</a>
     <a class="btn" href="https://youtube.com/@watafiti/videos" target="_blank" rel="noopener noreferrer">🎬 Tazama Video Zote</a>
@@ -1583,5 +1587,14 @@ setSwahili();
 })();
 </script>
 
+<script>
+(function(){
+ const root=document.getElementById("watafitiVideoLibrary");if(!root)return;
+ const SUPABASE_URL="https://zleflmeepyearrocaheg.supabase.co",SUPABASE_KEY="sb_publishable_0SA-j8i6kAJT69XO0T-gpA_WHWMaEcF";
+ function getVideoId(value){try{const u=new URL(value);let id="";if(u.hostname==="youtu.be")id=u.pathname.split("/").filter(Boolean)[0]||"";else if(["youtube.com","www.youtube.com","m.youtube.com","youtube-nocookie.com","www.youtube-nocookie.com"].includes(u.hostname)){if(u.pathname==="/watch")id=u.searchParams.get("v")||"";else if(/^\/(embed|shorts|live)\//.test(u.pathname))id=u.pathname.split("/")[2]||"";}return /^[A-Za-z0-9_-]{11}$/.test(id)?id:null;}catch(_){return null;}}
+ function loadFeatured(video){const id=getVideoId(video.youtube_url);if(!id)return;const frame=document.querySelector(".youtube-video-frame iframe"),fallback=document.querySelector(".youtube-video-fallback");if(frame){frame.src="https://www.youtube-nocookie.com/embed/"+id+"?rel=0";frame.title=video.title||"Video ya WATAFITI TV";}if(fallback){fallback.href="https://youtu.be/"+id;const img=fallback.querySelector("img");if(img){img.src="https://i.ytimg.com/vi/"+id+"/hqdefault.jpg";img.alt=video.title||"Video ya WATAFITI TV";}}const heading=document.querySelector("#video .youtube-video-heading .title");if(heading)heading.textContent="▶ "+(video.title||"Video ya WATAFITI TV");const desc=document.querySelector("#video .youtube-video-heading>p");if(desc&&video.description)desc.textContent=video.description;const section=document.getElementById("video");if(section)section.scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});}
+ fetch(SUPABASE_URL+"/rest/v1/videos?select=id,title,description,youtube_url,category,created_at&published=eq.true&order=created_at.desc&limit=12",{headers:{"apikey":SUPABASE_KEY,"Authorization":"Bearer "+SUPABASE_KEY}}).then(r=>{if(!r.ok)throw new Error("Video library unavailable");return r.json();}).then(rows=>{root.textContent="";if(!rows.length){root.innerHTML='<p class="video-library-empty">Video mpya zitaongezwa hapa kadri WATAFITI TV inavyoendelea.</p>';return;}rows.forEach(video=>{const id=getVideoId(video.youtube_url);if(!id)return;const card=document.createElement("article");card.className="video-library-card";const image=document.createElement("img");image.src="https://i.ytimg.com/vi/"+id+"/hqdefault.jpg";image.alt=video.title||"Video ya WATAFITI TV";image.loading="lazy";image.decoding="async";image.onerror=function(){this.remove();};const copy=document.createElement("div");copy.className="video-library-copy";if(video.category){const category=document.createElement("small");category.textContent=video.category;copy.appendChild(category);}const title=document.createElement("strong");title.textContent=video.title||"Video ya WATAFITI TV";const description=document.createElement("p");description.textContent=(video.description||"").slice(0,160);const button=document.createElement("button");button.type="button";button.textContent="▶ Tazama hapa";button.addEventListener("click",()=>loadFeatured(video));copy.append(title,description,button);card.append(image,copy);root.appendChild(card);});}).catch(()=>{root.innerHTML='<p class="video-library-empty">Video hazijapakiwa kwa sasa. Tafadhali jaribu tena baadaye.</p>';});
+})();
+</script>
 </body>
 </html>
