@@ -433,7 +433,7 @@ el("exportLoanRepaymentsBtn").addEventListener("click",function(){
  if(loanRepaymentLoadError){alert("Ripoti ya marejesho haipatikani. Hakiki jedwali loan_repayments kwanza.");return;}
  if(!allLoanRepayments.length){alert("Bado hakuna rekodi za marejesho za kupakua.");return;}
  const columns=[["Tarehe ya malipo","paid_on"],["ID ya ombi la mkopo","loan_application_id"],["Kiasi TSh","amount"],["Kumbukumbu ya muamala","reference"],["Maelezo","notes"],["Tarehe ya kurekodiwa","created_at"]];
- const safe=value=>{let s=String(value==null?"":value);if(/^\\s*[=+@-]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"';};
+ const safe=value=>{let s=String(value==null?"":value);if(/^\s*[=+@-]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"';};
  const rows=[columns.map(c=>safe(c[0])).join(",")].concat(allLoanRepayments.map(r=>columns.map(c=>safe(r[c[1]])).join(",")));
  const blob=new Blob([String.fromCharCode(65279)+rows.join(String.fromCharCode(13,10))],{type:"text/csv;charset=utf-8;"});
  const url=URL.createObjectURL(blob),link=document.createElement("a");link.href=url;link.download="WATAFITI-LOAN-marejesho-"+new Date().toISOString().slice(0,10)+".csv";document.body.appendChild(link);link.click();link.remove();URL.revokeObjectURL(url);
