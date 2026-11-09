@@ -1496,7 +1496,7 @@ setSwahili();
     if(!ids)return false;
     document.body.classList.remove("home-categories","category-news");
     document.body.classList.add("category-open");
-    if(hash==="#taarifa")document.body.classList.add("category-news");
+    if(hash==="#taarifa"||hash==="#research")document.body.classList.add("category-news");
     document.querySelectorAll("body > section").forEach(function(section){
       if(section.id!=="nyumbani"&&section.id!=="vitengo")section.style.display=ids.includes(section.id)?"":"none";
     });
