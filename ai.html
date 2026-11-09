@@ -4,30 +4,99 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>WATAFITI AI | Msaidizi wa Maarifa</title>
-<meta name="description" content="WATAFITI AI inalenga kusaidia maswali ya jumla na kutafuta maarifa kutoka kwenye maudhui ya WATAFITI.">
+<meta name="description" content="WATAFITI AI inalenga kusaidia maswali ya jumla na kuchunguza maarifa kutoka kwenye maudhui ya WATAFITI.">
 <meta name="theme-color" content="#073b4c">
 <link rel="canonical" href="https://murundybaby-boop.github.io/Watafiti/ai.html">
 <style>
-*{box-sizing:border-box}body{margin:0;background:#f3f7f9;color:#20343c;font:16px/1.7 Arial,Helvetica,sans-serif}.top{background:#073b4c;color:#fff;padding:15px 18px}.top nav{max-width:1050px;margin:auto;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.top a{color:#fff;text-decoration:none;font-weight:800}.wrap{width:min(100% - 30px,1000px);margin:30px auto 55px}.hero{padding:clamp(28px,6vw,60px);border-radius:24px;background:radial-gradient(circle at 90% 10%,#b9a0f555,transparent 30%),linear-gradient(130deg,#052d3a,#073b4c 60%,#176477);color:#fff;box-shadow:0 16px 38px #073b4c20}.tag{display:inline-block;padding:6px 12px;border:1px solid #ffffff55;border-radius:999px;color:#e5f6fa;font-size:12px;font-weight:800;letter-spacing:1px}.hero h1{font-size:clamp(35px,7vw,58px);line-height:1.1;margin:16px 0 12px}.hero p{max-width:740px;color:#e0eef1;font-size:18px}.status{display:flex;gap:12px;align-items:flex-start;margin:22px 0;padding:17px 18px;border-radius:15px;background:#fff8e6;border:1px solid #f0dfa9;color:#5d4b21}.status strong{display:block;color:#57400b}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin:22px 0}.card{padding:22px;background:#fff;border:1px solid #dce9ed;border-radius:17px;box-shadow:0 6px 20px #073b4c09}.card h2{margin:0 0 8px;color:#073b4c;font-size:21px}.card p{margin:0;color:#5b7078}.next{padding:24px;background:#eaf5f7;border:1px solid #d7e9ed;border-radius:17px}.next h2{margin:0 0 8px;color:#073b4c}.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.btn{display:inline-block;padding:11px 16px;border-radius:10px;background:#ffd166;color:#17343d;text-decoration:none;font-weight:850}.btn.alt{background:#073b4c;color:#fff}footer{text-align:center;color:#708087;padding:24px}@media(max-width:650px){.grid{grid-template-columns:1fr}.wrap{width:calc(100% - 22px);margin-top:16px}.hero{border-radius:19px;padding:25px 19px}.hero p{font-size:16px}}
+:root{color-scheme:light;--navy:#073b4c;--deep:#052d3a;--teal:#176477;--gold:#ffd166;--ink:#20343c;--muted:#617780;--line:#dce9ed;--paper:#fff;--bg:#f2f7f8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 Arial,Helvetica,sans-serif}
+a{color:inherit}
+.top{background:var(--navy);color:#fff;padding:14px 18px}
+.top nav{max-width:1080px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.brand{font-weight:900;letter-spacing:.7px;text-decoration:none;font-size:18px}
+.back{color:#e5f6fa;text-decoration:none;font-weight:700;font-size:14px}
+.wrap{width:min(100% - 32px,1050px);margin:28px auto 58px}
+.hero{position:relative;overflow:hidden;padding:clamp(28px,6vw,62px);border-radius:26px;background:radial-gradient(circle at 88% 8%,#b9a0f555,transparent 29%),radial-gradient(circle at 5% 100%,#2a829044,transparent 35%),linear-gradient(130deg,var(--deep),var(--navy) 58%,var(--teal));color:#fff;box-shadow:0 18px 42px #073b4c20}
+.hero:after{content:"✳";position:absolute;right:7%;bottom:-55px;font-size:210px;line-height:1;color:#ffffff0c;pointer-events:none}
+.tag{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border:1px solid #ffffff55;border-radius:999px;color:#e5f6fa;font-size:12px;font-weight:800;letter-spacing:1px}
+.hero h1{font-size:clamp(38px,7vw,62px);line-height:1.08;margin:17px 0 12px;letter-spacing:-1.3px}
+.hero p{position:relative;z-index:1;max-width:740px;color:#e0eef1;font-size:18px;margin:0}
+.hero-note{display:inline-block;margin-top:22px;padding:9px 13px;border-radius:10px;background:#ffffff17;border:1px solid #ffffff30;color:#fff;font-size:13px;font-weight:700}
+.section-head{margin:34px 0 14px}
+.section-head h2{margin:0;color:var(--navy);font-size:25px;line-height:1.25}
+.section-head p{margin:6px 0 0;color:var(--muted)}
+.status{display:flex;gap:13px;align-items:flex-start;margin:20px 0;padding:17px 19px;border-radius:15px;background:#fff8e6;border:1px solid #f0dfa9;color:#5d4b21}
+.status-icon{font-size:22px;line-height:1.3}
+.status strong{display:block;color:#57400b;margin-bottom:3px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.card{padding:21px;background:var(--paper);border:1px solid var(--line);border-radius:17px;box-shadow:0 7px 22px #073b4c08}
+.card-icon{width:43px;height:43px;display:grid;place-items:center;border-radius:13px;background:#eaf5f7;font-size:22px;margin-bottom:13px}
+.card h3{margin:0 0 7px;color:var(--navy);font-size:19px}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.examples{padding:22px;background:#fff;border:1px solid var(--line);border-radius:18px}
+.examples h2{margin:0 0 6px;color:var(--navy);font-size:21px}
+.examples>p{margin:0 0 15px;color:var(--muted)}
+.question-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.question{padding:12px 14px;border:1px solid #dce9ed;border-radius:12px;background:#f8fbfc;color:#38535d;font-size:14px}
+.roadmap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+.step{padding:17px;border-radius:15px;background:#eaf5f7;border:1px solid #d7e9ed}
+.step-num{font-size:12px;font-weight:900;letter-spacing:1px;color:#36717e}
+.step h3{font-size:16px;color:var(--navy);margin:5px 0}
+.step p{font-size:14px;color:#5b7078;margin:0}
+.next{margin-top:28px;padding:24px;background:var(--navy);color:#fff;border-radius:18px}
+.next h2{margin:0 0 7px;font-size:22px}
+.next p{margin:0;color:#dcebef;max-width:760px}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.btn{display:inline-block;padding:11px 16px;border-radius:10px;background:var(--gold);color:#17343d;text-decoration:none;font-weight:850}
+.btn.alt{background:#ffffff1a;border:1px solid #ffffff55;color:#fff}
+footer{text-align:center;color:#708087;padding:24px 15px;font-size:13px}
+@media(max-width:760px){.grid,.roadmap{grid-template-columns:1fr}.question-list{grid-template-columns:1fr}.wrap{width:calc(100% - 22px);margin-top:16px}.hero{border-radius:20px;padding:27px 20px}.hero p{font-size:16px}.section-head{margin-top:27px}}
 </style>
 </head>
 <body>
-<header class="top"><nav aria-label="Menyu"><a href="./index.html">WATAFITI</a><a href="./index.html#vitengo">← Rudi kwenye WATAFITI</a></nav></header>
+<header class="top"><nav aria-label="Menyu kuu"><a class="brand" href="./index.html">WATAFITI</a><a class="back" href="./index.html#vitengo">← Rudi kwenye WATAFITI</a></nav></header>
 <main class="wrap">
 <section class="hero">
 <span class="tag">🤖 KITENGO CHA AKILI BANDIA</span>
 <h1>WATAFITI AI</h1>
-<p>Msaidizi wa kidijitali unaolenga kujibu maswali ya jumla na kusaidia watu kuchunguza maarifa yaliyomo kwenye makala, tafiti na maudhui ya WATAFITI.</p>
+<p>Msaidizi wa maarifa wa WATAFITI. Lengo lake ni kusaidia watu kuuliza maswali, kuelewa mada mbalimbali na kuchunguza maarifa yanayopatikana kwenye makala, tafiti, video na mafunzo ya jukwaa.</p>
+<div class="hero-note">Maarifa • Utafiti • Elimu • Teknolojia</div>
 </section>
-<aside class="status" role="status"><span aria-hidden="true">ℹ️</span><div><strong>Ukurasa wa WATAFITI AI umefunguliwa.</strong> Mazungumzo ya AI bado hayajaunganishwa. Tunahitaji kukamilisha muunganisho salama wa huduma ya AI kupitia Supabase kabla ya kuwezesha sehemu ya kuuliza maswali. Kwa sasa ukurasa huu haupokei wala kuhifadhi ujumbe wako.</div></aside>
-<section class="grid" aria-label="Huduma zinazolengwa">
-<article class="card"><h2>🌍 Msaidizi wa jumla</h2><p>Maswali na maelezo kuhusu sayansi, teknolojia, historia, elimu na mada nyingine mbalimbali.</p></article>
-<article class="card"><h2>📚 Maarifa ya WATAFITI</h2><p>Kutafuta na kuelewa taarifa kutoka kwenye makala, tafiti, video na mafunzo yatakayowekwa kwenye jukwaa.</p></article>
+
+<aside class="status" role="status">
+<span class="status-icon" aria-hidden="true">ℹ️</span>
+<div><strong>WATAFITI AI bado inaandaliwa</strong>Ukurasa huu unapatikana, lakini mazungumzo ya AI bado hayajaunganishwa. Hatujapokea wala kuhifadhi ujumbe wowote unaoandikwa hapa. Tutawezesha mazungumzo baada ya kukamilisha muunganisho salama wa seva.</div>
+</aside>
+
+<div class="section-head"><h2>WATAFITI AI itakusaidiaje?</h2><p>Imeandaliwa kuwa na uwezo wa aina mbili zinazokamilishana.</p></div>
+<section class="grid" aria-label="Uwezo wa WATAFITI AI">
+<article class="card"><div class="card-icon" aria-hidden="true">🌍</div><h3>Msaidizi wa jumla</h3><p>Kuuliza maswali na kupata maelezo kuhusu sayansi, historia, teknolojia, jamii na mada nyingine za elimu.</p></article>
+<article class="card"><div class="card-icon" aria-hidden="true">📚</div><h3>Maktaba ya WATAFITI</h3><p>Kusaidia kutafuta, kuelewa na kuunganisha taarifa kutoka kwenye makala, tafiti, video na mafunzo ya WATAFITI.</p></article>
+<article class="card"><div class="card-icon" aria-hidden="true">🧭</div><h3>Kujifunza kwa hatua</h3><p>Kueleza dhana kwa lugha rahisi, kutoa mifano na kusaidia mwanafunzi kufuatilia mada hatua kwa hatua.</p></article>
 </section>
+
+<div class="section-head"><h2>Mifano ya maswali utakayoweza kuuliza</h2><p>Haya ni mifano ya matumizi yanayolengwa; si sehemu ya mazungumzo inayofanya kazi kwa sasa.</p></div>
+<section class="examples" aria-label="Mifano ya maswali">
+<div class="question-list">
+<div class="question">“Eleza tofauti kati ya utafiti wa kisayansi na wa kijamii.”</div>
+<div class="question">“Nisaidie kuelewa jinsi GPS inavyotumika kwenye surveying.”</div>
+<div class="question">“Nipe muhtasari wa mada hii kwa lugha rahisi.”</div>
+<div class="question">“Ni mada zipi za msingi nijifunze kuhusu teknolojia?”</div>
+</div>
+</section>
+
+<div class="section-head"><h2>Mpango wa ujenzi</h2><p>Tutajenga mfumo kwa hatua ili kulinda tovuti na taarifa za watumiaji.</p></div>
+<section class="roadmap" aria-label="Hatua za ujenzi">
+<article class="step"><div class="step-num">HATUA 01</div><h3>Muonekano na mpangilio</h3><p>Kuandaa ukurasa na njia rahisi za kuutumia.</p></article>
+<article class="step"><div class="step-num">HATUA 02</div><h3>Muunganisho salama</h3><p>Kuandaa seva ya mazungumzo na kuhifadhi funguo za siri upande wa seva.</p></article>
+<article class="step"><div class="step-num">HATUA 03</div><h3>Maarifa ya WATAFITI</h3><p>Kuunganisha makala, tafiti na video ili AI iweze kusaidia kuchunguza maudhui ya jukwaa.</p></article>
+</section>
+
 <section class="next">
-<h2>Hatua inayofuata</h2>
-<p>Kuunganisha ukurasa huu na Supabase Edge Function pamoja na API ya AI. Funguo za API zitawekwa upande wa seva pekee, si ndani ya ukurasa wa umma wala kwenye GitHub.</p>
-<div class="links"><a class="btn" href="./academy.html">Tembelea Academy</a><a class="btn alt" href="./index.html#research">Chunguza Research</a></div>
+<h2>Anza kuchunguza maarifa ya WATAFITI</h2>
+<p>Wakati WATAFITI AI inaendelea kuandaliwa, unaweza kutembelea sehemu za elimu na utafiti zilizopo kwenye tovuti.</p>
+<div class="links"><a class="btn" href="./academy.html">Tembelea Academy</a><a class="btn alt" href="./index.html#research">Chunguza Research</a><a class="btn alt" href="./index.html">Ukurasa wa mwanzo</a></div>
 </section>
 </main>
 <footer>© WATAFITI • Maarifa kwa maendeleo</footer>
