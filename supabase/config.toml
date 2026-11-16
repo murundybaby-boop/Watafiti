@@ -1,2 +1,5 @@
 [functions.contact-message]
 verify_jwt = false
+
+[functions.watafiti-ai]
+verify_jwt = false
