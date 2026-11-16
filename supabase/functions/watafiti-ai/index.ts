@@ -27,16 +27,14 @@ Deno.serve(async (req) => {
 
   try {
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
-    const anonKey = Deno.env.get("SUPABASE_ANON_KEY");
     const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
     const openAiKey = Deno.env.get("OPENAI_API_KEY");
     const model = Deno.env.get("OPENAI_MODEL") || "gpt-4o-mini";
-    if (!supabaseUrl || !anonKey || !serviceKey || !openAiKey) {
+    if (!supabaseUrl || !serviceKey || !openAiKey) {
       return json({ error: "Huduma ya AI bado haijakamilishwa. Tafadhali jaribu tena baadaye." }, 503);
     }
 
-    const suppliedKey = req.headers.get("apikey") || "";
-    if (suppliedKey !== anonKey) return json({ error: "Ombi halijathibitishwa." }, 401);
+    if (!req.headers.get("apikey")) return json({ error: "Ombi halijathibitishwa." }, 401);
 
     const body = await req.json().catch(() => null);
     if (!body || !Array.isArray(body.messages) || body.messages.length < 1 || body.messages.length > 8) {
